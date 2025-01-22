@@ -3,7 +3,7 @@
 
 
                 <h3 class="fw-bold mb-3">Dashboard</h3>
-                <h6 class="op-7 mb-2">Selamat Datang Di Pengaduan Masyarakat </h6>
+                <h6 class="op-7 mb-2">Selamat Datang Di Aplikasi Pengaduan Masyarakat </h6>
               </div>
               <div class="ms-md-auto py-2 py-md-0">
                 <a href="#" class="btn btn-label-info btn-round me-2">Laporan</a>
@@ -19,7 +19,7 @@
                         <div
                           class="icon-big text-center icon-primary bubble-shadow-small"
                         >
-                          <i class="fas fa-users"></i>
+                          <i class="bi bi-columns-gap"></i>
                         </div>
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
@@ -133,7 +133,7 @@
                 <div class="card card-primary card-round">
                   <div class="card-header">
                     <div class="card-head-row">
-                      <div class="card-title">jumlah pendapatan</div>
+                      <div class="card-title">jumlah Laporan</div>
                       <div class="card-tools">
                         <div class="dropdown">
                           <button

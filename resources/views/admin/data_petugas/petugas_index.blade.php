@@ -26,22 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                                @foreach($petugas as $key => $petugas)
-                                <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ $petugas->nik }}</td>
-                                    <td>{{ $petugas->nama }}</td>
-                                    <td>{{ ucfirst($petugas->jenis_kelamin) }}</td>
-                                    <td>{{ $petugas->username }}</td>
-                                    <td>{{ $petugas->no_telepon ?? '-' }}</td>
-                                    <td>{{ $petugas->alamat ?? '-' }}</td>
-                                    <td>{{ $petugas->role ?? '_' }}</td>
-                                    <td>
-                                        <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </td>
-                                </tr>
-                                @endforeach
+                               
                         </tbody>
 
                     </table>

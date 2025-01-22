@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MasyarakatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('admin.dasboard');
+});
+Route::get('profile', function () {
+    return view('admin.profile.masyarakat');
+});
+Route::get('laporan', function () {
+    return view('admin.laporan.laporan_keamanan');
+});
+
+Route::get('admin', [AdminController::class,'index']);
+
+Route::get('petugas', function () {
+    return view('admin.data_petugas.petugas_index');
+});
+
+
+
+Route::get('masyarakat', function () {
+    return view('masyarakat.masyarakat');
 });
