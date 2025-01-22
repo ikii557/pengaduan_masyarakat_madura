@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-body d-flex justify-content-end">
                     <a href="#" class="btn btn-label-info btn-round me-2">Laporan</a>
-                    <a href="tambah_masyarakat" class="btn btn-primary btn-round">Tambah Masyarakat</a>
+                    <a href="tambah_masyarakat" class="btn btn-primary btn-round">Tambah admin</a>
 
                 </div>
             </div>
@@ -21,11 +21,11 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header bg-primary text-white">
-                    <h3 class="card-title">Daftar masyarakat</h3>
+                    <h3 class="card-title">Daftar admin</h3>
                 </div>
                 <div class="card-body">
                 <table>
-                <table>
+                <table class="table table-boerded">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -38,15 +38,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($masyarakats as $key => $masyarakat)
+                        @foreach ($petugass as $key => $petugas)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $masyarakat->nik }}</td>
-                                <td>{{ $masyarakat->nama_lengkap }}</td>
-                                <td>{{ $masyarakat->jenis_kelamin }}</td>
-                                <td>{{ $masyarakat->username }}</td>
-                                <td>{{ $masyarakat->no_telepon }}</td>
-                                <td>{{ $masyarakat->alamat }}</td>
+                                <td>{{ $petugas->nik }}</td>
+                                <td>{{ $petugas->nama_lengkap }}</td>
+                                <td>{{ $petugas->jenis_kelamin }}</td>
+                                <td>{{ $petugas->username }}</td>
+                                <td>{{ $petugas->no_telepon }}</td>
+                                <td>{{ $petugas->alamat }}</td>
                             </tr>
                         @endforeach
 

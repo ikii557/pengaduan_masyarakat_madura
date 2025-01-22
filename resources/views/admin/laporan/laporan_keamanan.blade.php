@@ -20,38 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if($pengaduans->count())
-                        @foreach($pengaduans as $key => $pengaduan)
-                        <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $pengaduan->masyarakat->nama ?? 'Tidak Diketahui' }}</td>
-                            <td>{{ $pengaduan->kategori->nama_kategori ?? 'Tidak Diketahui' }}</td>
-                            <td>{{ $pengaduan->tanggal_pengaduan }}</td>
-                            <td>{{ $pengaduan->isi_pengaduan }}</td>
-                            <td>
-                                @if($pengaduan->foto)
-                                <img src="{{ asset('assets/img/kaiadmin/cilacaplogo.png/'.$pengaduan->foto) }}" alt="Foto" width="100">
-                                @else
-                                <span class="text-muted">Tidak ada foto</span>
-                                @endif
-                            </td>
-                            <td>
-                                @if($pengaduan->status == 'pending')
-                                <span class="badge bg-warning text-dark">Pending</span>
-                                @elseif($pengaduan->status == 'selesai')
-                                <span class="badge bg-success">Selesai</span>
-                                @else
-                                <span class="badge bg-secondary">Diproses</span>
-                                @endif
-                            </td>
-
-                        </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="8" class="text-center text-muted">Tidak ada data pengaduan</td>
-                        </tr>
-                    @endif
+                    <!--  -->
                 </tbody>
             </table>
         </div>

@@ -49,7 +49,7 @@
           <div class="collapse {{ Request::is('keamanan') || Request::is('components/*') ? 'show' : '' }}" id="base">
             <ul class="nav nav-collapse">
               <li class="{{ Request::is('keamanan') ? 'active' : '' }}">
-                <a href="{{ url('keamanan') }}">
+                <a href="{{ url('laporan') }}">
                   <span class="sub-item">Pengaduan Keamanan</span>
                 </a>
               </li>
@@ -120,7 +120,7 @@
   <div class="collapse {{ Request::is('forms/*') || Request::is('profile') ? 'show' : '' }}" id="forms">
     <ul class="nav nav-collapse">
       <li class="{{ Request::is('forms/admin') ? 'active' : '' }}">
-        <a href="/forms/admin">
+        <a href="admin">
           <span class="sub-item">Admin</span>
         </a>
       </li>
