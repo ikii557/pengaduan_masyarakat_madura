@@ -13,8 +13,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $petugass = Petugas::all(); // Retrieve all petugas records
-        return view('admin.profile.admin', compact('petugass'));
+        $admins = Petugas::all(); // Retrieve all petugas records
+        return view('admin.profile.admin', compact('admins'));
     }
 
     /**
@@ -54,8 +54,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $petugas = Petugas::findOrFail($id); // Find the petugas by ID
-        return view('admin.profile.edit', compact('petugas'));
+        $admins = Petugas::findOrFail($id); // Find the petugas by ID
+        return view('admin.profile.edit_admin', compact('admins'));
     }
 
     /**

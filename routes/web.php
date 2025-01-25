@@ -29,10 +29,14 @@ Route::get('laporan', function () {
 Route::get('admin', [AdminController::class,'index']);
 Route::get('tambah_admin',[AdminController::class,'create']);
 Route::post('/store/admin',[AdminController::class,'store']);
+Route::get('edit_admin',[AdminController::class,'edit']);
+Route::post('/update/admin',[AdminController::class,'update']);
 
 Route::get('petugas', [PetugasController::class,'index']);
 Route::get('tambah_petugas',[PetugasController::class,'create']);
 Route::post('/store/petugas',[PetugasController::class,'store']);
+Route::get('edit_petugas',[PetugasController::class,'edit']);
+Route::post('/update/petugas',[PetugasController::class,'update']);
 
 
 
