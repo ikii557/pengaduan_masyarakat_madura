@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h3 class="card-title mb-0">Daftar Petugas</h3>
-            <a href="tambah_petugas" class="btn btn-light btn-round">Tambah Petugas</a>
+            <a href="tambah_admin" class="btn btn-light btn-round">Tambah admin</a>
         </div>
 
         <div class="card-body">

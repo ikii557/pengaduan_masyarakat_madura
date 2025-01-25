@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MasyarakatController;
+use App\Http\Controllers\PetugasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,10 +27,12 @@ Route::get('laporan', function () {
 });
 
 Route::get('admin', [AdminController::class,'index']);
+Route::get('tambah_admin',[AdminController::class,'create']);
+Route::post('/store/admin',[AdminController::class,'store']);
 
-Route::get('petugas', function () {
-    return view('admin.data_petugas.petugas_index');
-});
+Route::get('petugas', [PetugasController::class,'index']);
+Route::get('tambah_petugas',[PetugasController::class,'create']);
+Route::post('/store/petugas',[PetugasController::class,'store']);
 
 
 
