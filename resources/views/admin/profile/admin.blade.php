@@ -22,15 +22,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($petugass as $index => $petugas)
+                    @foreach ($admins as $index => $admin)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $petugas->nama_petugas }}</td>
-                            <td>{{ $petugas->username }}</td>
-                            <td>{{ $petugas->no_hp }}</td>
-                            <td>{{ $petugas->role }}</td>
+                            <td>{{ $admin->nama_petugas }}</td>
+                            <td>{{ $admin->username }}</td>
+                            <td>{{ $admin->no_hp }}</td>
+                            <td>{{ $admin->role }}</td>
                             <td>
-                                <a href="" class="btn btn-info btn-sm">Edit</a>
+                                <a href="/edit_admin/{{$admin->id}}" class="btn btn-info btn-sm">Edit</a>
                                 <form action="" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
