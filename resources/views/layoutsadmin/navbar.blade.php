@@ -279,7 +279,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Pengaturan</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="/login">Logout</a>
                       </li>
                     </div>
                   </ul>

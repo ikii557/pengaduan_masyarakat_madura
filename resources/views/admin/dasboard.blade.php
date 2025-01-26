@@ -1,13 +1,8 @@
 @extends('layoutsadmin.app')
 @section('content')
 
-
                 <h3 class="fw-bold mb-3">Dashboard</h3>
                 <h6 class="op-7 mb-2">Selamat Datang Di Aplikasi Pengaduan Masyarakat </h6>
-              </div>
-              <div class="ms-md-auto py-2 py-md-0">
-                <a href="#" class="btn btn-label-info btn-round me-2">Laporan</a>
-                <a href="#" class="btn btn-primary btn-round">Tambah Petugas</a>
               </div>
             </div>
             <div class="row">
@@ -45,7 +40,7 @@
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Laporan</p>
+                          <p class="card-category">Laporan masuk</p>
                           <h4 class="card-title">1303</h4>
                         </div>
                       </div>
@@ -66,7 +61,7 @@
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Jumlah Laporan</p>
+                          <p class="card-category">Jumlah diproses</p>
                           <h4 class="card-title">$ 1,345</h4>
                         </div>
                       </div>

@@ -13,6 +13,9 @@
                         <div class="col-md-6 mb-3">
                             <label for="nama_petugas" class="form-label">Nama Petugas</label>
                             <input type="text" name="nama_petugas" id="nama_petugas" class="form-control form-control-lg" placeholder="Masukkan Nama Petugas" required>
+                            @error('nama_petugas')
+                            <p class="text-danger">{{$message}}</p>
+                    @enderror
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="username" class="form-label">Username</label>

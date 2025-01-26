@@ -43,10 +43,12 @@ class PetugasController extends Controller {
     }
 
     // Show the form for editing the specified petugas
-    public function edit($id){
-        $petugas = Petugas::findOrFail($id);
-        return view('admin.data_petugas.edit_petugas', compact('petugas'));
-    }
+    public function edit($id)
+{
+    $petugas = Petugas::findOrFail($id);
+    return view('admin.data_petugas.edit_petugas', compact('petugas'));
+}
+
 
     // Update the specified petugas in the database
     public function update(Request $request, $id){
@@ -71,7 +73,7 @@ class PetugasController extends Controller {
         ]);
 
         // Redirect back to petugas index with a success message
-        return redirect()->route('petugas.index')->with('success', 'Petugas berhasil diperbarui!');
+        return redirect('petugas')->with('success', 'Petugas berhasil diperbarui!');
     }
 
     // Remove the specified petugas from the database
