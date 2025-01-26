@@ -30,7 +30,7 @@
                             <td>{{ $petugas->no_hp }}</td>
                             <td>{{ $petugas->role }}</td>
                             <td>
-                                <a href="" class="btn btn-info btn-sm">Edit</a>
+                            <a href="/edit_petugas/{{$petugas->id}}" class="btn btn-info btn-sm">Edit</a>
                                 <form action="" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
