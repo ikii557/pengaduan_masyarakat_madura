@@ -30,12 +30,19 @@
                 @csrf
                 <div class="form-group">
                     <label><strong>Nama</strong></label>
-                    <input name="nama" type="nama" class="form-control">
-                    @error('nama')
+                    <input name="nama_petugas" type="nama" class="form-control">
+                    @error('nama_petugas')
                             <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
 
+                <div class="form-group">
+                    <label><strong>ho hp</strong></label>
+                    <input name="no_hp" type="text" class="form-control">
+                    @error('no_hp')
+                            <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <label><strong>Username</strong></label>
                     <input name="username" type="username" class="form-control">
@@ -54,9 +61,9 @@
                     <label><strong>Role</strong></label>
                     <select name="role" id="role" class="form-control form-control-lg" required>
                         <option value="">-- Pilih Role --</option>
-                        <option value="admin" {{ $admin->role === 'admin' ? 'selected' : '' }}>Admin</option>
-                        <option value="masyarakat" {{ $admin->role === 'masyarakat' ? 'selected' : '' }}>Masyarakat</option>
-                        <option value="petugas" {{ $admin->role === 'petugas' ? 'selected' : '' }}>Petugas</option>
+                        <option value="admin" >Admin</option>
+                        <option value="petugas">Petugas</option>
+                        <option value="masyarakat" >Masyarakat</option>
                     </select>
                     @error('role')
                         <p class="text-danger">{{$message}}</p>
