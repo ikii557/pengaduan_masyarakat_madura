@@ -13,7 +13,7 @@ class Petugas extends Model
     /**
      * Kolom-kolom yang dapat diisi (mass assignable).
      */
-    protected $table = 'petugass';
+    protected $table = 'users';
     protected $fillable = [
         'nama_petugas',
         'username',
