@@ -77,9 +77,12 @@ class PetugasController extends Controller {
     }
 
     // Remove the specified petugas from the database
-    public function destroy($id){
+        public function destroy($id)
+    {
         $petugas = Petugas::findOrFail($id);
         $petugas->delete();
-        return redirect()->route('petugas.index')->with('success', 'Petugas berhasil dihapus!');
+
+        return response()->json(['success' => true, 'message' => 'Petugas berhasil dihapus.']);
     }
+
 }

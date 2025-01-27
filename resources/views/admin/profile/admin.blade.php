@@ -5,7 +5,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h3 class="card-title mb-0">Daftar Petugas</h3>
+            <h3 class="card-title mb-0">Daftar admin</h3>
             <a href="tambah_admin" class="btn btn-light btn-round">Tambah admin</a>
         </div>
 
@@ -31,11 +31,35 @@
                             <td>{{ $admin->role }}</td>
                             <td>
                                 <a href="/edit_admin/{{$admin->id}}" class="btn btn-info btn-sm">Edit</a>
-                                <form action="" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus petugas ini?')">Hapus</button>
-                                </form>
+                                <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="hapusAdmin({{ $admin->id }})">Hapus</a>
+
+                                    <script>
+
+                                        function hapusAdmin(id) {
+                                            if (confirm('Yakin ingin menghapus petugas ini?')) {
+                                                fetch(`/destroy_admin/${id}`, {
+                                                    method: 'DELETE',
+                                                    headers: {
+                                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                                    }
+                                                })
+                                                .then(response => {
+                                                    if (response.ok) {
+                                                        alert('Petugas berhasil dihapus.');
+                                                        location.reload(); // Refresh halaman setelah penghapusan
+                                                    } else {
+                                                        alert('Gagal menghapus petugas.');
+                                                    }
+                                                })
+                                                .catch(error => {
+                                                    console.error('Terjadi kesalahan:', error);
+                                                    alert('Terjadi kesalahan saat menghapus petugas.');
+                                                });
+                                            }
+}
+
+                                    </script>
+
                             </td>
                         </tr>
                     @endforeach
