@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Petugas;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,7 @@ class AuthController extends Controller
         // Validasi request
         $request->validate([
             'nama_petugas' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:petugass',
+            'username' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:8',
             'no_hp' => 'required|string|max:15',
             'role' => 'required|string|in:admin,petugas,masyarakat',
@@ -73,6 +74,8 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+
+
     public function storelogin(Request $request)
     {
         // Validasi input
@@ -87,18 +90,10 @@ class AuthController extends Controller
             'password.min' => 'Password minimal 8 karakter.',
         ]);
 
-        // Cari data di tabel 'petugass'
-        $petugas = Petugas::where('username', $request->username)->first();
-
-        // Periksa apakah data ditemukan dan password sesuai
-        if ($petugas && Hash::check($request->password, $petugas->password)) {
-            // Simpan data user ke session
-            session([
-                'logged_in' => true,
-                'user_id' => $petugas->id,
-                'username' => $petugas->username,
-                'role' => $petugas->role,
-            ]);
+        // Coba login menggunakan Auth::attempt
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+            // Regenerate session
+            $request->session()->regenerate();
 
             // Redirect ke halaman sesuai role
             return redirect('/index');
@@ -109,6 +104,7 @@ class AuthController extends Controller
             'username' => 'Username atau password salah.',
         ])->onlyInput('username');
     }
+
 
 
 

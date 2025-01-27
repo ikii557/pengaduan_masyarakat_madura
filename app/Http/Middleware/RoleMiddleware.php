@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
@@ -16,10 +14,11 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, ...$roles)
     {
-        $masyarakat = Auth::masyarakat();
+        // Ambil pengguna yang sedang login
+        $user = Auth::user();
 
-        // Pastikan pengguna memiliki salah satu dari peran yang diizinkan
-        if (in_array($masyarakat->role, $roles)) {
+        // Pastikan pengguna terautentikasi dan memiliki salah satu peran yang diizinkan
+        if ($user && in_array($user->role, $roles)) {
             return $next($request);
         }
 
