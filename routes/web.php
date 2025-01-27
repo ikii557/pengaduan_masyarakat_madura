@@ -36,7 +36,7 @@ Route::middleware(['guest'])->group(function(){
 
 // sesudah login
 Route::middleware(['auth'])->group(function(){
-    Route::middleware(['role:petugas,admin'])->group(function(){
+    Route::middleware(['role:petugas,admin,masyarakat'])->group(function(){
 
         Route::get('/index', function () {
             return view('admin.dasboard');
@@ -51,29 +51,35 @@ Route::middleware(['auth'])->group(function(){
         Route::get('admin', [AdminController::class,'index']);
         Route::get('tambah_admin',[AdminController::class,'create']);
         Route::post('/store/admin',[AdminController::class,'store']);
-        Route::get('edit_admin',[AdminController::class,'edit']);
-        Route::post('/update/admin',[AdminController::class,'update']);
+        Route::get('edit_admin/{id}',[AdminController::class,'edit']);
+        Route::post('/update/admin/{id}',[AdminController::class,'update']);
+        Route::get('/destroy_admin/{id}', [AdminController::class, 'destroy']);
+
+
 
         Route::get('petugas', [PetugasController::class,'index']);
         Route::get('tambah_petugas',[PetugasController::class,'create']);
         Route::post('/store/petugas',[PetugasController::class,'store']);
         Route::get('edit_petugas/{id}', [PetugasController::class, 'edit']);
         Route::post('/update/petugas/{id}', [PetugasController::class, 'update']);
+        Route::delete('/destroy_petugas/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
 
 
 
 
-        Route::get('masyarakat', function () {
-            return view('masyarakat.masyarakat');
-        });
+
     });
     Route::middleware('auth:petugas')->group(function () {
 
     });
 
+    Route::post('/logout', [AuthController::class, 'logout']);
     Route::middleware(['role:masyarakat'])->group(function () {
 
 
     });
-    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
+Route::get('masyarakat', function () {
+    return view('masyarakat.masyarakat');
 });

@@ -91,6 +91,7 @@ class AdminController extends Controller
         $petugas = Petugas::findOrFail($id);
         $petugas->delete();
 
-        return redirect()->route('admin.index')->with('success', 'Petugas berhasil dihapus.');
+        return redirect('admin')->with('success', 'Petugas berhasil dihapus.');
     }
+
 }

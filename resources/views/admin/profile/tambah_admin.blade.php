@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card p-4">
                 <h3 class="mb-4 text-center">Tambah Petugas</h3>
-                <form action="/store/petugas" method="POST">
+                <form action="/store/admin" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 mb-3">
