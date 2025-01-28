@@ -130,7 +130,7 @@
         </a>
       </li>
       <li class="{{ Request::is('profile') ? 'active' : '' }}">
-        <a href="/profile">
+        <a href="masyarakat">
           <span class="sub-item">Masyarakat</span>
         </a>
       </li>
