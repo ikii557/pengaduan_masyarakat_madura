@@ -5,9 +5,8 @@
     <div class="col-md-12">
         <div class="card p-4">
             <h3 class="mb-4 text-center">Edit Petugas</h3>
-            <form action="{{ route('admin.update', $admin->id) }}" method="POST">
+            <form action="/update/admin/{{ $admin->id }}" method="POST">
                 @csrf
-                @method('PUT') <!-- Use PUT method for updating -->
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="nama_petugas" class="form-label">Nama Petugas</label>
@@ -59,7 +58,7 @@
                     <label for="role" class="form-label">Role</label>
                     <select name="role" id="role" class="form-control form-control-lg" required>
                         <option value="">-- Pilih Role --</option>
-                        <option value="admin" {{ $admin->role === 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="admin" {{ $admin->role === 'admin' ? 'selected' : '' }}>admin</option>
                         <option value="masyarakat" {{ $admin->role === 'masyarakat' ? 'selected' : '' }}>Masyarakat</option>
                         <option value="petugas" {{ $admin->role === 'petugas' ? 'selected' : '' }}>Petugas</option>
                     </select>

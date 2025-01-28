@@ -53,7 +53,8 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/store/admin',[AdminController::class,'store']);
         Route::get('edit_admin/{id}',[AdminController::class,'edit']);
         Route::post('/update/admin/{id}',[AdminController::class,'update']);
-        Route::get('/destroy_admin/{id}', [AdminController::class, 'destroy']);
+        Route::delete('/destroy_admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+
 
 
 
@@ -79,7 +80,11 @@ Route::middleware(['auth'])->group(function(){
 
     });
 });
+Route::get('masyarakat',[MasyarakatController::class,'index']);
+Route::get('tambah_masyarakat',[MasyarakatController::class,'create']);
+Route::post('/store/masyarakat',[MasyarakatController::class,'store']);
+Route::get('edit_masyarakat/{id}', [MasyarakatController::class, 'edit']);
+Route::post('/update/petugas/{id}', [MasyarakatController::class, 'update']);
+Route::delete('/destroy_masyarakat/{id}', [MasyarakatController::class, 'destroy']);
 
-Route::get('masyarakat', function () {
-    return view('masyarakat.masyarakat');
-});
+

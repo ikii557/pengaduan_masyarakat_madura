@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Petugas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -33,10 +34,34 @@ class AdminController extends Controller
         $request->validate([
             'nama_petugas' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'no_hp' => 'required|string|max:15',
-            'role' => 'required|string|in:admin,petugas', // Assuming these are the roles
+            'password' => 'required|string|min:6',
+            'no_hp' => 'required|string|max:15|regex:/^[0-9]+$/',
+            'role' => 'required|string|in:admin,petugas,masyarakat', // Tambahkan role jika ada
+        ], [
+            'nama_petugas.required' => 'Nama admin harus diisi.',
+            'nama_petugas.string' => 'Nama admin harus berupa teks.',
+            'nama_petugas.max' => 'Nama admin tidak boleh lebih dari 255 karakter.',
+
+            'username.required' => 'Username harus diisi.',
+            'username.string' => 'Username harus berupa teks.',
+            'username.max' => 'Username tidak boleh lebih dari 255 karakter.',
+            'username.unique' => 'Username ini sudah terdaftar.',
+
+            'password.required' => 'Password harus diisi.',
+            'password.string' => 'Password harus berupa teks.',
+            'password.min' => 'Password harus memiliki minimal 6 karakter.',
+            'password.confirmed' => 'Password konfirmasi tidak sesuai.',
+
+            'no_hp.required' => 'Nomor HP harus diisi.',
+            'no_hp.string' => 'Nomor HP harus berupa teks.',
+            'no_hp.max' => 'Nomor HP tidak boleh lebih dari 15 karakter.',
+            'no_hp.regex' => 'Nomor HP hanya boleh berisi angka.',
+
+            'role.required' => 'Role harus dipilih.',
+            'role.string' => 'Role harus berupa teks.',
+            'role.in' => 'Role yang dipilih tidak valid. Pilih admin, petugas, atau masyarakat.',
         ]);
+
 
         Petugas::create([
             'nama_petugas' => $request->nama_petugas,
@@ -46,7 +71,7 @@ class AdminController extends Controller
             'role' => $request->role,
         ]);
 
-        return redirect('admin.profile.admin')->with('success', 'Petugas berhasil ditambahkan.');
+        return redirect('admin')->with('success', 'Petugas berhasil ditambahkan.');
     }
 
     /**
@@ -54,8 +79,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admins = Petugas::findOrFail($id); // Find the petugas by ID
-        return view('admin.profile.edit_admin', compact('admins'));
+        $admin = Petugas::findOrFail($id); // Find the petugas by ID
+        return view('admin.profile.edit_admin', compact('admin'));
     }
 
     /**
@@ -63,11 +88,11 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $petugas = Petugas::findOrFail($id);
+        $admin = Petugas::findOrFail($id);
 
         $request->validate([
             'nama_petugas' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:petugass,username,' . $id,
+            'username' => 'required|string|max:255|unique:users,username,' . $id,
             'password' => 'nullable|string|min:6|confirmed',
             'no_hp' => 'required|string|max:15',
             'role' => 'required|string|in:admin,petugas',
@@ -78,20 +103,35 @@ class AdminController extends Controller
             $data['password'] = Hash::make($request->password);
         }
 
-        $petugas->update($data);
+        $admin->update($data);
 
-        return redirect()->route('admin.index')->with('success', 'Petugas berhasil diperbarui.');
+        return redirect('admin')->with('success', 'admin berhasil diperbarui.');
     }
 
     /**
      * Remove the specified petugas from storage.
      */
+
+
     public function destroy($id)
     {
-        $petugas = Petugas::findOrFail($id);
-        $petugas->delete();
+        try {
+            $petugas = Petugas::findOrFail($id);
+            $petugas->delete();
 
-        return redirect('admin')->with('success', 'Petugas berhasil dihapus.');
+            return response()->json([
+                'success' => true,
+                'message' => 'Petugas berhasil dihapus.'
+            ]);
+        } catch (\Exception $e) {
+            Log::error("Error deleting petugas: " . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menghapus petugas.'
+            ]);
+        }
     }
+
+
 
 }

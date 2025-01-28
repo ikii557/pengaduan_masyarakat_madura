@@ -55,7 +55,7 @@ class PetugasController extends Controller {
         // Validate the request data
         $request->validate([
             'nama_petugas' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:petugass,username,' . $id,
+            'username' => 'required|string|max:255|unique:users,username,' . $id,
             'password' => 'nullable|string|min:8',
             'no_hp' => 'required|string|max:15',
             'role' => 'required|string|in:admin,superadmin,petugas',
