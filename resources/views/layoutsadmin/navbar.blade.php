@@ -279,7 +279,33 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Pengaturan</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/login">Logout</a>
+                        <form id="logout-form" action="/logout" method="POST" style="display: none;">
+    @csrf
+</form>
+
+<a href="#" onclick="confirmLogout();">
+    Logout
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmLogout() {
+        Swal.fire({
+            title: 'Apakah Anda yakin ingin logout?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Logout',
+            cancelButtonText: 'Batal',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('logout-form').submit();
+            }
+        });
+    }
+</script>
+
                       </li>
                     </div>
                   </ul>

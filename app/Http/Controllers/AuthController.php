@@ -110,9 +110,8 @@ class AuthController extends Controller
 
 
 
-    // Handle logout
     public function logout(Request $request)
-    {
+    {  
         Auth::logout();
 
         $request->session()->invalidate();
@@ -120,4 +119,5 @@ class AuthController extends Controller
 
         return redirect('/login')->with('success', 'Anda telah berhasil logout.');
     }
+
 }
