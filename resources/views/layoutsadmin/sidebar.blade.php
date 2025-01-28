@@ -25,121 +25,303 @@
     </div>
     <!-- End Logo Header -->
 </div>
-    <div class="sidebar-wrapper scrollbar scrollbar-inner">
-    <div class="sidebar-content">
-      <ul class="nav nav-secondary">
-        <!-- Menu Dashboard -->
-        <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
-          <a href="/">
-            <i class="fas fa-home"></i>
-            <p>Dashboard</p>
-          </a>
-        </li>
-            <p class="nav-item container mt-4" style="color: #bbb; font-weight: bold; padding-left: 20px;">Data</p>
-
-        <!-- Data Pengaduan Section -->
-        <li class="nav-item {{ Request::is('components/*') ? 'active' : '' }}">
-          <a data-bs-toggle="collapse" href="#base"
-             aria-expanded="{{ Request::is('keamanan') || Request::is('components/*') ? 'true' : 'false' }}"
-             data-parent="#sidebar-menu">
-            <i class="fas fa-layer-group"></i>
-            <p>Data Pengaduan</p>
-            <span class="caret"></span>
-          </a>
-          <div class="collapse {{ Request::is('keamanan') || Request::is('components/*') ? 'show' : '' }}" id="base">
-            <ul class="nav nav-collapse">
-              <li class="{{ Request::is('keamanan') ? 'active' : '' }}">
-                <a href="{{ url('laporan') }}">
-                  <span class="sub-item">Pengaduan Keamanan</span>
+<div class="sidebar-wrapper scrollbar scrollbar-inner">
+<div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+              <li class="nav-item active">
+                <a
+                  data-bs-toggle="collapse"
+                  href="#dashboard"
+                  class="collapsed"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-home"></i>
+                  <p>Dashboard</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="dashboard">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="../demo1/index.html">
+                        <span class="sub-item">Dashboard 1</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+                <h4 class="text-section">Components</h4>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#base">
+                  <i class="fas fa-layer-group"></i>
+                  <p>Base</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="base">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="components/avatars.html">
+                        <span class="sub-item">Avatars</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="components/buttons.html">
+                        <span class="sub-item">Buttons</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="components/gridsystem.html">
+                        <span class="sub-item">Grid System</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="components/panels.html">
+                        <span class="sub-item">Panels</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="components/notifications.html">
+                        <span class="sub-item">Notifications</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="components/sweetalert.html">
+                        <span class="sub-item">Sweet Alert</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="components/font-awesome-icons.html">
+                        <span class="sub-item">Font Awesome Icons</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="components/simple-line-icons.html">
+                        <span class="sub-item">Simple Line Icons</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="components/typography.html">
+                        <span class="sub-item">Typography</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarLayouts">
+                  <i class="fas fa-th-list"></i>
+                  <p>Sidebar Layouts</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="sidebarLayouts">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="admin">
+                        <span class="sub-item">admin</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="icon-menu.html">
+                        <span class="sub-item">Icon Menu</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#forms">
+                  <i class="fas fa-pen-square"></i>
+                  <p>Forms</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="forms">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="petugas">
+                        <span class="sub-item">Basic Form</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#tables">
+                  <i class="fas fa-table"></i>
+                  <p>Tables</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="tables">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="tables/tables.html">
+                        <span class="sub-item">Basic Table</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="tables/datatables.html">
+                        <span class="sub-item">Datatables</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#maps">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <p>Maps</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="maps">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="maps/googlemaps.html">
+                        <span class="sub-item">Google Maps</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="maps/jsvectormap.html">
+                        <span class="sub-item">Jsvectormap</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#charts">
+                  <i class="far fa-chart-bar"></i>
+                  <p>Charts</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="charts">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="charts/charts.html">
+                        <span class="sub-item">Chart Js</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="charts/sparkline.html">
+                        <span class="sub-item">Sparkline</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a href="widgets.html">
+                  <i class="fas fa-desktop"></i>
+                  <p>Widgets</p>
+                  <span class="badge badge-success">4</span>
                 </a>
               </li>
-              <li class="{{ Request::is('kebersihan') ? 'active' : '' }}">
-                <a href="{{ url('kebersihan') }}">
-                  <span class="sub-item">Pengaduan Kebersihan</span>
+              <li class="nav-item">
+                <a href="../../documentation/index.html">
+                  <i class="fas fa-file"></i>
+                  <p>Documentation</p>
+                  <span class="badge badge-secondary">1</span>
                 </a>
               </li>
-              <li class="{{ Request::is('kelistrikan') ? 'active' : '' }}">
-                <a href="{{ url('kelistrikan') }}">
-                  <span class="sub-item">Pengaduan Kelistrikan</span>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#submenu">
+                  <i class="fas fa-bars"></i>
+                  <p>Menu Levels</p>
+                  <span class="caret"></span>
                 </a>
-              </li>
-              <li class="{{ Request::is('lingkungan') ? 'active' : '' }}">
-                <a href="{{ url('lingkungan') }}">
-                  <span class="sub-item">Pengaduan Lingkungan</span>
-                </a>
+                <div class="collapse" id="submenu">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a data-bs-toggle="collapse" href="#subnav1">
+                        <span class="sub-item">Level 1</span>
+                        <span class="caret"></span>
+                      </a>
+                      <div class="collapse" id="subnav1">
+                        <ul class="nav nav-collapse subnav">
+                          <li>
+                            <a href="#">
+                              <span class="sub-item">Level 2</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span class="sub-item">Level 2</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li>
+                      <a data-bs-toggle="collapse" href="#subnav2">
+                        <span class="sub-item">Level 1</span>
+                        <span class="caret"></span>
+                      </a>
+                      <div class="collapse" id="subnav2">
+                        <ul class="nav nav-collapse subnav">
+                          <li>
+                            <a href="#">
+                              <span class="sub-item">Level 2</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <span class="sub-item">Level 1</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </li>
             </ul>
           </div>
-        </li>
+        </div>
+</div>
 
-        <!-- Data Petugas Section -->
-        <!-- <li class="nav-item {{ Request::is('petugas_*') ? 'active' : '' }}">
-          <a data-bs-toggle="collapse" href="#sidebarLayouts"
-             aria-expanded="{{ Request::is('petugas_*') ? 'true' : 'false' }}"
-             data-parent="#sidebar-menu">
-            <i class="fas fa-th-list"></i>
-            <p>Data Petugas</p>
-            <span class="caret"></span>
-          </a>
-          <div class="collapse {{ Request::is('petugas_*') ? 'show' : '' }}" id="sidebarLayouts">
-            <ul class="nav nav-collapse">
-              <li class="{{ Request::is('petugas_keamanan') ? 'active' : '' }}">
-                <a href="petugas_keamanan">
-                  <span class="sub-item">Petugas Keamanan</span>
-                </a>
-              </li>
-              <li class="{{ Request::is('petugas_pln') ? 'active' : '' }}">
-                <a href="petugas_pln">
-                  <span class="sub-item">Petugas PLN</span>
-                </a>
-              </li>
-              <li class="{{ Request::is('petugas_kebersihan') ? 'active' : '' }}">
-                <a href="petugas_kebersihan">
-                  <span class="sub-item">Petugas Kebersihan</span>
-                </a>
-              </li>
-              <li class="{{ Request::is('petugas_lingkungan') ? 'active' : '' }}">
-                <a href="petugas_lingkungan">
-                  <span class="sub-item">Petugas Lingkungan</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li> -->
-            <p class="nav-item container" style="color: #bbb; font-weight: bold; padding-left: 20px;">Profile</p>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const collapseItems = document.querySelectorAll('.collapse');
 
-        <!-- Profile Section -->
-        <li class="nav-item {{ Request::is('forms/*') || Request::is('profile') ? 'active' : '' }}">
-  <a data-bs-toggle="collapse" href="#forms"
-     aria-expanded="{{ Request::is('forms/*') || Request::is('profile') ? 'true' : 'false' }}"
-     data-parent="#sidebar-menu">
-    <i class="fas fa-pen-square"></i>
-    <p>Profile</p>
-    <span class="caret"></span>
-  </a>
-  <div class="collapse {{ Request::is('forms/*') || Request::is('profile') ? 'show' : '' }}" id="forms">
-    <ul class="nav nav-collapse">
-      <li class="{{ Request::is('forms/admin') ? 'active' : '' }}">
-        <a href="admin">
-          <span class="sub-item">Admin</span>
-        </a>
-      </li>
-      <li class="{{ Request::is('forms/petugas') ? 'active' : '' }}">
-        <a href="petugas">
-          <span class="sub-item">Petugas</span>
-        </a>
-      </li>
-      <li class="{{ Request::is('profile') ? 'active' : '' }}">
-        <a href="masyarakat">
-          <span class="sub-item">Masyarakat</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</li>
+    // Restore collapse states from localStorage
+    collapseItems.forEach(item => {
+        const id = item.getAttribute('id');
+        const isExpanded = localStorage.getItem(id);
+
+        if (isExpanded === 'true') {
+            item.classList.add('show');
+            item.previousElementSibling.setAttribute('aria-expanded', 'true');
+        }
+
+        if (item.querySelector('.active')) {
+            item.classList.add('show');
+            item.previousElementSibling.setAttribute('aria-expanded', 'true');
+        }
+    });
+
+    // Handle collapse toggle and store state in localStorage
+    document.querySelectorAll('.nav-item > a[data-bs-toggle="collapse"]').forEach(link => {
+        link.addEventListener('click', function () {
+            const collapse = link.nextElementSibling;
+            const collapseId = collapse.getAttribute('id');
+
+            if (collapse.classList.contains('show')) {
+                collapse.classList.remove('show');
+                link.setAttribute('aria-expanded', 'false');
+                localStorage.setItem(collapseId, 'false');
+            } else {
+                collapse.classList.add('show');
+                link.setAttribute('aria-expanded', 'true');
+                localStorage.setItem(collapseId, 'true');
+            }
+        });
+    });
+});
 
 
-      </ul>
-    </div>
-  </div>
+</script>
+
 </div>
