@@ -98,7 +98,7 @@ class MasyarakatController extends Controller
             'alamat' => $request->alamat,
         ]);
 
-        return redirect()->route('masyarakats.index')->with('success', 'Data masyarakat berhasil diperbarui.');
+        return redirect('masyarakat')->with('success', 'Data masyarakat berhasil diperbarui.');
     }
 
     // Menghapus data masyarakat

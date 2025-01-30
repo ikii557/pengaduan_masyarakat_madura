@@ -34,7 +34,7 @@
 
 <!-- Pengaduan Section -->
         <li class="nav-item {{ request()->is('pengaduan') ? 'active' : '' }}">
-            <a href="{{ url('pengaduan') }}">
+            <a href="{{ url('data_pengaduan') }}">
                 <i class="fas fa-comment-dots"></i>
                 <p>Pengaduan</p>
             </a>

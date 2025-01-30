@@ -25,7 +25,7 @@
                     <h3 class="card-title">Daftar Masyarakat</h3>
                     <div>
                         <a href="#" class="btn btn-label-info btn-round me-2">Laporan</a>
-                        <a href="tambah_masyarakat" class="btn btn-primary btn-round">Tambah Masyarakat</a>
+                        <a href="/masyarakat/tambah_masyarakat" class="btn btn-primary btn-round">Tambah Masyarakat</a>
                     </div>
                 </div>
                 <div class="card-body">

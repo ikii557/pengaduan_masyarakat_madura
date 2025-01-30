@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PengaduanController;
+use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
@@ -25,62 +27,52 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/store/login', [AuthController::class, 'storelogin']);
 });
 
-// Routes accessible after login
-Route::middleware(['auth'])->group(function () {
-    // Routes accessible for all roles: admin, petugas, masyarakat
-    Route::middleware(['role:petugas,admin,masyarakat'])->group(function () {
 
-        // Dashboard and general views
-        Route::get('/index', function () {
-            return view('admin.dasboard');
-        });
-        Route::get('profile', function () {
-            return view('admin.profile.masyarakat');
-        });
-        Route::get('laporan', function () {
-            return view('admin.laporan.laporan_keamanan');
-        });
+Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () {
 
-        // Admin routes
-        Route::prefix('admin')->group(function () {
-            Route::get('/', [AdminController::class, 'index']);
-            Route::get('/create', [AdminController::class, 'create']);
-            Route::post('/store', [AdminController::class, 'store']);
-            Route::get('/edit/{id}', [AdminController::class, 'edit']);
-            Route::post('/update/{id}', [AdminController::class, 'update']);
-            Route::delete('/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
-        });
-
-        // Petugas routes
-        Route::prefix('petugas')->group(function () {
-            Route::get('/', [PetugasController::class, 'index']);
-            Route::get('/create', [PetugasController::class, 'create']);
-            Route::post('/store', [PetugasController::class, 'store']);
-            Route::get('/edit/{id}', [PetugasController::class, 'edit']);
-            Route::post('/update/{id}', [PetugasController::class, 'update']);
-            Route::delete('/destroy/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
-        });
-
-        // Masyarakat routes
-        Route::prefix('masyarakat')->group(function () {
-            Route::get('/', [MasyarakatController::class, 'index']);
-            Route::get('/create', [MasyarakatController::class, 'create']);
-            Route::post('/store', [MasyarakatController::class, 'store']);
-            Route::get('/edit/{id}', [MasyarakatController::class, 'edit']);
-            Route::post('/update/{id}', [MasyarakatController::class, 'update']);
-            Route::delete('/destroy/{id}', [MasyarakatController::class, 'destroy']);
-        });
-
-        // Logout route
-        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    // Dashboard and general views
+    Route::get('/index', function () {
+        return view('admin.dasboard');
     });
 
-    // Additional role-based routes
-    Route::middleware(['role:petugas'])->group(function () {
-        // Tambahkan route khusus petugas di sini jika ada
+    Route::get('/profile', function () {
+        return view('admin.profile.masyarakat');
     });
 
-    Route::middleware(['role:masyarakat'])->group(function () {
-        // Tambahkan route khusus masyarakat di sini jika ada
+    Route::get('/laporan', function () {
+        return view('admin.laporan.laporan_keamanan');
     });
+
+    // Admin routes
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/admin/create', [AdminController::class, 'create']);
+    Route::post('/admin/store', [AdminController::class, 'store']);
+    Route::get('/admin/edit/{id}', [AdminController::class, 'edit']);
+    Route::post('/admin/update/{id}', [AdminController::class, 'update']);
+    Route::delete('/admin/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+
+    // Petugas routes
+    Route::get('/petugas', [PetugasController::class, 'index']);
+    Route::get('/petugas/create', [PetugasController::class, 'create']);
+    Route::post('/petugas/store', [PetugasController::class, 'store']);
+    Route::get('/petugas/edit/{id}', [PetugasController::class, 'edit']);
+    Route::post('/petugas/update/{id}', [PetugasController::class, 'update']);
+    Route::delete('/petugas/destroy/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
+
+    // Masyarakat routes
+    Route::get('/masyarakat', [MasyarakatController::class, 'index']);
+    Route::get('/masyarakat/tambah_masyarakat', [MasyarakatController::class, 'create']);
+    Route::post('/store/masyarakat', [MasyarakatController::class, 'store']);
+    Route::get('/edit_masyarakat/{id}', [MasyarakatController::class, 'edit']);
+    Route::post('/update/masyarakat/{id}', [MasyarakatController::class, 'update']);
+    Route::delete('/destroy_masyarakat/{id}', [MasyarakatController::class, 'destroy'])->name('masyarakat.destroy');
+
+    Route::get('data_pengaduan',[PengaduanController::class,'index']);
+    Route::get('tambah_pengaduan',[PengaduanController::class.'create']);
+    Route::post('/store/data_pengaduan',[PengaduanController::class,'store']);
+    Route::get('/edit_pengaduan/{id}',[PengaduanController::class,'edit']);
+    Route::post('/update/data_pengaduan/{id}',[PengaduanController::class,'update']);
+    // Logout route
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
