@@ -52,6 +52,6 @@
     </div>
     </div>
     @include('layoutsadmin.footer')
-    
+
 </body>
 </html>

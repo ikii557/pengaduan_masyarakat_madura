@@ -17,27 +17,20 @@ use App\Http\Controllers\MasyarakatController;
 |
 */
 
-
-// auth
-
-Route::middleware(['guest'])->group(function(){
+// Auth routes
+Route::middleware(['guest'])->group(function () {
     Route::get('/register', [AuthController::class, 'register']);
     Route::post('/store/register', [AuthController::class, 'storeregister']);
-
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/store/login', [AuthController::class, 'storelogin']);
-
 });
 
+// Routes accessible after login
+Route::middleware(['auth'])->group(function () {
+    // Routes accessible for all roles: admin, petugas, masyarakat
+    Route::middleware(['role:petugas,admin,masyarakat'])->group(function () {
 
-
-
-
-
-// sesudah login
-Route::middleware(['auth'])->group(function(){
-    Route::middleware(['role:petugas,admin,masyarakat'])->group(function(){
-
+        // Dashboard and general views
         Route::get('/index', function () {
             return view('admin.dasboard');
         });
@@ -48,43 +41,46 @@ Route::middleware(['auth'])->group(function(){
             return view('admin.laporan.laporan_keamanan');
         });
 
-        Route::get('admin', [AdminController::class,'index']);
-        Route::get('tambah_admin',[AdminController::class,'create']);
-        Route::post('/store/admin',[AdminController::class,'store']);
-        Route::get('edit_admin/{id}',[AdminController::class,'edit']);
-        Route::post('/update/admin/{id}',[AdminController::class,'update']);
-        Route::delete('/destroy_admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+        // Admin routes
+        Route::prefix('admin')->group(function () {
+            Route::get('/', [AdminController::class, 'index']);
+            Route::get('/create', [AdminController::class, 'create']);
+            Route::post('/store', [AdminController::class, 'store']);
+            Route::get('/edit/{id}', [AdminController::class, 'edit']);
+            Route::post('/update/{id}', [AdminController::class, 'update']);
+            Route::delete('/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+        });
 
+        // Petugas routes
+        Route::prefix('petugas')->group(function () {
+            Route::get('/', [PetugasController::class, 'index']);
+            Route::get('/create', [PetugasController::class, 'create']);
+            Route::post('/store', [PetugasController::class, 'store']);
+            Route::get('/edit/{id}', [PetugasController::class, 'edit']);
+            Route::post('/update/{id}', [PetugasController::class, 'update']);
+            Route::delete('/destroy/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
+        });
 
+        // Masyarakat routes
+        Route::prefix('masyarakat')->group(function () {
+            Route::get('/', [MasyarakatController::class, 'index']);
+            Route::get('/create', [MasyarakatController::class, 'create']);
+            Route::post('/store', [MasyarakatController::class, 'store']);
+            Route::get('/edit/{id}', [MasyarakatController::class, 'edit']);
+            Route::post('/update/{id}', [MasyarakatController::class, 'update']);
+            Route::delete('/destroy/{id}', [MasyarakatController::class, 'destroy']);
+        });
 
-
-        Route::get('petugas', [PetugasController::class,'index']);
-        Route::get('tambah_petugas',[PetugasController::class,'create']);
-        Route::post('/store/petugas',[PetugasController::class,'store']);
-        Route::get('edit_petugas/{id}', [PetugasController::class, 'edit']);
-        Route::post('/update/petugas/{id}', [PetugasController::class, 'update']);
-        Route::delete('/destroy_petugas/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
-
-
-
-        Route::get('masyarakat',[MasyarakatController::class,'index']);
-        Route::get('tambah_masyarakat',[MasyarakatController::class,'create']);
-        Route::post('/store/masyarakat',[MasyarakatController::class,'store']);
-        Route::get('edit_masyarakat/{id}', [MasyarakatController::class, 'edit']);
-        Route::post('/update/petugas/{id}', [MasyarakatController::class, 'update']);
-        Route::delete('/destroy_masyarakat/{id}', [MasyarakatController::class, 'destroy']);
-
+        // Logout route
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
     });
-    Route::middleware(middleware: 'auth:petugas')->group(function () {
 
+    // Additional role-based routes
+    Route::middleware(['role:petugas'])->group(function () {
+        // Tambahkan route khusus petugas di sini jika ada
     });
 
     Route::middleware(['role:masyarakat'])->group(function () {
-
-
+        // Tambahkan route khusus masyarakat di sini jika ada
     });
 });
-
-

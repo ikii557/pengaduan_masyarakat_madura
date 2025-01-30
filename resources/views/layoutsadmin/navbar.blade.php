@@ -246,7 +246,7 @@
                     </div>
                     <span class="profile-username">
                       <span class="op-4">Hi,</span>
-                      <span class="fw-bold">RIfki</span>
+                      <span class="fw-bold">{{Auth::user()->nama_petugas}}</span>
                     </span >
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
