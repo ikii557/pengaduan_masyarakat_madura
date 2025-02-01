@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
     /**
-     * Display a listing of all petugas.
+     * Display a listing of all Petugas.
      */
     public function index()
     {
-        $admins = Petugas::all(); // Retrieve all petugas records
+        $admins = Petugas::all();
         return view('admin.profile.admin', compact('admins'));
     }
 
     /**
-     * Show the form for creating a new petugas.
+     * Show the form for creating a new Petugas.
      */
     public function create()
     {
@@ -27,111 +27,111 @@ class AdminController extends Controller
     }
 
     /**
-     * Store a newly created petugas in storage.
+     * Store a newly created Petugas in storage.
      */
+    /**
+ * Store a newly created Petugas in storage.
+ */
     public function store(Request $request)
     {
         $request->validate([
-            'nama_petugas' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'no_hp' => 'required|string|max:15|regex:/^[0-9]+$/',
-            'role' => 'required|string|in:admin,petugas,masyarakat', // Tambahkan role jika ada
+            'nik'           => 'required|string|unique:users,nik', // Menambahkan regex untuk validasi NIK (hanya angka, 16 karakter)
+            'nama_lengkap'  => 'required|string|max:255',
+            'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+            'username'      => 'required|string|unique:users,username',
+            'password'      => 'required|string|min:8',
+            'no_telepon'    => 'required|string|max:15|regex:/^\+?[\d\s\-]+$/', // Regex untuk validasi nomor telepon (opsional format negara)
+            'alamat'        => 'required|string',
+            'role'          => 'required|in:admin,petugas,masyarakat',
         ], [
-            'nama_petugas.required' => 'Nama admin harus diisi.',
-            'nama_petugas.string' => 'Nama admin harus berupa teks.',
-            'nama_petugas.max' => 'Nama admin tidak boleh lebih dari 255 karakter.',
-
-            'username.required' => 'Username harus diisi.',
-            'username.string' => 'Username harus berupa teks.',
-            'username.max' => 'Username tidak boleh lebih dari 255 karakter.',
-            'username.unique' => 'Username ini sudah terdaftar.',
-
-            'password.required' => 'Password harus diisi.',
-            'password.string' => 'Password harus berupa teks.',
-            'password.min' => 'Password harus memiliki minimal 6 karakter.',
-            'password.confirmed' => 'Password konfirmasi tidak sesuai.',
-
-            'no_hp.required' => 'Nomor HP harus diisi.',
-            'no_hp.string' => 'Nomor HP harus berupa teks.',
-            'no_hp.max' => 'Nomor HP tidak boleh lebih dari 15 karakter.',
-            'no_hp.regex' => 'Nomor HP hanya boleh berisi angka.',
-
-            'role.required' => 'Role harus dipilih.',
-            'role.string' => 'Role harus berupa teks.',
-            'role.in' => 'Role yang dipilih tidak valid. Pilih admin, petugas, atau masyarakat.',
+            'nik.required'           => 'NIK harus diisi.',
+            'nik.unique'             => 'NIK ini sudah terdaftar.',
+            'nik.max'                => 'NIK tidak boleh lebih dari 16 karakter.',
+            'nama_lengkap.required'  => 'Nama lengkap harus diisi.',
+            'jenis_kelamin.required' => 'Jenis kelamin harus dipilih.',
+            'username.required'      => 'Username harus diisi.',
+            'username.unique'        => 'Username ini sudah terdaftar.',
+            'password.required'      => 'Password harus diisi.',
+            'password.min'           => 'Password minimal 8 karakter.',
+            'no_telepon.required'    => 'Nomor telepon harus diisi.',
+            'no_telepon.regex'       => 'Nomor telepon hanya boleh berisi angka, spasi, atau tanda minus.',
+            'alamat.required'        => 'Alamat harus diisi.',
+            'role.required'          => 'Role harus dipilih.',
         ]);
 
 
         Petugas::create([
-            'nama_petugas' => $request->nama_petugas,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'no_hp' => $request->no_hp,
-            'role' => $request->role,
+            'nik'           => $request->nik,
+            'nama_petugas'  => $request->nama_petugas,
+            'nama_lengkap'  => $request->nama_lengkap,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'username'      => $request->username,
+            'password'      => bcrypt($request->password),
+            'no_hp'         => $request->no_hp,
+            'alamat'        => $request->alamat,
+            'role'          => $request->role,
         ]);
 
-        return redirect('admin')->with('success', 'Petugas berhasil ditambahkan.');
+        return redirect('admin')->with('success', 'Admin berhasil ditambahkan.');
     }
 
+/**
+ * Update the specified Petugas in storage.
+ */
+
+
     /**
-     * Show the form for editing the specified petugas.
+     * Show the form for editing the specified Petugas.
      */
     public function edit($id)
     {
-        $admin = Petugas::findOrFail($id); // Find the petugas by ID
+        $admin = Petugas::findOrFail($id);
         return view('admin.profile.edit_admin', compact('admin'));
     }
 
     /**
-     * Update the specified petugas in storage.
+     * Update the specified Petugas in storage.
      */
     public function update(Request $request, $id)
-    {
-        $admin = Petugas::findOrFail($id);
+{
+    $admin = Petugas::findOrFail($id);
 
-        $request->validate([
-            'nama_petugas' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username,' . $id,
-            'password' => 'nullable|string|min:6|confirmed',
-            'no_hp' => 'required|string|max:15',
-            'role' => 'required|string|in:admin,petugas',
-        ]);
+    $request->validate([
+        'nik'           => "required|string|unique:petugas,nik,$id|max:16|regex:/^[0-9]+$/",
+        'nama_petugas'  => 'required|string|max:255',
+        'nama_lengkap'  => 'required|string|max:255',
+        'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+        'username'      => "required|string|max:255|unique:petugas,username,$id",
+        'password'      => 'nullable|string|min:8',
+        'no_hp'         => 'required|string|max:15|regex:/^[0-9]+$/',
+        'alamat'        => 'required|string',
+        'role'          => 'required|in:admin,petugas,masyarakat',
+    ]);
 
-        $data = $request->only(['nama_petugas', 'username', 'no_hp', 'role']);
-        if ($request->filled('password')) {
-            $data['password'] = Hash::make($request->password);
-        }
+    $admin->update([
+        'nik'           => $request->nik,
+        'nama_petugas'  => $request->nama_petugas,
+        'nama_lengkap'  => $request->nama_lengkap,
+        'jenis_kelamin' => $request->jenis_kelamin,
+        'username'      => $request->username,
+        'password'      => $request->password ? bcrypt($request->password) : $admin->password,
+        'no_hp'         => $request->no_hp,
+        'alamat'        => $request->alamat,
+        'role'          => $request->role,
+    ]);
 
-        $admin->update($data);
+    return redirect('admin')->with('success', 'Admin berhasil diperbarui.');
+}
 
-        return redirect('admin')->with('success', 'admin berhasil diperbarui.');
-    }
 
     /**
-     * Remove the specified petugas from storage.
+     * Remove the specified Petugas from storage.
      */
-
-
     public function destroy($id)
     {
-        try {
-            $petugas = Petugas::findOrFail($id);
-            $petugas->delete();
+        $admin = Petugas::findOrFail($id);
+        $admin->delete();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Petugas berhasil dihapus.'
-            ]);
-        } catch (\Exception $e) {
-            Log::error("Error deleting petugas: " . $e->getMessage());
-            return response()->json([
-                'success' => false,
-                'message' => 'Gagal menghapus petugas.'
-            ]);
-        }
+        return redirect()->route('admin.index')->with('success', 'Admin berhasil dihapus.');
     }
-
-
-
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Masyarakat;
+use App\Models\Petugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,13 +13,15 @@ class MasyarakatController extends Controller
     public function index()
     {
         // Mengambil semua data masyarakat dan menggunakan paginasi 10 data per halaman
-        $masyarakats = Masyarakat::paginate(10);
+        $masyarakats = Petugas::paginate(10);
         return view('admin.masyarakat.masyarakat', compact('masyarakats'));
     }
 
     // Tambahkan fungsi-fungsi lain untuk edit, delete, dll.
 
-
+    public function dashboard(){
+        return view('masyarakat.masyarakat');
+    }
 
     // Menampilkan halaman tambah data masyarakat
     public function create()
@@ -49,7 +52,7 @@ class MasyarakatController extends Controller
         ]);
 
         // Create a new Masyarakat record
-        Masyarakat::create([
+        Petugas::create([
             'nik' => $request->nik,
             'nama_lengkap' => $request->nama_lengkap,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -69,14 +72,14 @@ class MasyarakatController extends Controller
     // Menampilkan halaman edit data masyarakat
     public function edit($id)
     {
-        $masyarakat = Masyarakat::findOrFail($id);
+        $masyarakat = Petugas::findOrFail($id);
         return view('admin.masyarakat.edit_masyarakat', compact('masyarakat')); // Sesuaikan dengan nama view
     }
 
     // Memperbarui data masyarakat
     public function update(Request $request, $id)
     {
-        $masyarakat = Masyarakat::findOrFail($id);
+        $masyarakat = Petugas::findOrFail($id);
 
         $request->validate([
             'nik' => 'required|max:16|unique:masyarakats,nik,' . $id,
@@ -104,7 +107,7 @@ class MasyarakatController extends Controller
     // Menghapus data masyarakat
     public function destroy($id)
     {
-        $masyarakat = Masyarakat::findOrFail($id);
+        $masyarakat = Petugas::findOrFail($id);
         $masyarakat->delete();
 
         return response()->json(['success' => true, 'message' => 'Data masyarakat berhasil dihapus.']);
