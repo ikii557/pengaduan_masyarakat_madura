@@ -17,56 +17,38 @@ class AuthController extends Controller
     }
 
     // Handle the register process
-    public function storeregister(Request $request)
-    {
-        // Validasi request
-        $request->validate([
-            'nama_petugas' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'no_hp' => 'required|string|max:15',
-            'role' => 'required|string|in:admin,petugas,masyarakat',
-        ], [
-            // Pesan error untuk 'nama_petugas'
-            'nama_petugas.required' => 'Nama petugas harus diisi.',
-            'nama_petugas.string' => 'Nama petugas harus berupa teks.',
-            'nama_petugas.max' => 'Nama petugas maksimal 255 karakter.',
 
-            // Pesan error untuk 'username'
-            'username.required' => 'Username harus diisi.',
-            'username.string' => 'Username harus berupa teks.',
-            'username.max' => 'Username maksimal 255 karakter.',
-            'username.unique' => 'Username sudah digunakan, pilih username lain.',
 
-            // Pesan error untuk 'password'
-            'password.required' => 'Password harus diisi.',
-            'password.string' => 'Password harus berupa teks.',
-            'password.min' => 'Password minimal 8 karakter.',
-            'password.confirmed' => 'Konfirmasi password tidak cocok.',
 
-            // Pesan error untuk 'no_hp'
-            'no_hp.required' => 'Nomor HP harus diisi.',
-            'no_hp.string' => 'Nomor HP harus berupa teks.',
-            'no_hp.max' => 'Nomor HP maksimal 15 karakter.',
+public function storeregister(Request $request)
+{
+    $request->validate([
+        'nik'           => 'required|string|unique:users,nik',
+        'nama_lengkap'  => 'required|string|max:255',
+        'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+        'username'      => 'required|string|unique:users,username',
+        'password'      => 'required|string|min:8',
+        'no_telepon'    => 'required|string|max:15',
+        'alamat'        => 'required|string',
+        'role'          => 'required|in:admin,petugas,masyarakat',
+    ]);
 
-            // Pesan error untuk 'role'
-            'role.required' => 'Role harus diisi.',
-            'role.string' => 'Role harus berupa teks.',
-            'role.in' => 'Role harus salah satu dari admin, petugas, atau masyarakat.',
-        ]);
+    // Membuat user baru
+    Petugas::create([
+        'nik'           => $request->nik,
+        'nama_lengkap'  => $request->nama_lengkap,
+        'jenis_kelamin' => $request->jenis_kelamin,
+        'username'      => $request->username,
+        'password'      => bcrypt($request->password),
+        'no_telepon'    => $request->no_telepon,
+        'alamat'        => $request->alamat,
+        'role'          => $request->role,
+    ]);
 
-        // Membuat data baru di tabel Petugas
-        Petugas::create([
-            'nama_petugas' => $request->nama_petugas,
-            'username' => $request->username,
-            'password' => bcrypt($request->password),
-            'no_hp' => $request->no_hp,
-            'role' => $request->role,
-        ]);
+    return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
+}
 
-        // Redirect setelah registrasi berhasil
-        return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
-    }
+
 
     // Show the login form
     public function login()
@@ -90,19 +72,28 @@ class AuthController extends Controller
             'password.min' => 'Password minimal 8 karakter.',
         ]);
 
-        // Coba login menggunakan Auth::attempt
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            // Regenerate session
+        // Proses autentikasi menggunakan Auth::attempt
+        if (Auth::attempt([
+            'username' => $request->username,
+            'password' => $request->password
+        ])) {
             $request->session()->regenerate();
-
-            // Redirect ke halaman sesuai role
-            return redirect('/index');
+            $user = Auth::user();
+            switch ($user->role) {
+                case 'admin':
+                    return redirect('/admin');
+                case 'petugas':
+                    return redirect('/petugas');
+                default:
+                    return redirect('/masyarakat/home');
+            }
         }
+
 
         // Jika login gagal
         return back()->withErrors([
             'username' => 'Username atau password salah.',
-        ])->onlyInput('username');
+        ])->withInput($request->only('username'));
     }
 
 
@@ -110,8 +101,9 @@ class AuthController extends Controller
 
 
 
+
     public function logout(Request $request)
-    {  
+    {
         Auth::logout();
 
         $request->session()->invalidate();

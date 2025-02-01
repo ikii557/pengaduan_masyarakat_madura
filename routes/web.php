@@ -45,19 +45,19 @@ Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () 
 
     // Admin routes
     Route::get('/admin', [AdminController::class, 'index']);
-    Route::get('/admin/create', [AdminController::class, 'create']);
-    Route::post('/admin/store', [AdminController::class, 'store']);
-    Route::get('/admin/edit/{id}', [AdminController::class, 'edit']);
-    Route::post('/admin/update/{id}', [AdminController::class, 'update']);
-    Route::delete('/admin/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::get('/tambah_admin', [AdminController::class, 'create']);
+    Route::post('/store/admin', [AdminController::class, 'store']);
+    Route::get('/edit_admin/{id}', [AdminController::class, 'edit']);
+    Route::post('/update/admin/{id}', [AdminController::class, 'update']);
+    Route::delete('/destroy_admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
     // Petugas routes
     Route::get('/petugas', [PetugasController::class, 'index']);
-    Route::get('/petugas/create', [PetugasController::class, 'create']);
-    Route::post('/petugas/store', [PetugasController::class, 'store']);
-    Route::get('/petugas/edit/{id}', [PetugasController::class, 'edit']);
-    Route::post('/petugas/update/{id}', [PetugasController::class, 'update']);
-    Route::delete('/petugas/destroy/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
+    Route::get('/tambah_petugas', [PetugasController::class, 'create']);
+    Route::post('/store/petugas', [PetugasController::class, 'store']);
+    Route::get('/edit_petugas/{id}', [PetugasController::class, 'edit']);
+    Route::post('/update/petugas/{id}', [PetugasController::class, 'update']);
+    Route::delete('/destroy_petugas/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
 
     // Masyarakat routes
     Route::get('/masyarakat', [MasyarakatController::class, 'index']);
@@ -75,4 +75,3 @@ Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () 
     // Logout route
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
-

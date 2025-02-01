@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Petugas;
 use App\Models\Kategori;
 use App\Models\Tanggapan;
 use App\Models\Masyarakat;
@@ -30,7 +31,7 @@ class Pengaduan extends Model
      */
     public function masyarakat()
     {
-        return $this->belongsTo(Masyarakat::class, 'masyarakat_id');
+        return $this->belongsTo(Petugas::class, 'masyarakat_id');
     }
 
     /**

@@ -14,7 +14,9 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>No</th>
+                        <th>Nik</th>
                         <th>Nama Petugas</th>
+                        <th>Jenis Kelamin</th>
                         <th>Username</th>
                         <th>No Telepon</th>
                         <th>Role</th>
@@ -27,9 +29,11 @@
                         @if ($petugas->role === 'petugas')
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $petugas->nama_petugas }}</td>
+                                <td>{{ $petugas->nik }}</td>
+                                <td>{{ $petugas->nama_lengkap }}</td>
+                                <td>{{ $petugas->jenis_kelamin }}</td>
                                 <td>{{ $petugas->username }}</td>
-                                <td>{{ $petugas->no_hp }}</td>
+                                <td>{{ $petugas->no_telepon }}</td>
                                 <td>{{ $petugas->role }}</td>
                                 <td>
                                     <a href="/edit_petugas/{{$petugas->id}}" class="btn btn-info btn-sm">Edit</a>

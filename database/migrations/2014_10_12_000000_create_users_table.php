@@ -13,13 +13,21 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_petugas');
-            $table->string('username');
+            $table->string('nik')->unique();
+            $table->string('nama_lengkap');
+            $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
+            $table->string('username')->unique();
             $table->string('password');
-            $table->string('no_hp');
-            $table->enum('role',['admin','petugas']);
+            $table->string('no_telepon', 15);
+            $table->text('alamat');
+            $table->enum('role', ['admin', 'petugas', 'masyarakat'])->default('masyarakat');
             $table->timestamps();
         });
+
+
+
+
+
     }
 
     /**
