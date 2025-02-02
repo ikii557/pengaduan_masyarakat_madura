@@ -61,6 +61,7 @@ Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () 
 
     // Masyarakat routes
     Route::get('/masyarakat', [MasyarakatController::class, 'index']);
+    Route::get('dashboard_masyarakat',[MasyarakatController::class,'dashboard']);
     Route::get('/masyarakat/tambah_masyarakat', [MasyarakatController::class, 'create']);
     Route::post('/store/masyarakat', [MasyarakatController::class, 'store']);
     Route::get('/edit_masyarakat/{id}', [MasyarakatController::class, 'edit']);
