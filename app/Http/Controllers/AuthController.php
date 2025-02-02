@@ -81,11 +81,11 @@ public function storeregister(Request $request)
             $user = Auth::user();
             switch ($user->role) {
                 case 'admin':
-                    return redirect('/admin');
+                    return redirect('/index');
                 case 'petugas':
-                    return redirect('/petugas');
+                    return redirect('/index');
                 default:
-                    return redirect('/masyarakat/home');
+                    return redirect('/dashboard_masyarakat');
             }
         }
 

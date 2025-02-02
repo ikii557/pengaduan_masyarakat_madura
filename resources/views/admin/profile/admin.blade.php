@@ -27,6 +27,7 @@
                         <th>Nama Petugas</th>
                         <th>Username</th>
                         <th>No Telepon</th>
+                        <th>Alamat</th>
                         <th>Role</th>
                         <th>Opsi</th>
                     </tr>
@@ -40,6 +41,7 @@
                                 <td>{{ $admin->nama_lengkap }}</td>
                                 <td>{{ $admin->username }}</td>
                                 <td>{{ $admin->no_telepon }}</td>
+                                <td>{{ $admin->alamat}}</td>
                                 <td>{{ $admin->role }}</td>
                                 <td>
                                     <a href="/edit_admin/{{$admin->id}}" class="btn btn-info btn-sm">edit</a>

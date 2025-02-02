@@ -23,7 +23,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.profile.tambah_admin');
+        $admins = Petugas::all();
+        return view('admin.profile.tambah_admin',compact('admins'));
     }
 
     /**
@@ -67,7 +68,7 @@ class AdminController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'username'      => $request->username,
             'password'      => bcrypt($request->password),
-            'no_hp'         => $request->no_hp,
+            'no_telepon'    => $request->no_telepon,
             'alamat'        => $request->alamat,
             'role'          => $request->role,
         ]);
@@ -85,43 +86,49 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admin = Petugas::findOrFail($id);
-        return view('admin.profile.edit_admin', compact('admin'));
+        $admins = Petugas::findOrFail($id);
+        return view('admin.profile.edit_admin', compact('admins'));
     }
 
     /**
      * Update the specified Petugas in storage.
      */
-    public function update(Request $request, $id)
-{
-    $admin = Petugas::findOrFail($id);
+    public function update(Request $request, $id) {
+        $admins = User::findOrFail($id);
 
-    $request->validate([
-        'nik'           => "required|string|unique:petugas,nik,$id|max:16|regex:/^[0-9]+$/",
-        'nama_petugas'  => 'required|string|max:255',
-        'nama_lengkap'  => 'required|string|max:255',
-        'jenis_kelamin' => 'required|in:laki-laki,perempuan',
-        'username'      => "required|string|max:255|unique:petugas,username,$id",
-        'password'      => 'nullable|string|min:8',
-        'no_hp'         => 'required|string|max:15|regex:/^[0-9]+$/',
-        'alamat'        => 'required|string',
-        'role'          => 'required|in:admin,petugas,masyarakat',
-    ]);
+        // Validation rules
+        $request->validate([
+            'nik' => 'required|string|max:16|unique:users,nik,' . $id,
+            'nama_lengkap' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+            'username' => 'required|string|max:255|unique:users,username,' . $id,
+            'password' => 'nullable|string|min:8',
+            'no_telepon' => 'required|string|max:15|regex:/^[0-9]+$/',
+            'alamat' => 'required|string|max:255',
+            'role' => 'required|in:admin,petugas,masyarakat',
+        ]);
 
-    $admin->update([
-        'nik'           => $request->nik,
-        'nama_petugas'  => $request->nama_petugas,
-        'nama_lengkap'  => $request->nama_lengkap,
-        'jenis_kelamin' => $request->jenis_kelamin,
-        'username'      => $request->username,
-        'password'      => $request->password ? bcrypt($request->password) : $admin->password,
-        'no_hp'         => $request->no_hp,
-        'alamat'        => $request->alamat,
-        'role'          => $request->role,
-    ]);
+        // Update the petugas data
+        $admins->nik = $request->nik;
+        $admins->nama_lengkap = $request->nama_lengkap;
+        $admins->jenis_kelamin = $request->jenis_kelamin;
+        $admins->username = $request->username;
 
-    return redirect('admin')->with('success', 'Admin berhasil diperbarui.');
-}
+        // Hash password only if provided
+        if ($request->filled('password')) {
+            $admins->password = bcrypt($request->password);
+        }
+
+        $admins->no_telepon = $request->no_telepon;
+        $admins->alamat = $request->alamat;
+        $admins->role = $request->role;
+
+        $admins->save();
+
+        return redirect('admin')->with('success', 'admin berhasil diperbarui!');
+    }
+
+
 
 
     /**
@@ -132,6 +139,6 @@ class AdminController extends Controller
         $admin = Petugas::findOrFail($id);
         $admin->delete();
 
-        return redirect()->route('admin.index')->with('success', 'Admin berhasil dihapus.');
+        return redirect('admin')->with('success', 'Admin berhasil dihapus.');
     }
 }
