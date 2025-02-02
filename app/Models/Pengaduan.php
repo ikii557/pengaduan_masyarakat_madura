@@ -30,17 +30,21 @@ class Pengaduan extends Model
      * Relasi ke model Masyarakat.
      */
     public function masyarakat()
-    {
-        return $this->belongsTo(Petugas::class, 'masyarakat_id');
-    }
+{
+    return $this->belongsTo(Petugas::class, 'masyarakat_id');
+}
+
 
     /**
      * Relasi ke model Kategori.
      */
-    public function kategori()
-    {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
-    }
+    /**
+ * Relasi ke model Kategori.
+ */
+public function kategori()
+{
+    return $this->belongsTo(Kategori::class, 'kategori_id');
+}
 
     /**
      * Relasi ke model Tanggapan.

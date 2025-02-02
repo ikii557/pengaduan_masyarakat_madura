@@ -69,7 +69,7 @@ Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () 
     Route::delete('/destroy_masyarakat/{id}', [MasyarakatController::class, 'destroy'])->name('masyarakat.destroy');
 
     Route::get('data_pengaduan',[PengaduanController::class,'index']);
-    Route::get('tambah_pengaduan',[PengaduanController::class.'create']);
+    Route::get('tambah_pengaduan',[PengaduanController::class,'create']);
     Route::post('/store/data_pengaduan',[PengaduanController::class,'store']);
     Route::get('/edit_pengaduan/{id}',[PengaduanController::class,'edit']);
     Route::post('/update/data_pengaduan/{id}',[PengaduanController::class,'update']);

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pengaduan;
+use App\Models\Petugas;
 use App\Models\Kategori;
+use App\Models\Pengaduan;
 use App\Models\Masyarakat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PengaduanController extends Controller
@@ -22,42 +24,46 @@ class PengaduanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        $masyarakats = Masyarakat::all();
-        $kategoris = Kategori::all();
-        return view('pengaduan.create', compact('masyarakats', 'kategoris'));
-    }
+
+
+     public function create()
+     {
+
+         $kategoris = Kategori::all(); // Pastikan Kategori memiliki data
+         return view('pengaduan.create', compact('kategoris'));
+     }
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'masyarakat_id' => 'required|exists:masyarakats,id',
-            'kategori_id' => 'required|exists:kategoris,id',
-            'tanggal_pengaduan' => 'required|date',
-            'isi_pengaduan' => 'required|string|max:500',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'status' => 'required|string|in:pending,proses,selesai',
-        ]);
+public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'masyarakat_id' => 'required|exists:masyarakats,id',
+        'kategori_id' => 'required|exists:kategoris,id',
+        'tanggal_pengaduan' => 'required|date',
+        'isi_pengaduan' => 'required|string|max:500',
+        'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        'status' => 'required|string|in:pending,proses,selesai',
+    ]);
 
-        if ($request->hasFile('foto')) {
-            $validatedData['foto'] = $request->file('foto')->store('pengaduan_images', 'public');
-        }
-
-        Pengaduan::create($validatedData);
-
-        return redirect()->route('pengaduan.index')->with('success', 'Pengaduan berhasil ditambahkan.');
+    if ($request->hasFile('foto')) {
+        $validatedData['foto'] = $request->file('foto')->store('pengaduan_images', 'public');
     }
+
+    Pengaduan::create($validatedData);
+
+    return redirect()->route('pengaduan.index')->with('success', 'Pengaduan berhasil ditambahkan.');
+}
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Pengaduan $pengaduan , $id)
     {
-        $masyarakats = Masyarakat::all();
+        $masyarakats = Petugas::all();
         $kategoris = Kategori::all();
         $pengaduan = Pengaduan::findOrFail($id);
 
