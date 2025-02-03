@@ -38,12 +38,14 @@
                                 <th>Jenis Kelamin</th>
                                 <th>Username</th>
                                 <th>No Telepon</th>
+                                <th>role</th>
                                 <th>Alamat</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($masyarakats as $key => $masyarakat)
+                            @if ($masyarakat->role === 'masyarakat')
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $masyarakat->nik }}</td>
@@ -51,6 +53,7 @@
                                     <td>{{ $masyarakat->jenis_kelamin }}</td>
                                     <td>{{ $masyarakat->username }}</td>
                                     <td>{{ $masyarakat->no_telepon }}</td>
+                                    <td>{{ $masyarakat->role}}</td>
                                     <td>{{ $masyarakat->alamat }}</td>
                                     <td>
                                         <a href="edit_masyarakat/{{ $masyarakat->id }}" class="btn btn-info btn-sm">Edit</a>
@@ -61,6 +64,7 @@
                                         </a>
                                     </td>
                                 </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>

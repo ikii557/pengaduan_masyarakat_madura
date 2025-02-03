@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use App\Models\Pengaduan;
@@ -10,9 +9,6 @@ class Kategori extends Model
 {
     use HasFactory;
 
-    /**
-     * Kolom-kolom yang dapat diisi (mass assignable).
-     */
     protected $table = 'kategoris';
     protected $fillable = [
         'nama_kategori',
@@ -24,6 +20,6 @@ class Kategori extends Model
      */
     public function pengaduans()
     {
-        return $this->hasMany(Pengaduan::class, 'kategori_id');
+        return $this->hasMany(Pengaduan::class,);
     }
 }

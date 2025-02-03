@@ -14,7 +14,7 @@
     <li><a href="create_pengaduan">Buat Laporan</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#team">Team</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="tambah_pengaduan">Contact</a></li>
     <li>
       <a href="#Login" class="btn btn-primary btn-sm rounded-pill px-3 py-2">Log In</a>
     </li>

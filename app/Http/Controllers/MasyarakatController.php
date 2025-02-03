@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Masyarakat;
 use App\Models\Petugas;
+use App\Models\Kategori;
+use App\Models\Pengaduan;
+use App\Models\Masyarakat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,7 +22,8 @@ class MasyarakatController extends Controller
     // Tambahkan fungsi-fungsi lain untuk edit, delete, dll.
 
     public function dashboard(){
-        return view('masyarakat.masyarakat');
+        $kategoris = Kategori::all();
+        return view('masyarakat.masyarakat', compact('kategoris'));
     }
 
     // Menampilkan halaman tambah data masyarakat
@@ -112,5 +115,26 @@ class MasyarakatController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Data masyarakat berhasil dihapus.']);
     }
+
+    //tambah pengaduan
+    public function storepengaduan(Request $request)
+{
+    $validatedData = $request->validate([
+        'masyarakat_id' => 'required|exists:masyarakats,id',
+        'kategori_id' => 'required|exists:kategoris,id',
+        'tanggal_pengaduan' => 'required|date',
+        'isi_pengaduan' => 'required|string|max:500',
+        'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        'status' => 'required|string|in:pending,proses,selesai',
+    ]);
+
+    if ($request->hasFile('foto')) {
+        $validatedData['foto'] = $request->file('foto')->store('pengaduan_images', 'public');
+    }
+
+    Pengaduan::create($validatedData);
+
+    return redirect('masyarakat_table')->with('success', 'Pengaduan berhasil ditambahkan.');
+}
 
 }

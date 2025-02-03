@@ -659,49 +659,65 @@
           </div>
 
           <div class="col-lg-6">
-          <form action="store/datapengaduan" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-            <div class="row gy-4">
-                <!-- Nama -->
-                <div class="col-md-6">
-                <input type="text" name="name" class="form-control" placeholder="Masukkan Nama" required>
-                </div>
-
-                <!-- NIK -->
-                <div class="col-md-6">
-                <input type="date" class="form-control" name="tanggal_pengaduan" placeholder="Masukkan tanggal" required>
-                </div>
-
-                <!-- Kategori -->
-                <div class="col-12">
-                <select class="form-control" name="kategori" required>
-                    <option value="" disabled selected>Pilih Kategori</option>
-                    <option value="keamanan">Pengaduan Keamanan</option>
-                    <option value="kebersihan">Pengaduan Kebersihan</option>
-                    <option value="kelistrikan">Pengaduan Kelistrikan</option>
-                    <option value="lingkungan">Pengaduan Lingkungan</option>
-                </select>
-                </div>
-
-                <!-- Alamat -->
-                <div class="col-12">
-                    <input type="url" class="form-control" name="foto" placeholder="Masukkan URL foto" required>
-                </div>
+          <form action="/store/data_pengaduan" method="POST" enctype="multipart/form-data" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                @csrf
+                <div class="row gy-4">
+                    <!-- Nama Masyarakat (Dropdown) -->
+                    <div class="col-md-6">
+                        <label for="masyarakat_id">Nama Masyarakat:</label>
+                        <input type="text" class="form-control" value="{{ Auth::user()->nama_lengkap }}" disabled>
+                        <input type="hidden" name="masyarakat_id" value="{{ Auth::id() }}">
+                    </div>
 
 
-                <!-- Deskripsi Pengaduan -->
-                <div class="col-12">
-                <textarea class="form-control" name="message" rows="6" placeholder="Deskripsi Pengaduan Anda" required></textarea>
-                </div>
+                    <!-- Kategori Pengaduan -->
+                    <div class="col-md-6">
+                        <label for="kategori_id">Kategori Pengaduan:</label>
+                        <select name="kategori_id" class="form-control" required>
+                            <option value="">-- Pilih Kategori --</option>
+                            @foreach($kategoris as $kategori)
+                                <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                <!-- Tombol Submit -->
-                <div class="col-12 text-center">
-                <div class="loading" style="display: none;">Loading...</div>
-                <div class="error-message" style="display: none; color: red;">Terjadi kesalahan saat mengirimkan formulir.</div>
-                <div class="sent-message" style="display: none; color: green;">Pengaduan Anda berhasil dikirim. Terima kasih!</div>
-                <button type="submit">Kirim Pengaduan</button>
+
+
+                    <!-- Tanggal Pengaduan -->
+                    <div class="col-md-6">
+                        <label for="tanggal_pengaduan">Tanggal Pengaduan:</label>
+                        <input type="date" name="tanggal_pengaduan" class="form-control" required>
+                    </div>
+
+                    <!-- Foto Pengaduan -->
+                    <div class="col-md-6">
+                        <label for="foto">Upload Foto (Opsional):</label>
+                        <input type="file" name="foto" class="form-control" accept="image/jpeg,image/png,image/jpg">
+                    </div>
+
+                    <!-- Isi Pengaduan -->
+                    <div class="col-12">
+                        <label for="isi_pengaduan">Isi Pengaduan:</label>
+                        <textarea name="isi_pengaduan" class="form-control" rows="6" placeholder="Deskripsi Pengaduan Anda" required></textarea>
+                    </div>
+
+                    <!-- Status Pengaduan -->
+                    <div class="col-12">
+                        <label for="status">Status Pengaduan:</label>
+                        <select name="status" class="form-control" required>
+                            <option value="pending">Pending</option>
+                            <option value="proses">Proses</option>
+                            <option value="selesai">Selesai</option>
+                        </select>
+                    </div>
+
+                    <!-- Tombol Submit -->
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary">Kirim Pengaduan</button>
+                    </div>
                 </div>
-            </div>
             </form>
+
 
           </div><!-- End Contact Form -->
 
