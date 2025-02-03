@@ -3,26 +3,24 @@
 @section('content')
 
 @if(session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
-
-@if(session('error'))
-<div class="alert alert-danger">
-    {{ session('error') }}
-</div>
+    <div class="alert alert-success" id="success-alert">
+        {{ session('success') }}
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('success-alert').style.display = 'none';
+        }, 3000); // Hide the success alert after 3 seconds
+    </script>
 @endif
 
 <div class="container mt-4">
     <div class="card">
-        <div class="card-header bg-primary text-white">
-            <h3 class="card-title">Daftar Pengaduan</h3>
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h3 class="card-title mb-0">Daftar Admin</h3>
+            <a href="tambah_pengaduan" class="btn btn-light btn-round">Tambah pengaduan</a>
         </div>
         <div class="card-body">
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
+
             <table class="table table-bordered table-striped table-hover">
                 <thead class="thead-dark">
                     <tr>
@@ -62,11 +60,12 @@
                                 </span>
                             </td>
                             <td>
-                                <a href="/edit_pengaduan/{{$pengaduan->id}}"class="btn btn-sm btn-info">Edit</a>
+                                <a href="/tanggapan" class="btn btn-warning btn-sm" style="height"> C</a>
+                                <a href="/edit_pengaduan/{{$pengaduan->id}}"class="btn btn-sm btn-info mt-1">E</a>
                                 <form action="" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus pengaduan ini?')">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus pengaduan ini?')">H</button>
                                 </form>
                             </td>
                         </tr>

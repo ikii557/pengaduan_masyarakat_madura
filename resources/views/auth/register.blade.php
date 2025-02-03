@@ -40,7 +40,7 @@
 
             <div class="form-group">
                 <label><strong>NIK</strong></label>
-                <input name="nik" type="text" class="form-control">
+                <input name="nik" type="text" class="form-control" placeholder="masukan nik">
                 @error('nik')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -48,7 +48,7 @@
 
             <div class="form-group">
                 <label><strong>Nama Lengkap</strong></label>
-                <input name="nama_lengkap" type="text" class="form-control" >
+                <input name="nama_lengkap" type="text" class="form-control" placeholder="masukan nama lengkap">
                 @error('nama_lengkap')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -56,7 +56,7 @@
 
             <div class="form-group">
                 <label><strong>Jenis Kelamin</strong></label>
-                <select name="jenis_kelamin" class="form-control">
+                <select name="jenis_kelamin" class="form-control" >
                     <option value="">-- Pilih Jenis Kelamin --</option>
                     <option value="laki-laki" {{ old('jenis_kelamin') == 'laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                     <option value="perempuan" {{ old('jenis_kelamin') == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
@@ -68,7 +68,7 @@
 
             <div class="form-group">
                 <label><strong>Username</strong></label>
-                <input name="username" type="text" class="form-control" >
+                <input name="username" type="text" class="form-control" placeholder="masukan username">
                 @error('username')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -76,7 +76,7 @@
 
             <div class="form-group">
                 <label><strong>Password</strong></label>
-                <input name="password" type="password" class="form-control">
+                <input name="password" type="password" class="form-control" placeholder="masukan password">
                 @error('password')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -84,7 +84,7 @@
 
             <div class="form-group">
                 <label><strong>No Telepon</strong></label>
-                <input name="no_telepon" type="text" class="form-control" >
+                <input name="no_telepon" type="text" class="form-control" placeholder="masukan nomor telepon">
                 @error('no_telepon')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -92,7 +92,7 @@
 
             <div class="form-group">
                 <label><strong>Alamat</strong></label>
-                <textarea name="alamat" class="form-control"></textarea>
+                <textarea name="alamat" class="form-control" placeholder="masukan alamat"></textarea>
                 @error('alamat')
                     <p class="text-danger">{{$message}}</p>
                 @enderror

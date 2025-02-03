@@ -11,8 +11,10 @@
     />
 
     <!-- Fonts and icons -->
-    <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <script src="{{ asset('') }}assets/js/plugin/webfont/webfont.min.js"></script>
+    <!-- <script src="{{ asset('') }}assets/css/fonts.min.css"></script> -->
     <script>
+        var publicPath = "{{ asset('assets/css/fonts.min.css') }}";
       WebFont.load({
         google: { families: ["Public Sans:300,400,500,600,700"] },
         custom: {
@@ -22,7 +24,7 @@
             "Font Awesome 5 Brands",
             "simple-line-icons",
           ],
-          urls: ["assets/css/fonts.min.css"],
+          urls: [publicPath],
         },
         active: function () {
           sessionStorage.fonts = true;

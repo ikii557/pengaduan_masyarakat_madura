@@ -1,6 +1,19 @@
 @extends('layoutsmasyarakat.data')
 @section('main')
 
+@if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 
   <main class="main">
@@ -78,48 +91,67 @@
           </div>
 
           <div class="col-lg-6">
-          <form action="store/datapengaduan" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-            <div class="row gy-4">
-                <!-- Nama -->
-                <div class="col-md-6">
-                <input type="text" name="name" class="form-control" placeholder="Masukkan Nama" required>
-                </div>
+          <form action="/store/pegaduan" method="POST">
+                    @csrf
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="masyarakat_id" class="form-label fw-semibold">Nama Masyarakat</label>
+                            <input type="text" value="{{ Auth::user()->nama_lengkap = 'adik kakak' }}" name="masyarakat_id" id="masyarakat_id" class="form-control form-control-lg" placeholder="Masukkan masyarakat_id" >
+                            @error('masyarakat_id')
+                                <p class="text-danger small">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="kategori_id" class="form-label fw-semibold">Masukan Kategori</label>
+                            <select name="kategori_id" class="form-control" required>
+                                <option value="">-- Pilih Kategori --</option>
+                                @foreach($kategoris as $kategori)
+                                    <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                                @endforeach
+                            </select>
+                            @error('kategori_id')
+                                <p class="text-danger small">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
 
-                <!-- NIK -->
-                <div class="col-md-6">
-                <input type="number" class="form-control" name="nik" placeholder="Masukkan NIK" required>
-                </div>
+                    <div class="row mb-4">
 
-                <!-- Kategori -->
-                <div class="col-12">
-                <select class="form-control" name="kategori" required>
-                    <option value="" disabled selected>Pilih Kategori</option>
-                    <option value="keamanan">Pengaduan Keamanan</option>
-                    <option value="kebersihan">Pengaduan Kebersihan</option>
-                    <option value="kelistrikan">Pengaduan Kelistrikan</option>
-                    <option value="lingkungan">Pengaduan Lingkungan</option>
-                </select>
-                </div>
+                        <div class="col-md-6">
+                            <label for="tanggal_pengaduan" class="form-label fw-semibold">Tanggal Pengaduan</label>
+                            <input type="date" value="{{ old('tanggal_pengaduan') }}" name="tanggal_pengaduan" id="tanggal_pengaduan" class="form-control form-control-lg" placeholder="Masukkan tanggal_pengaduan" required>
+                            @error('tanggal_pengaduan')
+                                <p class="text-danger small">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="foto">Upload Foto (Opsional)</label>
+                            <input type="file" name="foto" class="form-control" accept="image/jpeg,image/png,image/jpg">
+                            @error('foto')
+                                <p class="text-danger">{{$message}}</p>
+                            @enderror
+                        </div>
 
-                <!-- Alamat -->
-                <div class="col-12">
-                <input type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat" required>
-                </div>
+                    </div>
 
-                <!-- Deskripsi Pengaduan -->
-                <div class="col-12">
-                <textarea class="form-control" name="message" rows="6" placeholder="Deskripsi Pengaduan Anda" required></textarea>
-                </div>
 
-                <!-- Tombol Submit -->
-                <div class="col-12 text-center">
-                <div class="loading" style="display: none;">Loading...</div>
-                <div class="error-message" style="display: none; color: red;">Terjadi kesalahan saat mengirimkan formulir.</div>
-                <div class="sent-message" style="display: none; color: green;">Pengaduan Anda berhasil dikirim. Terima kasih!</div>
-                <button type="submit">Kirim Pengaduan</button>
-                </div>
-            </div>
-            </form>
+                    <div class="row mb-4">
+                    <div class="col-12 mb-3">
+                            <label for="isi_pengaduan">Isi Pengaduan</label>
+                            <textarea name="isi_pengaduan" class="form-control" rows="6" placeholder="Deskripsi Pengaduan Anda" >{{ old('isi_pengaduan') }}</textarea>
+                            @error('isi_pengaduan')
+                                <p class="text-danger">{{$message}}</p>
+                            @enderror
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Simpan Data Laporan</button>
+                    </div>
+                </form>
 
           </div><!-- End Contact Form -->
 

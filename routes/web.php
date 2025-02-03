@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\PengaduanController;
 use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\TanggapanController;
 use App\Http\Controllers\MasyarakatController;
 
 /*
@@ -70,9 +71,17 @@ Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () 
 
     Route::get('data_pengaduan',[PengaduanController::class,'index']);
     Route::get('tambah_pengaduan',[PengaduanController::class,'create']);
-    Route::post('/store/data_pengaduan',[PengaduanController::class,'store']);
+    Route::post('/store/pegaduan', [PengaduanController::class, 'store']);
     Route::get('/edit_pengaduan/{id}',[PengaduanController::class,'edit']);
     Route::post('/update/data_pengaduan/{id}',[PengaduanController::class,'update']);
+    Route::delete('/destroy_pengaduan/{id}',[PengaduanController::class,'destory'])->name('pengaduan.destroy');
+
+    Route::get('tanggapan',[TanggapanController::class,'index']);
+    Route::get('tambah_tanggapan',[TanggapanController::class,'create']);
+    Route::post('/store/tanggapan',[TanggapanController::class,'store']);
+    Route::get('edit_tanggapan/{id}',[TanggapanController::class,'edit']);
+    Route::post('/update/tanggapan/{id}',[TanggapanController::class,'update']);
+    Route::delete('/destroy_tanggapan/{id}',[TanggapanController::class,'destroy'])->name('tanggapan.destroy');
     // Logout route
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

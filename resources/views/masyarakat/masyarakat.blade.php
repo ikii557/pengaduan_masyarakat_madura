@@ -674,12 +674,13 @@
                     <div class="col-md-6">
                         <label for="kategori_id">Kategori Pengaduan:</label>
                         <select name="kategori_id" class="form-control" required>
-                            <option value="" disabled selected>Pilih Kategori</option>
-                            @foreach ($kategoris as $kategori)
+                            <option value="">-- Pilih Kategori --</option>
+                            @foreach($kategoris as $kategori)
                                 <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
                             @endforeach
                         </select>
                     </div>
+
 
 
                     <!-- Tanggal Pengaduan -->

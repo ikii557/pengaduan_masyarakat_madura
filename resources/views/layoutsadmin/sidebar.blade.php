@@ -3,7 +3,7 @@
     <!-- Logo Header -->
     <div class="logo-header" data-background-color="dark">
       <a href="index.html" class="logo">
-        <img src="assets/img/kaiadmin/cilacaplogo.png" alt="navbar brand" class="navbar-brand" height="20" />
+        <img src="{{ asset('') }}assets/img/kaiadmin/cilacaplogo.png" alt="navbar brand" class="navbar-brand" height="20" />
         <span class="text-white p-1">MADURA BERCAHAYA</span>
       </a>
       <div class="nav-toggle">
@@ -37,6 +37,12 @@
             <a href="{{ url('data_pengaduan') }}">
                 <i class="fas fa-comment-dots"></i>
                 <p>Pengaduan</p>
+            </a>
+        </li>
+        <li class="nav-item {{ request()->is('tanggapan') ? 'active' : '' }}">
+            <a href="{{ url('tanggapan') }}">
+                <i class="fas fa-comment-dots"></i>
+                <p>tanggapan</p>
             </a>
         </li>
 

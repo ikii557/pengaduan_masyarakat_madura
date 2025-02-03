@@ -30,32 +30,53 @@ class PengaduanController extends Controller
      {
 
          $kategoris = Kategori::all(); // Pastikan Kategori memiliki data
-         return view('pengaduan.create', compact('kategoris'));
+         return view('masyarakat.create_pengaduan',compact('kategoris'));
      }
 
 
     /**
      * Store a newly created resource in storage.
      */
-public function store(Request $request)
-{
-    $validatedData = $request->validate([
-        'masyarakat_id' => 'required|exists:masyarakats,id',
-        'kategori_id' => 'required|exists:kategoris,id',
-        'tanggal_pengaduan' => 'required|date',
-        'isi_pengaduan' => 'required|string|max:500',
-        'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        'status' => 'required|string|in:pending,proses,selesai',
-    ]);
 
-    if ($request->hasFile('foto')) {
-        $validatedData['foto'] = $request->file('foto')->store('pengaduan_images', 'public');
-    }
+     public function store(Request $request)
+     {
+         $request->validate([
+             'masyarakat_id' => 'required|exists:users,id',
+             'kategori_id' => 'required|exists:kategoris,id',
+             'tanggal_pengaduan' => 'required|date',
+             'isi_pengaduan' => 'required|string',
 
-    Pengaduan::create($validatedData);
+             'status' => 'nullable|in:pending,proses,selesai',
+         ]);
 
-    return redirect()->route('pengaduan.index')->with('success', 'Pengaduan berhasil ditambahkan.');
-}
+         // Simpan pengaduan awal tanpa foto
+         $pengaduanData = [
+             'masyarakat_id'    => $request->masyarakat_id,
+             'kategori_id'      => $request->kategori_id,
+             'tanggal_pengaduan' => $request->tanggal_pengaduan,
+             'isi_pengaduan'    => $request->isi_pengaduan,
+             'status'           => $request->status,
+         ];
+
+         // Upload foto jika ada
+         if ($request->hasFile('foto')) {
+                $request->validate([
+                    'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+                ]);
+             $file = $request->file('foto');
+             $filename = time() . '.' . $file->getClientOriginalExtension();
+             $file->move(public_path('uploads/foto_pengaduan'), $filename);
+
+             // Tambahkan nama file ke dalam data pengaduan
+             $pengaduanData['foto'] = $filename;
+         }
+
+         // Simpan data ke database
+         Pengaduan::create($pengaduanData);
+
+         return redirect('masyarakat')->with('success', 'Pengaduan berhasil dikirim.');
+     }
+
 
 
     /**
@@ -93,7 +114,7 @@ public function store(Request $request)
 
          $pengaduan->update($validatedData);
 
-         return redirect()->back()->with('success', 'Pengaduan berhasil diperbarui!');
+         return redirect('data_pengaduan')->with('success', 'Pengaduan berhasil diperbarui!');
      }
 
 
