@@ -96,7 +96,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <label for="masyarakat_id" class="form-label fw-semibold">Nama Masyarakat</label>
-                            <input type="text" value="{{ $masyarakats->nama_lengkap }}" name="masyarakat_id" id="masyarakat_id" class="form-control form-control-lg" placeholder="Masukkan masyarakat_id" >
+                            <input type="text" value="{{old('$masyarakat')}}" name="masyarakat_id" id="masyarakat_id" class="form-control form-control-lg" placeholder="Masukkan masyarakat_id" >
                             @error('masyarakat_id')
                                 <p class="text-danger small">{{ $message }}</p>
                             @enderror

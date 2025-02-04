@@ -91,6 +91,10 @@ Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () 
     Route::post('/update/tanggapan/{id}',[TanggapanController::class,'update']);
     Route::delete('/destroy_tanggapan/{id}',[TanggapanController::class,'destroy'])->name('tanggapan.destroy');
 
+
+    Route::get('/generate_laporan', [PengaduanController::class, 'report'])->name('pengaduan.laporan');
+    Route::get('/export-laporan-pengaduan', [PengaduanController::class, 'exportLaporan'])->name('pengaduan.export');
+    Route::get('/formulir_laporan/{$id}',[PengaduanController::class,'formulir']);
     // Logout route
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
