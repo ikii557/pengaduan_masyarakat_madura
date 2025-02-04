@@ -17,8 +17,9 @@ class PengaduanController extends Controller
      */
     public function index()
     {
+        $petugas    = Petugas::all();
         $pengaduans = Pengaduan::with('masyarakat', 'kategori')->latest()->get();
-        return view('admin.laporan.laporan_keamanan', compact('pengaduans'));
+        return view('admin.laporan.laporan_keamanan', compact('petugas','pengaduans'));
     }
 
     /**
@@ -28,9 +29,10 @@ class PengaduanController extends Controller
 
      public function create()
      {
-
+        
+        $masyarakats = Petugas::all();
          $kategoris = Kategori::all(); // Pastikan Kategori memiliki data
-         return view('masyarakat.create_pengaduan',compact('kategoris'));
+         return view('masyarakat.create_pengaduan',compact('masyarakats','kategoris'));
      }
 
 

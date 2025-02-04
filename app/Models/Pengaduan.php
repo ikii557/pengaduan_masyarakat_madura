@@ -40,4 +40,8 @@ class Pengaduan extends Model
     {
         return $this->hasMany(Tanggapan::class,);
     }
+
+    public function petugas(){
+        return $this->belongsTo(Petugas::class,'masyarakat_id');
+    }
 }

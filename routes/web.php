@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\TanggapanController;
 use App\Http\Controllers\MasyarakatController;
@@ -60,6 +61,13 @@ Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () 
     Route::post('/update/petugas/{id}', [PetugasController::class, 'update']);
     Route::delete('/destroy_petugas/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
 
+    Route::get('kategori',[KategoriController::class,'index']);
+    Route::get('tambah_kategori',[KategoriController::class,'create']);
+    Route::post('/store/kategori',[KategoriController::class,'store']);
+    Route::get('edit_kategori',[KategoriController::class,'edit']);
+    Route::get('/update/kategori/{id}',[KategoriController::class,'update']);
+    Route::delete('/destroy_kategori/{id}',[KategoriController::class,'destroy'])->name('kategori.destroy');
+
     // Masyarakat routes
     Route::get('/masyarakat', [MasyarakatController::class, 'index']);
     Route::get('dashboard_masyarakat',[MasyarakatController::class,'dashboard']);
@@ -82,6 +90,7 @@ Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () 
     Route::get('edit_tanggapan/{id}',[TanggapanController::class,'edit']);
     Route::post('/update/tanggapan/{id}',[TanggapanController::class,'update']);
     Route::delete('/destroy_tanggapan/{id}',[TanggapanController::class,'destroy'])->name('tanggapan.destroy');
+
     // Logout route
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

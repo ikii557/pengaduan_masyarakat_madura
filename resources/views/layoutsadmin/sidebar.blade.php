@@ -45,6 +45,12 @@
                 <p>tanggapan</p>
             </a>
         </li>
+        <li class="nav-item {{ request()->is('kategori') ? 'active' : '' }}">
+            <a href="{{ url('kategori') }}">
+                <i class="fas fa-comment-dots"></i>
+                <p>kategori</p>
+            </a>
+        </li>
 
         <li class="nav-section">
                 <span class="sidebar-mini-icon">
