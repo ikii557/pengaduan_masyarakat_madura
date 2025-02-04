@@ -83,6 +83,20 @@
             </a>
         </li>
 
+        <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+                <h4 class="text-section">laporan </h4>
+              </li>
+
+        <li class="nav-item {{ request()->is('generate_laporan') ? 'active' : '' }}">
+            <a href="{{ url('generate_laporan') }}">
+                <i class="fas fa-users"></i>
+                <p>generate_laporan</p>
+            </a>
+        </li>
+
 
       </ul>
     </div>

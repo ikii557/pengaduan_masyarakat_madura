@@ -29,7 +29,7 @@ class PengaduanController extends Controller
 
      public function create()
      {
-        
+
         $masyarakats = Petugas::all();
          $kategoris = Kategori::all(); // Pastikan Kategori memiliki data
          return view('masyarakat.create_pengaduan',compact('masyarakats','kategoris'));
@@ -143,4 +143,28 @@ class PengaduanController extends Controller
         $pengaduan->load('masyarakat', 'kategori', 'tanggapans');
         return view('pengaduan.show', compact('pengaduan'));
     }
+
+    public function report(Request $request)
+{
+    $query = Pengaduan::query();
+
+    if ($request->start_date && $request->end_date) {
+        $query->whereBetween('tanggal_pengaduan', [$request->start_date, $request->end_date]);
+    }
+
+    $pengaduans = $query->get();
+
+    return view('admin.generate.generate_laporan', compact('pengaduans'));
+}
+
+public function exportLaporan()
+{
+    // Generate export logic (Excel or PDF)
+}
+
+    public function formulir($id){
+        $pengaduans =Pengaduan::findOrFail($id);
+        return view('admin.generate.formulir_laporan',compact('pengaduans'));
+    }
+
 }
