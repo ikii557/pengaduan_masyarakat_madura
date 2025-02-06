@@ -40,44 +40,57 @@ class PengaduanController extends Controller
      * Store a newly created resource in storage.
      */
 
-     public function store(Request $request)
-     {
-         $request->validate([
-             'masyarakat_id' => 'required|exists:users,id',
-             'kategori_id' => 'required|exists:kategoris,id',
-             'tanggal_pengaduan' => 'required|date',
-             'isi_pengaduan' => 'required|string',
 
-             'status' => 'nullable|in:pending,proses,selesai',
-         ]);
+    public function store(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'masyarakat_id' => 'nullable|exists:users,id',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'tanggal_pengaduan' => 'required|date',
+            'isi_pengaduan' => 'required|string',
+            'foto' => 'nullable|mimes:jpeg,png,jpg|max:2048', // Tidak wajib, hanya jika ada input file
+            'status' => 'nullable|in:pending,proses,selesai',
+        ], [
+            'masyarakat_id.exists' => 'Nama masyarakat harus ada di tabel user.',
+            'kategori_id.required' => 'Kategori harus diisi.',
+            'kategori_id.exists' => 'Kategori yang dipilih tidak valid.',
+            'tanggal_pengaduan.required' => 'Tanggal pengaduan harus diisi.',
+            'tanggal_pengaduan.date' => 'Tanggal pengaduan harus berupa format tanggal yang valid.',
+            'isi_pengaduan.required' => 'Isi pengaduan harus diisi.',
+            'foto.image' => 'File yang diunggah harus berupa gambar.',
+            'foto.mimes' => 'Foto harus dalam format jpeg, png, atau jpg.',
+            'foto.max' => 'Ukuran foto maksimal 2MB.',
+            'status.in' => 'Status harus salah satu dari pending, proses, atau selesai.',
+        ]);
 
-         // Simpan pengaduan awal tanpa foto
-         $pengaduanData = [
-             'masyarakat_id'    => $request->masyarakat_id,
-             'kategori_id'      => $request->kategori_id,
-             'tanggal_pengaduan' => $request->tanggal_pengaduan,
-             'isi_pengaduan'    => $request->isi_pengaduan,
-             'status'           => $request->status,
-         ];
 
-         // Upload foto jika ada
-         if ($request->hasFile('foto')) {
-                $request->validate([
-                    'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-                ]);
-             $file = $request->file('foto');
-             $filename = time() . '.' . $file->getClientOriginalExtension();
-             $file->move(public_path('uploads/foto_pengaduan'), $filename);
+        $data = $request->except('foto');
 
-             // Tambahkan nama file ke dalam data pengaduan
-             $pengaduanData['foto'] = $filename;
-         }
+        // Jika ada file foto, upload dan simpan path-nya
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $path = $foto->storeAs(
+                'public/foto_pengaduan', // Folder dalam public
+                now()->format('Y-m-d_H-i-s') . '.' . $foto->getClientOriginalExtension() // Nama file
+            );
+            $data['foto'] = $path;
+        }
 
-         // Simpan data ke database
-         Pengaduan::create($pengaduanData);
+        // Simpan data pengaduan
+        $pengaduan = new Pengaduan();
+        $pengaduan->masyarakat_id = auth()->user()->id; // Ambil ID user yang login
+        $pengaduan->kategori_id = $request->kategori_id;
+        $pengaduan->tanggal_pengaduan = $request->tanggal_pengaduan;
+        $pengaduan->isi_pengaduan = $request->isi_pengaduan;
+        $pengaduan->foto = $data['foto'] ?? null; // Pastikan foto tersimpan dengan benar
+        $pengaduan->status = '0'; // Status default
+        $pengaduan->save();
 
-         return redirect('masyarakat')->with('success', 'Pengaduan berhasil dikirim.');
-     }
+        return redirect('daftar_pengaduan')->with('success', 'Data Berhasil Dibuat');
+
+    }
+
 
 
 
@@ -124,16 +137,24 @@ class PengaduanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pengaduan $pengaduan)
+    public function destroy($id)
     {
-        if ($pengaduan->foto && Storage::exists('public/' . $pengaduan->foto)) {
-            Storage::delete('public/' . $pengaduan->foto);
+        // Mencari pengaduan berdasarkan ID
+        $pengaduan = Pengaduan::findOrFail($id);
+
+        // Hapus foto jika ada
+        if ($pengaduan->foto) {
+            // Menghapus file foto dari storage
+            Storage::delete($pengaduan->foto);
         }
 
+        // Hapus pengaduan
         $pengaduan->delete();
 
-        return redirect()->route('pengaduan.index')->with('success', 'Pengaduan berhasil dihapus.');
+        // Redirect ke halaman daftar pengaduan dengan pesan sukses
+        return redirect('data_pengaduan')->with('success', 'Pengaduan berhasil dihapus');
     }
+
 
     /**
      * Display the specified resource.
@@ -164,7 +185,9 @@ public function exportLaporan()
 
     public function formulir($id){
         $pengaduans =Pengaduan::findOrFail($id);
-        return view('admin.generate.formulir_laporan',compact('pengaduans'));
+        $petugas    =Petugas::all();
+
+        return view('admin.generate.formulir_laporan',compact('pengaduans','petugas'));
     }
 
 }

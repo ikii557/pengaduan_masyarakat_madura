@@ -1,6 +1,16 @@
 @extends('layoutsadmin.app')
 
 @section('content')
+@if(session('success'))
+    <div class="alert alert-success" id="success-alert">
+        {{ session('success') }}
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('success-alert').style.display = 'none';
+        }, 3000); // Hide the success alert after 3 seconds
+    </script>
+@endif
 
 <div class="col-md-12">
     <div class="card">

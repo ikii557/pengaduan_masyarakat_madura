@@ -50,9 +50,7 @@
                     <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
                         <select name="role" id="role" class="form-control form-control-lg" required>
-                            <option value="">-- Pilih Role --</option>
-                            <option value="admin">Admin</option>
-                            <option value="petugas">Petugas</option>
+                            <option value="petugas">petugas</option>
                         </select>
                     </div>
                     <div class="text-center">

@@ -29,12 +29,26 @@
         h4 {
             font-weight: 600;
         }
+        .logo-container {
+            text-align: center;
+        }
+        .logo-container img {
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="auth-form">
-        <h4 class="text-center mb-4">Register Akun Baru</h4>
+
+    <div class="logo-container">
+    <img src="{{ asset('assets/img/kaiadmin/cilacaplogo.png') }}" height="50px" alt="Logo">
+    <h4 class="text-center mb-4">Register Akun Baru</h4>
+</div>
+
+
+
         <form action="/store/register" method="post">
             @csrf
 

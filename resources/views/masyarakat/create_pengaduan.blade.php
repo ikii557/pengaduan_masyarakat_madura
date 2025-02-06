@@ -20,7 +20,7 @@
 
   <section id="call-to-action" class="call-to-action section dark-background">
 
-<img src="assetss/img/cta-bg.jpg" alt="">
+<img src="{{asset('assetss/img/hero-carousel/depan.jpeg')}}" alt="">
 
 <div class="container">
   <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
@@ -28,7 +28,7 @@
       <div class="text-center">
         <h3>Laporan Pengaduan</h3>
         <p>Laporkan Pengaduan/Keluhan Anda dan harap adukan dengan masuk akal dan bisa di pahami dalam logika dan anda bisa mengisi data data dalam kolom pengisian agar kami lebih mudah memahami nya dan juga ajukan pendapat anda dengan bijak.</p>
-        <a class="cta-btn" href="#">Buat Pengaduan</a>
+        <a class="cta-btn" href="daftar_pengaduan">Daftar Pengaduan</a>
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Buat Pengaduan</h2>
+        <h2>buat Pengaduan</h2>
         <div><span>Butuh Bantuan?</span> <span class="description-title">Contact Kami</span></div>
       </div><!-- End Section Title -->
 
@@ -91,20 +91,19 @@
           </div>
 
           <div class="col-lg-6">
-          <form action="/store/pegaduan" method="POST">
+          <form action="/store/pengaduan" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <label for="masyarakat_id" class="form-label fw-semibold">Nama Masyarakat</label>
-                            <input type="text" value="{{old('$masyarakat')}}" name="masyarakat_id" id="masyarakat_id" class="form-control form-control-lg" placeholder="Masukkan masyarakat_id" >
-                            @error('masyarakat_id')
-                                <p class="text-danger small">{{ $message }}</p>
-                            @enderror
+
+                        <input type="hidden" value="{{ auth()->user()->id }}" name="masyarakat_id" id="masyarakat_id">
+
+
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label for="kategori_id" class="form-label fw-semibold">Masukan Kategori</label>
                             <select name="kategori_id" class="form-control" required>
-                                <option value="">-- Pilih Kategori --</option>
+                                <option value="{{old('kategori_id')}}">-- Pilih Kategori --</option>
                                 @foreach($kategoris as $kategori)
                                     <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
                                 @endforeach
@@ -119,18 +118,23 @@
 
                         <div class="col-md-6">
                             <label for="tanggal_pengaduan" class="form-label fw-semibold">Tanggal Pengaduan</label>
-                            <input type="date" value="{{ old('tanggal_pengaduan') }}" name="tanggal_pengaduan" id="tanggal_pengaduan" class="form-control form-control-lg" placeholder="Masukkan tanggal_pengaduan" required>
+                            <input type="date" value="{{ old('tanggal_pengaduan') }}" name="tanggal_pengaduan" id="tanggal_pengaduan" class="form-control form-control-lg" placeholder="Masukkan tanggal_pengaduan" >
                             @error('tanggal_pengaduan')
                                 <p class="text-danger small">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="col-md-6 mb-3">
+
+
+                        <div class="col-12 mb-3">
                             <label for="foto">Upload Foto (Opsional)</label>
-                            <input type="file" name="foto" class="form-control" accept="image/jpeg,image/png,image/jpg">
+                            <input type="file" id="foto" name="foto" class="form-control" accept="image/png, image/jpeg, image/jpg">
                             @error('foto')
-                                <p class="text-danger">{{$message}}</p>
+                                <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
+
+
+
 
                     </div>
 

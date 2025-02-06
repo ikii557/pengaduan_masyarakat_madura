@@ -36,10 +36,11 @@ class Pengaduan extends Model
     }
 
     // Relasi ke model Tanggapan
-    public function tanggapans()
+    public function tanggapan()
     {
-        return $this->hasMany(Tanggapan::class,);
+        return $this->hasMany(Tanggapan::class);
     }
+
 
     public function petugas(){
         return $this->belongsTo(Petugas::class,'masyarakat_id');
