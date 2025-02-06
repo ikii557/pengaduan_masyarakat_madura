@@ -29,7 +29,7 @@
         </div><!-- End Carousel Item -->
 
         <div class="carousel-item">
-          <img src="{{asset('assetss/img/hero-carousel/hero-carousel-3.jpg')}}" alt="">
+          <img src="{{asset('assetss/img/hero-carousel/depan.jpeg')}}" alt="">
           <div class="carousel-container">
             <h2>Pengaduan Masyarakat Madura </h2>
             <p>Pengaduan ini hanyalah di bagian tempat anda jika belum mendapatkan bantuan atau belum menerima perbaikan dari kami </p>

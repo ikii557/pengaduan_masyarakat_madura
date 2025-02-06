@@ -49,7 +49,7 @@
                                 <td>{{ $pengaduan->status }}</td>
                                 <td>
                                     <!-- Print Button -->
-                                    <a href="formulir_pengaduan/{{ $pengaduan->id}}" target="_blank" class="btn btn-light">
+                                    <a href="formulir_laporan/{{ $pengaduan->id}}" target="_blank" class="btn btn-light">
                                         <i class="fas fa-print"></i>
                                     </a>
                                 </td>

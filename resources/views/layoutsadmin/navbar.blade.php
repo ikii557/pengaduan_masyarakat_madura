@@ -261,14 +261,16 @@
                             />
                           </div>
                           <div class="u-text">
-                            <h4>Hizrian</h4>
+                            <h4>{{Auth::user()->nama_lengkap}}</h4>
                             <p class="text-muted">rifkihadidanwar@gmail.com</p>
                             <a
-                              href="profile.html"
+                              href="detail_profile/{{Auth::user()->id}}"
                               class="btn btn-xs btn-secondary btn-sm"
                               >Lihat Profile</a
                             >
                           </div >
+
+
                         </div >
                       </li>
                       <li>

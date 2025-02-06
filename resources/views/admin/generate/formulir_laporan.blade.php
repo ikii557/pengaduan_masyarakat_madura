@@ -10,10 +10,11 @@
             <!-- Header Section -->
             @forelse($pengaduans as $pengaduan)
             <div class="mb-4">
-                <p>Kepada Yth, <strong>{{ $pengaduan->petugas->nama_lengkap }}</strong></p>
-                <p>Instansi Terkait <strong>{{ $pengaduan->kategori->nama_kategori }}</strong></p>
+                <p>Kepada Yth, <strong>{{ $pengaduan->petugas->nama_lengkap ?? 'Tidak Ada Data Petugas' }}</strong></p>
+                <p>Instansi Terkait <strong>{{ $pengaduan->kategori->nama_kategori ?? 'Tidak Ada Data Kategori' }}</strong></p>
                 <p>Di Tempat</p>
             </div>
+
             @empty
                         <tr>
                             <td colspan="6" class="text-center">Tidak ada data pengaduan</td>
@@ -38,7 +39,7 @@
                     @forelse($pengaduans as $pengaduan)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $pengaduan->petugas->nama_lengkap }}</td>
+                            <td>{{ $pengaduan->petugass->nama_lengkap }}</td>
                             <td>{{ $pengaduan->tanggal_pengaduan }}</td>
                             <td>{{ $pengaduan->kategori->nama_kategori }}</td>
                             <td>{{ $pengaduan->isi_pengaduan }}</td>

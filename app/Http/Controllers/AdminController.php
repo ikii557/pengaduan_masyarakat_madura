@@ -12,11 +12,13 @@ class AdminController extends Controller
     /**
      * Display a listing of all Petugas.
      */
-    public function index()
-    {
-        $admins = Petugas::all();
-        return view('admin.profile.admin', compact('admins'));
-    }
+    public function show()
+{
+    $admins = Petugas::all();
+
+    return view('admin.profile.admin', compact('admins'));
+}
+
 
     /**
      * Show the form for creating a new Petugas.
@@ -128,7 +130,10 @@ class AdminController extends Controller
         return redirect('admin')->with('success', 'admin berhasil diperbarui!');
     }
 
-
+    public function detailprofile($id){
+        $admins = Petugas::findOrFail($id);
+        return view('admin.profile.detail_profile',compact('admins'));
+    }
 
 
     /**

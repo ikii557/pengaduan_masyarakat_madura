@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\Pengaduan;
 use App\Models\Masyarakat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class MasyarakatController extends Controller
@@ -21,10 +22,17 @@ class MasyarakatController extends Controller
 
     // Tambahkan fungsi-fungsi lain untuk edit, delete, dll.
 
-    public function dashboard(){
-        $kategoris = Kategori::all();
-        return view('masyarakat.masyarakat', compact('kategoris'));
+    public function dashboard()
+{
+    // Check if the user is authenticated
+    if (!Auth::check()) {
+        return redirect('/login')->withErrors('Silakan login terlebih dahulu.');
     }
+
+    // Retrieve categories and return the view if authenticated
+    $kategoris = Kategori::all();
+    return view('masyarakat.masyarakat', compact('kategoris'));
+}
 
     // Menampilkan halaman tambah data masyarakat
     public function create()
@@ -136,5 +144,13 @@ class MasyarakatController extends Controller
 
     return redirect('masyarakat_table')->with('success', 'Pengaduan berhasil ditambahkan.');
 }
+
+public function data()
+{
+    // Ambil hanya pengaduan milik user masyarakat yang sedang login
+    $pengaduans = Pengaduan::where('masyarakat_id', Auth::id())->get();
+    return view('masyarakat.daftar_pengaduan', compact('pengaduans'));
+}
+
 
 }
