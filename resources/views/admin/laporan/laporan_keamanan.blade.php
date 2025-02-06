@@ -51,16 +51,17 @@
                             </td>
 
                             <td>
-                                <span class="badge
+                                <a href="/tambah_tanggapan/{{$pengaduan->id}}"><span class="badge
                                     @if($pengaduan->status == 'pending') bg-warning
                                     @elseif($pengaduan->status == 'proses') bg-info
                                     @else bg-success
                                     @endif">
                                     {{ ucfirst($pengaduan->status) }}
-                                </span>
+                                </span></a>
                             </td>
                             <td>
-                            <a href="{{ route('admin.tanggapan.create', ['id' => $pengaduan->id]) }}" class="btn btn-warning btn-sm">c</a>
+
+
                                 <a href="/edit_pengaduan/{{$pengaduan->id}}"class="btn btn-sm btn-info mt-1">E</a>
                                 <!-- Link Penghapusan -->
                                 <form action="{{ route('destroy_pengaduan', $pengaduan->id) }}" method="POST" style="display:inline-block;">

@@ -91,12 +91,12 @@ Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () 
 
 
     //data tanggapan
-    Route::get('data_tanggapan', [TanggapanController::class, 'index'])->name('tanggapan.index');
-    Route::get('admin/tanggapan/create/{id}', [TanggapanController::class, 'create'])->name('admin.tanggapan.create');
-    Route::post('/update/tanggapan/{id}', [TanggapanController::class, 'updateTanggapan'])->name('tanggapan.update');
-    Route::delete('/delete_tanggapan/{id}', [TanggapanController::class, 'destroy']);
-    Route::get('/edit_tanggapan/{id}', [TanggapanController::class, 'edit']);
-    Route::delete('/destroy_tanggapan/{id}',[TanggapanController::class,'destroy'])->name('tanggapan.destroy');
+    Route::get('data_tanggapan', [PengaduanController::class, 'tanggapan'])->name('tanggapan.index');
+    Route::get('/tambah_tanggapan/{id}', [PengaduanController::class, 'createtanggapan']);
+    Route::post('/update_tanggapan/{id}', [PengaduanController::class, 'updateTanggapan']);
+    Route::delete('/delete_tanggapan/{id}', [PengaduanController::class, 'destroy']);
+    Route::get('/edit_tanggapan/{id}', [PengaduanController::class, 'edit']);
+    Route::delete('/destroy_tanggapan/{id}',[PengaduanController::class,'destroy'])->name('tanggapan.destroy');
 
     //generate laporan
     Route::get('/generate_laporan', [PengaduanController::class, 'report'])->name('pengaduan.laporan');
