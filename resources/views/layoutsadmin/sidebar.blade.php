@@ -39,7 +39,7 @@
                 <p>Pengaduan</p>
             </a>
         </li>
-        <li class="nav-item {{ request()->is('data_tanggapan') ? 'active' : '' }}">
+        <li class="nav-item {{ request()->is('data_tanggapan','tambah_tanggapan/*') ? 'active' : '' }}">
             <a href="data_tanggapan">
             <i class="fas fa-comments"></i>
                 <p>Tanggapan</p>

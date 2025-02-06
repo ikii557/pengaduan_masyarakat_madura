@@ -21,40 +21,40 @@
         </div>
         <div class="card-body">
 
-            <table class="table table-bordered table-striped table-hover">
-                <thead class="thead-dark">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>No</th>
+                    <th>Pengaduan id</th>
+                    <th>Tanggal Tanggapan</th>
+                    <th>Tanggapan</th>
+                    <th>Nama Petugas</th>
+                    <th>Opsi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($tanggapans as $index => $tanggapan)
                     <tr>
-                        <th>No</th>
-                        <th>No Pengaduan</th>
-                        <th>Tanggal Tanggapan </th>
-                        <th>Tanggapan</th>
-                        <th>nama petugas</th>
-                        <th>Opsi</th>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $tanggapan->pengaduan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td> <!-- No pengaduan -->
+                        <td>{{ $tanggapan->tanggal_tanggapan }}</td>
+                        <td>{{ $tanggapan->tanggapan }}</td>
+                        <td>{{ $tanggapan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td> <!-- Nama petugas -->
+                        <td>
+
+                        
+                            <a href="/edit_tanggapan/{{ $tanggapan->id }}" class="btn btn-sm btn-info">E</a>
+                            <form action="/destroy_tanggapan{{ $tanggapan->id }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus tanggapan ini?')">H</button>
+                            </form>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($tanggapans as $index => $tanggapan)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $tanggapan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td>
-                            <td>{{ $tanggapan->tanggal_tanggapan }}</td>
-                            <td>{{ $tanggapan->tanggapan }}</td>
+                @endforeach
+            </tbody>
+        </table>
 
-
-                            <td>{{ $tanggapan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td>
-                            <td>
-                                <a href="/tanggapan" class="btn btn-warning btn-sm" style="height"> C</a>
-                                <a href="/edit_tanggapan/{{$tanggapan->id}}"class="btn btn-sm btn-info">E</a>
-                                <form action="" method="POST" style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus tanggapan ini?')">H</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
     </div>
 </div>

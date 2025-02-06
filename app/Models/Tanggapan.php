@@ -22,6 +22,7 @@ class Tanggapan extends Model
         'petugas_id',
     ];
 
+    
     /**
      * Relasi ke model Pengaduan.
      */

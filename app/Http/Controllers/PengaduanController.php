@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Petugas;
 use App\Models\Kategori;
 use App\Models\Pengaduan;
+use App\Models\Tanggapan;
 use App\Models\Masyarakat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -189,5 +190,59 @@ public function exportLaporan()
 
         return view('admin.generate.formulir_laporan',compact('pengaduans','petugas'));
     }
+
+
+
+
+//data tanggapan
+
+    public function tanggapan(){
+        $tanggapans = Tanggapan::all();
+        return view('admin.tanggapan.data_tanggapan',compact('tanggapans'));
+    }
+
+
+
+    public function createtanggapan($id)
+    {
+        $pengaduan = Pengaduan::findOrFail($id);
+
+        return view('admin.tanggapan.tambah_tanggapan', compact('pengaduan'));
+    }
+
+
+
+    public function updateTanggapan(Request $request, $id)
+{
+    // Validasi input
+    $request->validate([
+        'isi_tanggapan' => 'required|string',
+        'status' => 'required|in:0,proses,selesai',
+    ]);
+
+    // Cari pengaduan berdasarkan ID
+    $pengaduan = Pengaduan::findOrFail($id);
+
+    // Tambahkan atau perbarui tanggapan
+    $tanggapan = Tanggapan::updateOrCreate(
+        ['pengaduan_id' => $pengaduan->id],
+        [
+            'tanggal_tanggapan' => now(),
+            'tanggapan' => $request->isi_tanggapan,
+            'petugas_id' => auth()->user()->id,
+        ]
+    );
+
+    // Perbarui status pengaduan
+    $pengaduan->status = $request->status;
+    $pengaduan->save();
+
+    return redirect()->route('data_pengaduan')->with('success', 'Tanggapan dan status pengaduan berhasil diperbarui.');
+}
+
+
+
+
+
 
 }
