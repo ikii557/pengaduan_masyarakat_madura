@@ -16,7 +16,67 @@
     <li><a href="#team">Team</a></li>
     <li><a href="tambah_pengaduan">create pengaduan</a></li>
     <li>
-      <a href="/Login" class="btn btn-primary btn-sm rounded-pill px-3 py-2">Log In</a>
+    <div id="auth-section">
+    <a href="#" id="auth-btn" class="btn btn-primary btn-sm rounded-pill shadow-sm px-3 py-2 text-white fw-bold">
+        Login
+    </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Simulasi status login (true jika sudah login, false jika belum login)
+    let isLoggedIn = false;
+
+    function updateAuthButton() {
+        const authButton = document.getElementById('auth-btn');
+        if (isLoggedIn) {
+            authButton.textContent = 'Logout';
+            authButton.classList.remove('btn-primary');
+            authButton.classList.add('btn-danger');
+            authButton.onclick = confirmLogout;
+        } else {
+            authButton.textContent = 'Login';
+            authButton.classList.remove('btn-danger');
+            authButton.classList.add('btn-primary');
+            authButton.onclick = handleLogin;
+        }
+    }
+
+    function confirmLogout() {
+        Swal.fire({
+            title: 'Apakah Anda yakin ingin logout?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Logout',
+            cancelButtonText: 'Batal',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                isLoggedIn = false;
+                updateAuthButton();
+                Swal.fire('Logout Berhasil!', 'Anda telah logout.', 'success');
+            }
+        });
+    }
+
+    function handleLogin() {
+        Swal.fire({
+            title: 'Selamat Datang!',
+            text: 'Login berhasil.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+        }).then(() => {
+            isLoggedIn = true;
+            updateAuthButton();
+        });
+    }
+
+    // Inisialisasi tampilan tombol berdasarkan status login
+    updateAuthButton();
+</script>
+
+
     </li>
   </ul>
   <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

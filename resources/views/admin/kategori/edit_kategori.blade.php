@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success btn-lg mt-3 w-100">Update</button>
+                        <button type="submit" class="btn btn-info btn-lg mt-3 w-100">Update</button>
                     </div>
                 </form>
 

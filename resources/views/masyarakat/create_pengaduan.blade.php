@@ -116,7 +116,7 @@
 
                     <div class="row mb-4">
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label for="tanggal_pengaduan" class="form-label fw-semibold">Tanggal Pengaduan</label>
                             <input type="date" value="{{ old('tanggal_pengaduan') }}" name="tanggal_pengaduan" id="tanggal_pengaduan" class="form-control form-control-lg" placeholder="Masukkan tanggal_pengaduan" >
                             @error('tanggal_pengaduan')

@@ -16,7 +16,7 @@
 <div class="container mt-4">
     <div class="card">
     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h3 class="card-title mb-0">Daftar Admin</h3>
+            <h3 class="card-title mb-0">Daftar tanggapan</h3>
             <a href="tambah_tanggapan" class="btn btn-light btn-round">Tambah tanggapan</a>
         </div>
         <div class="card-body">
@@ -42,7 +42,7 @@
                         <td>{{ $tanggapan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td> <!-- Nama petugas -->
                         <td>
 
-                        
+
                             <a href="/edit_tanggapan/{{ $tanggapan->id }}" class="btn btn-sm btn-info">E</a>
                             <form action="/destroy_tanggapan{{ $tanggapan->id }}" method="POST" style="display: inline-block;">
                                 @csrf

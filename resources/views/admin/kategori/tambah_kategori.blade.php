@@ -6,7 +6,7 @@
         <!-- Card Tambah Petugas -->
         <div class="col-md-12">
             <div class="card p-4">
-                <h3 class="mb-4 text-center">Tambah Petugas</h3>
+                <h3 class="mb-4 text-center">Tambah Kategori</h3>
                 <form action="/store/kategori" method="POST">
                     @csrf
                     <div class="row">
@@ -19,7 +19,7 @@
                             <input type="text" name="deskripsi" id="deskripsi" class="form-control form-control-lg" placeholder="Masukkan Nama Lengkap" required>
                         </div>
                     </div>
-                    
+
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-lg mt-3 w-100">Simpan</button>
                     </div>

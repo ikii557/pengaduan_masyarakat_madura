@@ -43,6 +43,7 @@
             <h4 class="text-center mb-4">
                 <img src="{{asset('assets/img/kaiadmin/cilacaplogo.png')}}" height="50px" alt="">
                 <a href="/register" class="text-dark" style="text-decoration: none;">Log In</a> Untuk Masuk
+                <hr>
             </h4>
 
             <!-- Login Form -->
