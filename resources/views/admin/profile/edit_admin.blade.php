@@ -3,7 +3,7 @@
     <!-- Card Edit Petugas -->
     <div class="col-md-12">
         <div class="card p-4">
-            <h3 class="mb-4 text-center">Edit Petugas</h3>
+            <h3 class="mb-4 text-center">Edit Admin</h3>
             <form action="/update/admin/{{ $admins->id }}" method="POST">
                 @csrf
                 <div class="row">

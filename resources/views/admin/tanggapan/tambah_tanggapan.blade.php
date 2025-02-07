@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h4>Edit Pengaduan & Tanggapan</h4>
+        <h4>Buat Tanggapan</h4>
     </div>
     <div class="card-body">
     <form action="/update_tanggapan/{{ $pengaduan->id }}" method="POST">

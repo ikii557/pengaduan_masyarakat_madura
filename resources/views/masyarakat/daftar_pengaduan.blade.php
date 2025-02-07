@@ -39,8 +39,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>buat Pengaduan</h2>
-        <div><span>Butuh Bantuan?</span> <span class="description-title">Contact Kami</span></div>
+        <h2>Daftar Pengaduan</h2>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">

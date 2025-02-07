@@ -44,10 +44,10 @@ class MasyarakatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nik' => 'required|unique:masyarakats|max:16',
+            'nik' => 'required|unique:users|max:16',
             'nama_lengkap' => 'required|string|max:255',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
-            'username' => 'required|unique:masyarakats|max:255',
+            'username' => 'required|unique:users|max:255',
             'password' => 'required|string|min:8',
             'no_telepon' => 'required|max:15',
             'alamat' => 'required|string',
