@@ -238,9 +238,9 @@
                     aria-expanded="false"
                   >
                     <div class="avatar-sm">
-                    @if (!empty($admins->foto))
+                    @if (!empty($adminss->foto))
                     <img id="preview"
-                             src="{{ $admins->foto ? asset('storage/' . $admins->foto) : 'https://via.placeholder.com/150' }}"
+                             src="{{ $adminss->foto ? asset('storage/' . $adminss->foto) : 'https://via.placeholder.com/150' }}"
                              class="rounded-circle"
                              style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
                              alt="Preview Foto">

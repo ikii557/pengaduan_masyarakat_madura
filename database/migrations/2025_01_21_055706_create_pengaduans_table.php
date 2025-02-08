@@ -18,9 +18,10 @@ return new class extends Migration
             $table->date('tanggal_pengaduan');
             $table->text('isi_pengaduan');
             $table->string('foto')->nullable(); // Kolom foto nullable
-            $table->enum('status', ['0', 'diproses', 'selesai'])->nullable();
+            $table->enum('status', ['ditolak','0', 'diproses', 'selesai'])->default('0'); // Perbaikan default value
             $table->timestamps();
-    });
+        });
+
 
 
     }
