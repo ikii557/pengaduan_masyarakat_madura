@@ -9,13 +9,13 @@ class KategoriController extends Controller
 {
     //
     public function index(){
-        $kategoris=Kategori::all();
+        $kategoris=Kategori::paginate(5);
         return view('admin.kategori.data_kategori',compact('kategoris'));
     }
 
     public function create(){
         $kategoris = Kategori::all();
-        return view('admin.kategori.tambah_kategori',compact('kategoris'));
+        return view('admin.kategori.data_kategori',compact('kategoris'));
     }
 
     public function store(Request $request){
@@ -55,6 +55,14 @@ class KategoriController extends Controller
         ]);
 
         return redirect('kategori')->with('success', 'Kategori berhasil diperbarui');
+    }
+
+    public function destroy($id)
+    {
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
+
+        return redirect('kategori')->with('success', 'Kategori berhasil dihapus');
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tanggapan;
 use App\Models\Petugas;
 use App\Models\Kategori;
 use App\Models\Pengaduan;
@@ -152,5 +153,10 @@ public function data()
     return view('masyarakat.daftar_pengaduan', compact('pengaduans'));
 }
 
+    public function data_tanggapan($id){
+        $pengaduans = Pengaduan::findOrFail($id);
+        $tanggapans = Tanggapan::all();
+        return view('masyarakat.tanggapanadmin',compact('pengaduans','tanggapans'));
+    }
 
 }

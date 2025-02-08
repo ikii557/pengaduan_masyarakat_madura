@@ -54,7 +54,7 @@
 
             <div class="form-group">
                 <label><strong>NIK</strong></label>
-                <input name="nik" type="text" class="form-control" placeholder="masukan nik">
+                <input name="nik" value="{{old('nik')}}" type="text"  class="form-control" placeholder="masukan nik">
                 @error('nik')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -62,7 +62,7 @@
 
             <div class="form-group">
                 <label><strong>Nama Lengkap</strong></label>
-                <input name="nama_lengkap" type="text" class="form-control" placeholder="masukan nama lengkap">
+                <input name="nama_lengkap" value="{{old('nama_lengkap')}}" type="text" class="form-control" placeholder="masukan nama lengkap">
                 @error('nama_lengkap')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -71,7 +71,7 @@
             <div class="form-group">
                 <label><strong>Jenis Kelamin</strong></label>
                 <select name="jenis_kelamin" class="form-control" >
-                    <option value="">-- Pilih Jenis Kelamin --</option>
+                    <option value="{{old('jenis_kelamin')}}">-- Pilih Jenis Kelamin --</option>
                     <option value="laki-laki" {{ old('jenis_kelamin') == 'laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                     <option value="perempuan" {{ old('jenis_kelamin') == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
                 </select>
@@ -82,7 +82,7 @@
 
             <div class="form-group">
                 <label><strong>Username</strong></label>
-                <input name="username" type="text" class="form-control" placeholder="masukan username">
+                <input name="username" value="{{old('username')}}" type="text" class="form-control" placeholder="masukan username">
                 @error('username')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -90,7 +90,7 @@
 
             <div class="form-group">
                 <label><strong>Password</strong></label>
-                <input name="password" type="password" class="form-control" placeholder="masukan password">
+                <input name="password" value="{{old('password ')}}" type="password" class="form-control" placeholder="masukan password">
                 @error('password')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -98,7 +98,7 @@
 
             <div class="form-group">
                 <label><strong>No Telepon</strong></label>
-                <input name="no_telepon" type="text" class="form-control" placeholder="masukan nomor telepon">
+                <input name="no_telepon" value="{{old('no_telepon')}}" type="text" class="form-control" placeholder="masukan nomor telepon">
                 @error('no_telepon')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -106,7 +106,7 @@
 
             <div class="form-group">
                 <label><strong>Alamat</strong></label>
-                <textarea name="alamat" class="form-control" placeholder="masukan alamat"></textarea>
+                <textarea name="alamat" value="{{old('alamat')}}" class="form-control" placeholder="masukan alamat"></textarea>
                 @error('alamat')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -115,7 +115,7 @@
             <div class="form-group">
                 <label><strong>Role</strong></label>
                 <select name="role" class="form-control">
-                    <option value="">-- Pilih Role --</option>
+                    <option value="{{old('role')}}">-- Pilih Role --</option>
                     <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
                     <option value="petugas" {{ old('role') == 'petugas' ? 'selected' : '' }}>Petugas</option>
                     <option value="masyarakat" {{ old('role') == 'masyarakat' ? 'selected' : '' }}>Masyarakat</option>

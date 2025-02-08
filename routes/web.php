@@ -68,10 +68,13 @@ Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () 
     Route::post('/store/kategori',[KategoriController::class,'store']);
     Route::get('/edit_kategori/{id}',[KategoriController::class,'edit']);
     Route::post('/update/kategori/{id}',[KategoriController::class,'update']);
-    Route::delete('/destroy_kategori/{id}',[KategoriController::class,'destroy'])->name('kategori.destroy');
+    Route::delete('/destroy_kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+
 
     // Masyarakat routes
     Route::get('daftar_pengaduan',[MasyarakatController::class,'data']);
+    Route::get('tanggapandariadmin/{id}',[MasyarakatController::class,'data_tanggapan']);
+
     Route::get('/masyarakat', [MasyarakatController::class, 'index']);
     Route::get('dashboard_masyarakat',[MasyarakatController::class,'dashboard']);
     Route::get('/masyarakat/tambah_masyarakat', [MasyarakatController::class, 'create']);

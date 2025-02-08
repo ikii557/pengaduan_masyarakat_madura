@@ -51,14 +51,19 @@
                             </td>
 
                             <td>
-                                <a href="/tambah_tanggapan/{{$pengaduan->id}}"><span class="badge
-                                    @if($pengaduan->status == 'pending') bg-warning
-                                    @elseif($pengaduan->status == 'proses') bg-info
-                                    @else bg-success
-                                    @endif">
-                                    {{ ucfirst($pengaduan->status) }}
-                                </span></a>
+                                <a href="/tambah_tanggapan/{{$pengaduan->id}}">
+                                    <span class="badge
+                                        @if($pengaduan->status == '0') bg-warning
+                                        @elseif($pengaduan->status == 'diproses') bg-info
+                                        @elseif($pengaduan->status == 'selesai') bg-success
+                                        @elseif($pengaduan->status == 'ditolak') bg-danger
+                                        @else bg-secondary
+                                        @endif">
+                                        {{ ucfirst($pengaduan->status) }}
+                                    </span>
+                                </a>
                             </td>
+
                             <td>
 
 

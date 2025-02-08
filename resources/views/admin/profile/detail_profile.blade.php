@@ -1,10 +1,11 @@
 @extends('layoutsadmin.app')
 @section('content')
     <!-- Card Edit Petugas -->
-    <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-6">
         <div class="card p-4">
             <h3 class="mb-4 text-center">Edit Profile</h3>
-            <form action="/update/admin/{{ $admins->id }}" method="POST" enctype="multipart/form-data">
+            <form action="/update/admin/{{ $adminss->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="col-md-6 mb-3 text-center">
@@ -13,7 +14,7 @@
                     <!-- Container Foto Profil -->
                     <div class="position-relative" style="display: inline-block;">
                         <img id="preview"
-                             src="{{ $admins->foto ? asset('storage/' . $admins->foto) : 'https://via.placeholder.com/150' }}"
+                             src="{{ $adminss->foto ? asset('storage/' . $adminss->foto) : 'https://via.placeholder.com/150' }}"
                              class="rounded-circle"
                              style="width: 150px; height: 150px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
                              alt="Preview Foto">
@@ -35,7 +36,7 @@
                             id="nik"
                             class="form-control form-control-lg"
                             placeholder="Masukkan NIK"
-                            value="{{ old('nik', $admins->nik) }}"
+                            value="{{ old('nik', $adminss->nik) }}"
                             required maxlength="16">
                     </div>
                     <div class="col-md-6 mb-3">
@@ -46,7 +47,7 @@
                             id="nama_lengkap"
                             class="form-control form-control-lg"
                             placeholder="Masukkan Nama Lengkap"
-                            value="{{ old('nama_lengkap', $admins->nama_lengkap) }}"
+                            value="{{ old('nama_lengkap', $adminss->nama_lengkap) }}"
                             required maxlength="255">
                     </div>
                 </div>
@@ -55,8 +56,8 @@
                         <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                         <select name="jenis_kelamin" id="jenis_kelamin" class="form-control form-control-lg" required>
                             <option value="">-- Pilih Jenis Kelamin --</option>
-                            <option value="laki-laki" {{ old('jenis_kelamin', $admins->jenis_kelamin) === 'laki-laki' ? 'selected' : '' }}>Laki-Laki</option>
-                            <option value="perempuan" {{ old('jenis_kelamin', $admins->jenis_kelamin) === 'perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            <option value="laki-laki" {{ old('jenis_kelamin', $adminss->jenis_kelamin) === 'laki-laki' ? 'selected' : '' }}>Laki-Laki</option>
+                            <option value="perempuan" {{ old('jenis_kelamin', $adminss->jenis_kelamin) === 'perempuan' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -67,7 +68,7 @@
                             id="username"
                             class="form-control form-control-lg"
                             placeholder="Masukkan Username"
-                            value="{{ old('username', $admins->username) }}"
+                            value="{{ old('username', $adminss->username) }}"
                             required maxlength="255">
                     </div>
                 </div>
@@ -90,7 +91,7 @@
                             id="no_telepon"
                             class="form-control form-control-lg"
                             placeholder="Masukkan No Telepon"
-                            value="{{ old('no_telepon', $admins->no_telepon) }}"
+                            value="{{ old('no_telepon', $adminss->no_telepon) }}"
                             required maxlength="15" pattern="[0-9]+">
                     </div>
                 </div>
@@ -102,16 +103,16 @@
                         id="alamat"
                         class="form-control form-control-lg"
                         placeholder="Masukkan Alamat"
-                        value="{{ old('alamat', $admins->alamat) }}"
+                        value="{{ old('alamat', $adminss->alamat) }}"
                         required maxlength="255">
                 </div>
                 <div class="mb-3">
                     <label for="role" class="form-label">Role</label>
                     <select name="role" id="role" class="form-control form-control-lg" required>
                         <option value="">-- Pilih Role --</option>
-                        <option value="admin" {{ old('role', $admins->role) === 'admin' ? 'selected' : '' }}>Admin</option>
-                        <option value="petugas" {{ old('role', $admins->role) === 'petugas' ? 'selected' : '' }}>Petugas</option>
-                        <option value="masyarakat" {{ old('role', $admins->role) === 'masyarakat' ? 'selected' : '' }}>Masyarakat</option>
+                        <option value="admin" {{ old('role', $adminss->role) === 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="petugas" {{ old('role', $adminss->role) === 'petugas' ? 'selected' : '' }}>Petugas</option>
+                        <option value="masyarakat" {{ old('role', $adminss->role) === 'masyarakat' ? 'selected' : '' }}>Masyarakat</option>
                     </select>
                 </div>
                 <div class="text-center">
@@ -119,6 +120,54 @@
                 </div>
             </form>
         </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h3 class="mb-4 text-center"> Profile</h3>
+                    <div class="container">
+                        <div class="text-center">
+                        <div id="profile-container" style="text-align: center; padding: 20px; height: 300px; width: 500px; border-radius: 20px;">
+                            <img id="preview"
+                                src="{{ $adminss->foto ? asset('storage/' . $adminss->foto) : 'https://via.placeholder.com/150' }}"
+                                style="width: 250px; height: 250px; object-fit: cover; border-radius: 100%; border: 10px solid #ddd;"
+                                alt="Preview Foto">
+                        </div>
+
+<script>
+    // Tambahkan background dan bayangan dengan JS
+    const profileContainer = document.getElementById('profile-container');
+
+    profileContainer.style.background = 'linear-gradient(135deg, #f5f7fa 0%,rgb(0, 197, 247) 100%)';
+    profileContainer.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.1)';
+    profileContainer.style.display = 'inline-block';
+</script>
+
+
+                            <hr>
+                            <div>
+                                <p>
+                                    <strong>NAMA</strong> :
+                                    <span>{{auth()->user()->nama_lengkap}}</span> |
+                                    <strong>NIK</strong>:
+                                    <span>{{auth()->user()->nik}}</span><br>
+                                    <strong>JENIS KELAMIN</strong>:
+                                    <span>{{auth()->user()->jenis_kelamin}}</span> |
+                                    <strong>USERNAME</strong>:
+                                    <span>{{auth()->user()->username}}</span><br>
+                                    <strong>NOMOR TELEPON</strong>:
+                                    <span>{{auth()->user()->no_telepon}}</span><br>
+                                    <strong>JABATAN</strong>:
+                                    <span>{{auth()->user()->role}}</span><br>
+                                    <strong>ALAMAT</strong>:
+                                    <span>{{auth()->user()->alamat}}</span><br>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+        </div>
+    </div>
     </div>
 
     <script>

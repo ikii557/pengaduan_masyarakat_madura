@@ -13,11 +13,11 @@ class AdminController extends Controller
     /**
      * Display a listing of all Petugas.
      */
-    public function show()
+    public function show($id)
 {
     $admins = Petugas::all();
-
-    return view('admin.profile.admin', compact('admins'));
+    $adminss = Petugas::findOrFail($id);
+    return view('admin.profile.admin', compact('admins','adminss'));
 }
 
 
@@ -154,8 +154,8 @@ class AdminController extends Controller
 
 
     public function detailprofile($id){
-        $admins = Petugas::findOrFail($id);
-        return view('admin.profile.detail_profile',compact('admins'));
+        $adminss = Petugas::findOrFail($id);
+        return view('admin.profile.detail_profile',compact('adminss'));
     }
 
 

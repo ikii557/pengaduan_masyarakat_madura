@@ -51,7 +51,7 @@ class PengaduanController extends Controller
             'tanggal_pengaduan' => 'required|date',
             'isi_pengaduan' => 'required|string',
             'foto' => 'nullable|mimes:jpeg,png,jpg|max:2048', // Tidak wajib, hanya jika ada input file
-            'status' => 'nullable|in:pending,proses,selesai',
+            'status' => 'nullable|in:ditolak,0,proses,selesai',
         ], [
             'masyarakat_id.exists' => 'Nama masyarakat harus ada di tabel user.',
             'kategori_id.required' => 'Kategori harus diisi.',
@@ -62,7 +62,7 @@ class PengaduanController extends Controller
             'foto.image' => 'File yang diunggah harus berupa gambar.',
             'foto.mimes' => 'Foto harus dalam format jpeg, png, atau jpg.',
             'foto.max' => 'Ukuran foto maksimal 2MB.',
-            'status.in' => 'Status harus salah satu dari pending, proses, atau selesai.',
+            'status.in' => 'Status harus salah satu dari ditolak, 0, proses, atau selesai.',
         ]);
 
 
@@ -120,7 +120,7 @@ class PengaduanController extends Controller
              'kategori_id' => 'required',
              'tanggal_pengaduan' => 'required|date',
              'isi_pengaduan' => 'required',
-             'status' => 'required|string',
+             'status' => 'nullable|in:ditolak,0,proses,selesai',
 
          ]);
 
@@ -213,32 +213,34 @@ public function exportLaporan()
 
 
     public function updateTanggapan(Request $request, $id)
-{
-    // Validasi input
-    $request->validate([
-        'isi_tanggapan' => 'required|string',
-        'status' => 'required|in:0,proses,selesai',
-    ]);
+    {
+        // Validasi input
+        $request->validate([
+            'isi_tanggapan' => 'required|string',
+            'status' => 'required|in:ditolak,0,diproses,selesai',
+        ]);
 
-    // Cari pengaduan berdasarkan ID
-    $pengaduan = Pengaduan::findOrFail($id);
+        // Cari pengaduan berdasarkan ID
+        $pengaduan = Pengaduan::findOrFail($id);
 
-    // Tambahkan atau perbarui tanggapan
-    $tanggapan = Tanggapan::updateOrCreate(
-        ['pengaduan_id' => $pengaduan->id],
-        [
-            'tanggal_tanggapan' => now(),
-            'tanggapan' => $request->isi_tanggapan,
-            'petugas_id' => auth()->user()->id,
-        ]
-    );
+        // Tambahkan atau perbarui tanggapan
+        $tanggapan = Tanggapan::updateOrCreate(
+            ['pengaduan_id' => $pengaduan->id],
+            [
+                'tanggal_tanggapan' => now(),
+                'tanggapan' => $request->isi_tanggapan,
+                'petugas_id' => auth()->user()->id,
+            ]
+        );
 
-    // Perbarui status pengaduan
-    $pengaduan->status = $request->status;
-    $pengaduan->save();
+        // Perbarui status pengaduan
+        $pengaduan->status = $request->status;
+        $pengaduan->save();
 
-    return redirect()->route('data_pengaduan')->with('success', 'Tanggapan dan status pengaduan berhasil diperbarui.');
-}
+        return redirect('data_tanggapan')->with('success', 'Tanggapan dan status pengaduan berhasil diperbarui.');
+    }
+
+
 
 
 
