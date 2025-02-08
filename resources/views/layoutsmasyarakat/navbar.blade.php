@@ -17,8 +17,8 @@
     <li><a href="tambah_pengaduan">create pengaduan</a></li>
     <li>
     <div id="auth-section">
-    <a href="#" id="auth-btn" class="btn btn-primary btn-sm rounded-pill shadow-sm px-3 py-2 text-white fw-bold">
-        Login
+    <a href="#" id="auth-btn" class="btn btn-danger btn-sm rounded-pill shadow-sm px-3 py-2 text-white fw-bold">
+        Logout
     </a>
 </div>
 
@@ -31,7 +31,7 @@
         const authButton = document.getElementById('auth-btn');
         if (isLoggedIn) {
             authButton.textContent = 'Logout';
-            authButton.classList.remove('btn-primary');
+            authButton.classList.remove('btn-danger');
             authButton.classList.add('btn-danger');
             authButton.onclick = confirmLogout;
         } else {

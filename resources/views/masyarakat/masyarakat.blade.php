@@ -239,7 +239,7 @@
             <div class="text-center">
               <h3>Call To Action</h3>
               <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <a class="cta-btn" href="#">Laporakan Pengaduan</a>
+              <a class="cta-btn" href="daftar_pengaduan">Laporakan Pengaduan</a>
             </div>
           </div>
         </div>
@@ -254,8 +254,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Testimonials</h2>
-        <div><span>Check Our</span> <span class="description-title">Testimonials</span></div>
+        <h2>data perangkat desa</h2>
+        <div><span>daftar </span> <span class="description-title">Testimonials</span></div>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -264,15 +264,15 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="testimonial-item">
-              <img src="assetss/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-              <h3>Saul Goodman</h3>
-              <h4>Ceo &amp; Founder</h4>
+              <img src="assetss/img/testimonials/kades.jpg" class="testimonial-img" alt="">
+              <h3>NURSIDIK,S.H</h3>
+              <h4>kepala desa madura &amp; pengurus desa </h4>
               <div class="stars">
                 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
               </div>
               <p>
                 <i class="bi bi-quote quote-icon-left"></i>
-                <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
+                <span>Nursidik adalah kepala desa madura yang telah menjabat dari tahun 2019-2025 dan 2025-2027 mendapatkan perpanjangan waktu jabatan dan jika sudah ada yang mencalon kan maka nursidik akan pengsiun </span>
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
@@ -457,7 +457,7 @@
     <section id="buat_pengaduan" class="create_pengaduan section">
 
       <!-- Section Title -->
-     
+
 
     </section><!-- /Contact Section -->
 

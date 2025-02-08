@@ -23,6 +23,7 @@ class Petugas extends Model
         'no_telepon',
         'alamat',
         'role',
+        'foto'
     ];
 
     /**
