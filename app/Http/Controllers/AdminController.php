@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -95,7 +96,8 @@ class AdminController extends Controller
     /**
      * Update the specified Petugas in storage.
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $admins = User::findOrFail($id);
 
         // Validation rules
@@ -108,9 +110,10 @@ class AdminController extends Controller
             'no_telepon' => 'required|string|max:15|regex:/^[0-9]+$/',
             'alamat' => 'required|string|max:255',
             'role' => 'required|in:admin,petugas,masyarakat',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        // Update the petugas data
+        // Update admin data
         $admins->nik = $request->nik;
         $admins->nama_lengkap = $request->nama_lengkap;
         $admins->jenis_kelamin = $request->jenis_kelamin;
@@ -125,10 +128,30 @@ class AdminController extends Controller
         $admins->alamat = $request->alamat;
         $admins->role = $request->role;
 
+        // Handle the photo upload
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+
+            // Hapus foto lama jika ada
+            if ($admins->foto && Storage::exists('public/' . $admins->foto)) {
+                Storage::delete('public/' . $admins->foto);
+            }
+
+            // Simpan foto baru di direktori 'foto_admin' dalam storage
+            $path = $foto->store('foto_admin', 'public');
+
+            // Simpan path foto tanpa prefix 'public/' ke database
+            $admins->foto = $path;
+        }
+
+
         $admins->save();
 
-        return redirect('admin')->with('success', 'admin berhasil diperbarui!');
+        return redirect('admin')->with('success', 'Admin berhasil diperbarui!');
     }
+
+
+
 
     public function detailprofile($id){
         $admins = Petugas::findOrFail($id);

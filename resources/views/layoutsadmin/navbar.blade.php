@@ -238,79 +238,85 @@
                     aria-expanded="false"
                   >
                     <div class="avatar-sm">
-                      <img
-                        src="assets/img/fotokuuuu.jpg"
-                        alt="..."
-                        class="avatar-img rounded-circle"
-                      />
+                    @if (!empty($admins->foto))
+                    <img id="preview"
+                             src="{{ $admins->foto ? asset('storage/' . $admins->foto) : 'https://via.placeholder.com/150' }}"
+                             class="rounded-circle"
+                             style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
+                             alt="Preview Foto">
+                    @else
+                        Tidak ada foto
+                    @endif
+
+
+
+
+
                     </div>
                     <span class="profile-username">
                       <span class="op-4">Hi,</span>
                       <span class="fw-bold">{{Auth::user()->nama_lengkap}}</span>
                     </span >
                   </a>
-                  <ul class="dropdown-menu dropdown-user animated fadeIn">
+                  <ul class="dropdown-menu dropdown-user animated fadeIn p-2">
                     <div class="dropdown-user-scroll scrollbar-outer">
-                      <li>
-                        <div class="user-box">
-                          <div class="avatar-lg">
-                            <img
-                              src="assets/img/fotokuuuu.jpg"
-                              alt="image profile"
-                              class="avatar-img rounded"
-                            />
-                          </div>
-                          <div class="u-text">
-                            <h4>{{Auth::user()->nama_lengkap}}</h4>
-                            <p class="text-muted">rifkihadidanwar@gmail.com</p>
-                            <a
-                              href="detail_profile/{{Auth::user()->id}}"
-                              class="btn btn-xs btn-secondary btn-sm"
-                              >Lihat Profile</a
-                            >
-                          </div >
+                        <li class="mb-3">
+                        <div class="user-box d-flex align-items-center">
+                            <div class="avatar-lg">
+                            @if (!empty($admins->foto))
+                                <img src="{{ asset(str_replace('public/', 'storage/', $admins->foto)) }}" alt="Foto Admin" width="100">
+                            @else
+                                Tidak ada foto
+                            @endif
 
 
-                        </div >
-                      </li>
-                      <li>
+                            </div>
+                            <div class="u-text ms-4">
+                            <h5 class="mb-2">{{ Auth::user()->nama_lengkap }}</h5>
+                            <p class="text-muted ">rifkihadidanwar@gmail.com</p>
+                            <a href="detail_profile/{{ Auth::user()->id }}" class="btn btn-sm btn-secondary">Lihat Profile</a>
+                            </div>
+                        </div>
+                        </li>
+
+                        <li>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">My Profile</a>
                         <a class="dropdown-item" href="#">My Balance</a>
                         <a class="dropdown-item" href="#">Inbox</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Pengaturan</a>
+                        <a class="dropdown-item" href="/pengaturan">Pengaturan</a>
                         <div class="dropdown-divider"></div>
-                        <form id="logout-form" action="/logout" method="POST" style="display: none;">
-    @csrf
-</form>
-
-<a href="#" onclick="confirmLogout();">
-    Logout
-</a>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    function confirmLogout() {
-        Swal.fire({
-            title: 'Apakah Anda yakin ingin logout?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, Logout',
-            cancelButtonText: 'Batal',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('logout-form').submit();
-            }
-        });
-    }
-</script>
-
-                      </li>
+                        <a href="#" onclick="confirmLogout();" class="dropdown-item text-danger">
+                            Logout
+                        </a>
+                        </li>
                     </div>
-                  </ul>
+                    </ul>
+
+                    <!-- SweetAlert Logout Confirmation -->
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    <script>
+                    function confirmLogout() {
+                        Swal.fire({
+                        title: 'Apakah Anda yakin ingin logout?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, Logout',
+                        cancelButtonText: 'Batal',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('logout-form').submit();
+                        }
+                        });
+                    }
+                    </script>
+
+                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                    @csrf
+                    </form>
+
                 </li>
               </ul>
             </div>
