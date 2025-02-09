@@ -31,82 +31,84 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/store/login', [AuthController::class, 'storelogin']);
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(['role:admin,petugas'])->group(function () {
+        // index untuk admin dan petugas
+        Route::get('/index', [DashboardController::class, 'index']);
 
-Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () {
+        // Petugas Routes
+        Route::get('/petugas', [PetugasController::class, 'index']);
 
-    // Dashboard and general views
-    Route::get('/index',[DashboardController::class,'index']);
+        // Kategori Routes
+        Route::get('kategori', [KategoriController::class, 'index']);
 
-    Route::get('/profile', function () {
-        return view('admin.profile.masyarakat');
+        // pengaduan untuk petugas
+        Route::get('data_pengaduan', [PengaduanController::class, 'index']);
+
+        // tanggapan
+        Route::get('data_tanggapan', [PengaduanController::class, 'tanggapan'])->name('tanggapan.index');
+
+        // profile
+        Route::get('/detail_profile/{id}', [AdminController::class, 'detailprofile']);
     });
+    Route::middleware(['role:admin'])->group(function () {
+        // index untuk admin
+        Route::get('/admin/{id}', [AdminController::class, 'show'])->name('admin.show');
+        Route::get('/tambah_admin', [AdminController::class, 'create']);
+        Route::post('/store/admin', [AdminController::class, 'store']);
+        Route::get('/edit_admin/{id}', [AdminController::class, 'edit']);
+        Route::post('/update/admin/{id}', [AdminController::class, 'update']);
+        Route::delete('/destroy_admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
-    Route::get('/laporan', function () {
-        return view('admin.laporan.laporan_keamanan');
+        //route petugas
+        Route::get('/tambah_petugas', [PetugasController::class, 'create']);
+        Route::post('/store/petugas', [PetugasController::class, 'store']);
+        Route::get('/edit_petugas/{id}', [PetugasController::class, 'edit']);
+        Route::post('/update/petugas/{id}', [PetugasController::class, 'update']);
+        Route::delete('/destroy_petugas/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
+
+        // kategori
+
+        Route::get('tambah_kategori', [KategoriController::class, 'create']);
+        Route::post('/store/kategori', [KategoriController::class, 'store']);
+        Route::get('/edit_kategori/{id}', [KategoriController::class, 'edit']);
+        Route::post('/update/kategori/{id}', [KategoriController::class, 'update']);
+        Route::delete('/destroy_kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+
+        // Pengaduan and Tanggapan Management
+        Route::get('/tambah_pengaduan', [PengaduanController::class, 'create']);
+        Route::post('/store/pengaduan', [PengaduanController::class, 'store']);
+        Route::get('/edit_pengaduan/{id}', [PengaduanController::class, 'edit']);
+        Route::post('/update/data_pengaduan/{id}', [PengaduanController::class, 'update']);
+        Route::delete('/destroy_pengaduan/{id}', [PengaduanController::class, 'destroy'])->name('destroy_pengaduan');
+
+        // tanggapan untuk admin
+        Route::get('/tambah_tanggapan/{id}', [PengaduanController::class, 'createtanggapan']);
+        Route::post('/update_tanggapan/{id}', [PengaduanController::class, 'updateTanggapan']);
+        Route::get('/edit_tanggapan/{id}', [PengaduanController::class, 'editing']);
+        Route::delete('/destroy_tanggapan/{id}', [PengaduanController::class, 'destroy'])->name('tanggapan.destroy');
+
+        // Generate Reports
+        Route::get('/generate_laporan', [PengaduanController::class, 'report'])->name('pengaduan.laporan');
+        Route::get('/export-laporan-pengaduan', [PengaduanController::class, 'exportLaporan'])->name('pengaduan.export');
+        Route::get('/formulir_laporan/{id}', [PengaduanController::class, 'formulir']);
+
+        Route::get('/profile', function () {
+            return view('admin.profile.masyarakat');
+        });
+
+        Route::get('/laporan', function () {
+            return view('admin.laporan.laporan_keamanan');
+        });
+
     });
+    Route::middleware(['role:masyarakat'])->group(function () {
+        Route::get('daftar_pengaduan', [MasyarakatController::class, 'data']);
+        Route::get('tanggapandariadmin/{id}', [MasyarakatController::class, 'data_tanggapan']);
+        Route::get('/masyarakat', [MasyarakatController::class, 'index']);
+        Route::get('dashboard_masyarakat', [MasyarakatController::class, 'dashboard']);
 
-    // Admin routes
-    Route::get('/admin/{id}', [AdminController::class, 'show'])->name('admin.show');
-    Route::get('/tambah_admin', [AdminController::class, 'create']);
-    Route::post('/store/admin', [AdminController::class, 'store']);
-    Route::get('/edit_admin/{id}', [AdminController::class, 'edit']);
-    Route::post('/update/admin/{id}', [AdminController::class, 'update']);
-    Route::delete('/destroy_admin/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
-
-    // Petugas routes
-    Route::get('/petugas', [PetugasController::class, 'index']);
-    Route::get('/tambah_petugas', [PetugasController::class, 'create']);
-    Route::post('/store/petugas', [PetugasController::class, 'store']);
-    Route::get('/edit_petugas/{id}', [PetugasController::class, 'edit']);
-    Route::post('/update/petugas/{id}', [PetugasController::class, 'update']);
-    Route::delete('/destroy_petugas/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
-
-    //kategori
-    Route::get('kategori',[KategoriController::class,'index']);
-    Route::get('tambah_kategori',[KategoriController::class,'create']);
-    Route::post('/store/kategori',[KategoriController::class,'store']);
-    Route::get('/edit_kategori/{id}',[KategoriController::class,'edit']);
-    Route::post('/update/kategori/{id}',[KategoriController::class,'update']);
-    Route::delete('/destroy_kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
-
-
-    // Masyarakat routes
-    Route::get('daftar_pengaduan',[MasyarakatController::class,'data']);
-    Route::get('tanggapandariadmin/{id}',[MasyarakatController::class,'data_tanggapan']);
-
-    Route::get('/masyarakat', [MasyarakatController::class, 'index']);
-    Route::get('dashboard_masyarakat',[MasyarakatController::class,'dashboard']);
-    Route::get('/masyarakat/tambah_masyarakat', [MasyarakatController::class, 'create']);
-    Route::post('/store/masyarakat', [MasyarakatController::class, 'store']);
-    Route::get('/edit_masyarakat/{id}', [MasyarakatController::class, 'edit']);
-    Route::post('/update/masyarakat/{id}', [MasyarakatController::class, 'update']);
-    Route::delete('/destroy_masyarakat/{id}', [MasyarakatController::class, 'destroy'])->name('masyarakat.destroy');
-
-    //data pengaduan
-    Route::get('data_pengaduan',[PengaduanController::class,'index']);
-    Route::get('tambah_pengaduan',[PengaduanController::class,'create']);
-    Route::post('/store/pengaduan', [PengaduanController::class, 'store']);
-    Route::get('/edit_pengaduan/{id}',[PengaduanController::class,'edit']);
-    Route::post('/update/data_pengaduan/{id}',[PengaduanController::class,'update']);
-    Route::delete('/destroy_pengaduan/{id}', [PengaduanController::class, 'destroy'])->name('destroy_pengaduan');
-
-
-
-    //data tanggapan
-    Route::get('data_tanggapan', [PengaduanController::class, 'tanggapan'])->name('tanggapan.index');
-    Route::get('/tambah_tanggapan/{id}', [PengaduanController::class, 'createtanggapan']);
-    Route::post('/update_tanggapan/{id}', [PengaduanController::class, 'updateTanggapan']);
-    Route::delete('/delete_tanggapan/{id}', [PengaduanController::class, 'destroy']);
-    Route::get('/edit_tanggapan/{id}', [PengaduanController::class, 'edit']);
-    Route::delete('/destroy_tanggapan/{id}',[PengaduanController::class,'destroy'])->name('tanggapan.destroy');
-
-    //generate laporan
-    Route::get('/generate_laporan', [PengaduanController::class, 'report'])->name('pengaduan.laporan');
-    Route::get('/export-laporan-pengaduan', [PengaduanController::class, 'exportLaporan'])->name('pengaduan.export');
-    Route::get('/formulir_laporan/{id}',[PengaduanController::class,'formulir']);
-
-    //profie
-    Route::get('/detail_profile/{id}',[AdminController::class,'detailprofile']);
-    // Logout route
+    });
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
