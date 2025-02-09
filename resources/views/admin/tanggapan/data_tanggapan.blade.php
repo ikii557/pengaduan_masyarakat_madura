@@ -33,6 +33,7 @@
                 </tr>
             </thead>
             <tbody>
+            @php $no = 1; @endphp
                 @foreach ($tanggapans as $index => $tanggapan)
                     <tr>
                         <td>{{ $index + 1 }}</td>
@@ -55,6 +56,9 @@
             </tbody>
         </table>
 
+        </div>
+        <div class="d-flex justify-content-center">
+            {{ $tanggapans->links() }}
         </div>
     </div>
 </div>

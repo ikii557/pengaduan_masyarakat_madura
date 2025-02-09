@@ -264,10 +264,11 @@
                         <div class="user-box d-flex align-items-center">
                             <div class="avatar-lg">
                             @if (!empty($admins->foto))
-                                <img src="{{ asset(str_replace('public/', 'storage/', $admins->foto)) }}" alt="Foto Admin" width="100">
+                                <img src="{{ Storage::url($admins->foto) }}" alt="Foto Admin" width="100">
                             @else
                                 Tidak ada foto
                             @endif
+
 
 
                             </div>

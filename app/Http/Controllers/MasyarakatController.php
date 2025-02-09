@@ -18,7 +18,7 @@ class MasyarakatController extends Controller
     {
         // Mengambil semua data masyarakat dan menggunakan paginasi 10 data per halaman
         $masyarakats = Petugas::paginate(10);
-        return view('admin.masyarakat.masyarakat', compact('masyarakats'));
+        return view('admin.masyarakat.masyarakat', data: compact('masyarakats'));
     }
 
     // Tambahkan fungsi-fungsi lain untuk edit, delete, dll.

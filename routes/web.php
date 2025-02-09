@@ -46,7 +46,7 @@ Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () 
     });
 
     // Admin routes
-    Route::get('/admin', [AdminController::class, 'show'])->name('admin.show');
+    Route::get('/admin/{id}', [AdminController::class, 'show'])->name('admin.show');
     Route::get('/tambah_admin', [AdminController::class, 'create']);
     Route::post('/store/admin', [AdminController::class, 'store']);
     Route::get('/edit_admin/{id}', [AdminController::class, 'edit']);
