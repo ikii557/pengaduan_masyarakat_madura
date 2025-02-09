@@ -17,7 +17,11 @@
     <div class="card">
     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h3 class="card-title mb-0">Daftar Pengaduan</h3>
-            <a href="tambah_pengaduan" class="btn btn-light btn-round">Tambah pengaduan</a>
+            @unless(auth()->user()->role == 'petugas')
+                <a href="tambah_pengaduan" class="btn btn-light btn-round">Tambah Pengaduan</a>
+            @endunless
+
+
         </div>
         <div class="card-body">
 
@@ -31,7 +35,10 @@
                         <th>Isi Laporan</th>
                         <th>Foto</th>
                         <th>Status</th>
+                        @unless(auth()->user()->role == 'petugas')
+
                         <th>Opsi</th>
+                        @endunless
                     </tr>
                 </thead>
                 <tbody>
@@ -52,20 +59,39 @@
                             </td>
 
                             <td>
+                            @if(in_array($pengaduan->status, ['selesai', 'ditolak']))
+                                @if($pengaduan->status == 'ditolak' && auth()->user()->role == 'admin')
+                                    <a href="/tambah_tanggapan/{{$pengaduan->id}}">
+                                        <span class="badge bg-danger">
+                                            {{ ucfirst($pengaduan->status) }}
+                                        </span>
+                                    </a>
+                                @else
+                                    <span class="badge {{ $pengaduan->status == 'selesai' ? 'bg-success' : 'bg-danger' }}">
+                                        {{ ucfirst($pengaduan->status) }}
+                                    </span>
+                                @endif
+                            @elseif($pengaduan->status == 'diproses' && auth()->user()->role == 'admin')
                                 <a href="/tambah_tanggapan/{{$pengaduan->id}}">
-                                    <span class="badge
-                                        @if($pengaduan->status == '0') bg-warning
-                                        @elseif($pengaduan->status == 'diproses') bg-info
-                                        @elseif($pengaduan->status == 'selesai') bg-success
-                                        @elseif($pengaduan->status == 'ditolak') bg-danger
-                                        @else bg-secondary
-                                        @endif">
+                                    <span class="badge bg-info">
                                         {{ ucfirst($pengaduan->status) }}
                                     </span>
                                 </a>
-                            </td>
+                            @else
+                                {{-- Default status tanpa respons --}}
+                                <span class="badge bg-warning">
+                                    Belum Ada Respon
+                                </span>
+                            @endif
 
-                            <td>
+
+
+
+
+                            </td>
+                            @unless(auth()->user()->role == 'petugas')
+
+                            <td >
 
 
                                 <a href="/edit_pengaduan/{{$pengaduan->id}}"class="btn btn-sm btn-info mt-1">E</a>
@@ -81,6 +107,7 @@
 
 
                             </td>
+                            @endunless
                         </tr>
                     @endforeach
                 </tbody>

@@ -17,7 +17,10 @@
     <div class="card">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h3 class="card-title mb-0">Daftar Petugas</h3>
+            @unless(auth()->user()->role == 'petugas')
+
             <a href="tambah_petugas" class="btn btn-light btn-round">Tambah Petugas</a>
+            @endunless
         </div>
 
         <div class="card-body">
@@ -31,7 +34,10 @@
                         <th>Username</th>
                         <th>No Telepon</th>
                         <th>Role</th>
+                        @unless(auth()->user()->role == 'petugas')
+
                         <th>Opsi</th>
+                        @endunless
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +52,8 @@
                                 <td>{{ $petugas->username }}</td>
                                 <td>{{ $petugas->no_telepon }}</td>
                                 <td>{{ $petugas->role }}</td>
+                                @unless(auth()->user()->role == 'petugas')
+
                                 <td>
                                     <a href="/edit_petugas/{{$petugas->id}}" class="btn btn-info btn-sm">Edit</a>
                                     <a href="javascript:void(0);" class="btn btn-danger"
@@ -115,6 +123,7 @@
                                         }
                                     </script>
                                 </td>
+                                @endunless
                             </tr>
                         @endif
                     @endforeach

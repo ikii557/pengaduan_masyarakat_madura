@@ -19,7 +19,10 @@
     <div class="card">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h3 class="card-title mb-0">Daftar Admin</h3>
+            @unless(auth()->user()->role == 'petugas')
+
             <a href="tambah_admin" class="btn btn-light btn-round">Tambah Admin</a>
+            @endunless
         </div>
 
         <div class="card-body">
@@ -32,7 +35,9 @@
                         <th>No Telepon</th>
                         <th>Alamat</th>
                         <th>Role</th>
+                        @unless(auth()->user()->role == 'petugas')
                         <th>Opsi</th>
+                        @endunless
                     </tr>
                 </thead>
                 <tbody>
@@ -46,18 +51,21 @@
                                 <td>{{ $admin->no_telepon }}</td>
                                 <td>{{ $admin->alamat}}</td>
                                 <td>{{ $admin->role }}</td>
+                                @unless(auth()->user()->role == 'petugas')
+
                                 <td>
                                     <a href="/edit_admin/{{$admin->id}}" class="btn btn-info btn-sm">edit</a>
                                     <a href="javascript:void(0);"
-                                        class="btn btn-danger btn-sm"
-                                        data-toggle="tooltip"
-                                        data-placement="top"
-                                        title="Hapus"
-                                        onclick="confirmDeletion({{ $admin->id }});">
-                                        <i class="fa fa-close color-danger">Hapus</i>
-                                    </a>
+                                    class="btn btn-danger btn-sm"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Hapus"
+                                    onclick="confirmDeletion({{ $admin->id }});">
+                                    <i class="fa fa-close color-danger">Hapus</i>
+                                </a>
 
                                 </td>
+                                @endunless
                             </tr>
                         @endif
                     @endforeach

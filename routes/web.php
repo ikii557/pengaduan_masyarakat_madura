@@ -47,6 +47,9 @@ Route::middleware(['auth'])->group(function () {
 
         // tanggapan
         Route::get('data_tanggapan', [PengaduanController::class, 'tanggapan'])->name('tanggapan.index');
+        Route::get('/tambah_tanggapan/{id}', [PengaduanController::class, 'createtanggapan']);
+        Route::post('/update_tanggapan/{id}', [PengaduanController::class, 'updateTanggapan']);
+        Route::post('/update/data_pengaduan/{id}', [PengaduanController::class, 'update']);
 
         // profile
         Route::get('/detail_profile/{id}', [AdminController::class, 'detailprofile']);
@@ -76,15 +79,10 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/destroy_kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 
         // Pengaduan and Tanggapan Management
-        Route::get('/tambah_pengaduan', [PengaduanController::class, 'create']);
-        Route::post('/store/pengaduan', [PengaduanController::class, 'store']);
         Route::get('/edit_pengaduan/{id}', [PengaduanController::class, 'edit']);
-        Route::post('/update/data_pengaduan/{id}', [PengaduanController::class, 'update']);
         Route::delete('/destroy_pengaduan/{id}', [PengaduanController::class, 'destroy'])->name('destroy_pengaduan');
 
         // tanggapan untuk admin
-        Route::get('/tambah_tanggapan/{id}', [PengaduanController::class, 'createtanggapan']);
-        Route::post('/update_tanggapan/{id}', [PengaduanController::class, 'updateTanggapan']);
         Route::get('/edit_tanggapan/{id}', [PengaduanController::class, 'editing']);
         Route::delete('/destroy_tanggapan/{id}', [PengaduanController::class, 'destroy'])->name('tanggapan.destroy');
 
@@ -103,6 +101,8 @@ Route::middleware(['auth'])->group(function () {
 
     });
     Route::middleware(['role:masyarakat'])->group(function () {
+        Route::get('/tambah_pengaduan', [PengaduanController::class, 'create']);
+        Route::post('/store/pengaduan', [PengaduanController::class, 'store']);
         Route::get('daftar_pengaduan', [MasyarakatController::class, 'data']);
         Route::get('tanggapandariadmin/{id}', [MasyarakatController::class, 'data_tanggapan']);
         Route::get('/masyarakat', [MasyarakatController::class, 'index']);
