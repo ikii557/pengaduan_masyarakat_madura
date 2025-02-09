@@ -46,8 +46,19 @@
                                 <td>{{ $pengaduan->tanggal_pengaduan }}</td>
                                 <td>{{ $pengaduan->kategori->nama_kategori }}</td>
                                 <td>{{ $pengaduan->isi_pengaduan }}</td>
-                                <td>{{ $pengaduan->status }}</td>
+                                <td><a href="/tambah_tanggapan/{{$pengaduan->id}}">
+                                    <span class="badge
+                                        @if($pengaduan->status == '0') bg-warning
+                                        @elseif($pengaduan->status == 'diproses') bg-info
+                                        @elseif($pengaduan->status == 'selesai') bg-success
+                                        @elseif($pengaduan->status == 'ditolak') bg-danger
+                                        @else bg-secondary
+                                        @endif">
+                                        {{ ucfirst($pengaduan->status) }}
+                                    </span>
+                                </a></td>
                                 <td>
+
                                     <!-- Print Button -->
                                     <a href="formulir_laporan/{{ $pengaduan->id}}" target="_blank" class="btn btn-light">
                                         <i class="fas fa-print"></i>

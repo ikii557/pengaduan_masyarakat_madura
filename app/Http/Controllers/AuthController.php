@@ -105,11 +105,11 @@ public function storeregister(Request $request)
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('success', 'Anda telah berhasil logout.');
+        return redirect('/login')->with('message', 'Logout berhasil!');
     }
+
 
 }
