@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\NavbarController;
 use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\TanggapanController;
 use App\Http\Controllers\MasyarakatController;
@@ -34,9 +35,7 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth', 'role:petugas,admin,masyarakat'])->group(function () {
 
     // Dashboard and general views
-    Route::get('/index', function () {
-        return view('admin.dasboard');
-    });
+    Route::get('/index',[DashboardController::class,'index']);
 
     Route::get('/profile', function () {
         return view('admin.profile.masyarakat');
