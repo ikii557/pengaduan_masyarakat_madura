@@ -35,6 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                @php $no = 1; @endphp
                     @foreach ($pengaduans as $index => $pengaduan)
                         <tr>
                             <td>{{ $index + 1 }}</td>
@@ -85,6 +86,10 @@
                 </tbody>
             </table>
         </div>
+        <div class="d-flex justify-content-center">
+            {{ $pengaduans->links() }}
+        </div>
+
     </div>
 </div>
 @endsection

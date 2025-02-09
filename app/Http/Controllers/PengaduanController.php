@@ -17,11 +17,11 @@ class PengaduanController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $petugas    = Petugas::all();
-        $pengaduans = Pengaduan::with('masyarakat', 'kategori')->latest()->get();
-        return view('admin.laporan.laporan_keamanan', compact('petugas','pengaduans'));
-    }
+{
+    $petugas = Petugas::paginate(3); // Pagination for petugas
+    $pengaduans = Pengaduan::with('masyarakat', 'kategori')->latest()->paginate(3); // Pagination for pengaduans
+    return view('admin.laporan.laporan_keamanan', compact('petugas', 'pengaduans'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -197,7 +197,7 @@ public function exportLaporan()
 //data tanggapan
 
     public function tanggapan(){
-        $tanggapans = Tanggapan::all();
+        $tanggapans = Tanggapan::paginate(2);
         return view('admin.tanggapan.data_tanggapan',compact('tanggapans'));
     }
 
