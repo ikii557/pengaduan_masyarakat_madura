@@ -24,8 +24,11 @@
                 <div class="card-header bg-primary text-white d-flex justify-content-between">
                     <h3 class="card-title">Daftar Masyarakat</h3>
                     <div>
+                        @unless(auth()->user()->role == 'petugas')
                         <a href="#" class="btn btn-label-info btn-round me-2">Laporan</a>
+
                         <a href="/masyarakat/tambah_masyarakat" class="btn btn-primary btn-round">Tambah Masyarakat</a>
+                        @endunless
                     </div>
                 </div>
                 <div class="card-body">
@@ -40,7 +43,10 @@
                                 <th>No Telepon</th>
                                 <th>role</th>
                                 <th>Alamat</th>
+                                @unless(auth()->user()->role == 'petugas')
+
                                 <th>Opsi</th>
+                                @endunless
                             </tr>
                         </thead>
                         <tbody>
@@ -55,14 +61,17 @@
                                     <td>{{ $masyarakat->no_telepon }}</td>
                                     <td>{{ $masyarakat->role}}</td>
                                     <td>{{ $masyarakat->alamat }}</td>
+                                    @unless(auth()->user()->role == 'petugas')
+
                                     <td>
                                         <a href="edit_masyarakat/{{ $masyarakat->id }}" class="btn btn-info btn-sm">Edit</a>
                                         <a href="javascript:void(0);" class="btn btn-danger btn-sm"
-                                           data-toggle="tooltip" data-placement="top" title="Hapus"
-                                           onclick="confirmDeletion({{ $masyarakat->id }});">
-                                            <i class="fa fa-close color-danger">Hapus</i>
-                                        </a>
-                                    </td>
+                                        data-toggle="tooltip" data-placement="top" title="Hapus"
+                                        onclick="confirmDeletion({{ $masyarakat->id }});">
+                                        <i class="fa fa-close color-danger">Hapus</i>
+                                    </a>
+                                </td>
+                                @endunless
                                 </tr>
                                 @endif
                             @endforeach

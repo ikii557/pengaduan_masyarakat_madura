@@ -28,7 +28,7 @@
       <div class="text-center">
         <h3>Laporan Pengaduan</h3>
         <p>Laporkan Pengaduan/Keluhan Anda dan harap adukan dengan masuk akal dan bisa di pahami dalam logika dan anda bisa mengisi data data dalam kolom pengisian agar kami lebih mudah memahami nya dan juga ajukan pendapat anda dengan bijak.</p>
-        <a class="cta-btn" href="pengaduan">Daftar Pengaduan</a>
+        <a class="cta-btn" href="/daftar_pengaduan">Daftar Pengaduan</a>
       </div>
     </div>
   </div>
@@ -64,22 +64,24 @@
             </thead>
             <tbody>
             @foreach ($tanggapans as $index => $tanggapan)
-                    <tr>
-                        <td>{{ is_numeric($index) ? $index + 1 : 1 }}</td>
-                        <td>{{ $tanggapan->pengaduan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td>
-                        <td>{{ $tanggapan->tanggal_tanggapan }}</td>
-                        <td>{{ $tanggapan->tanggapan }}</td>
-                        <td>{{ $tanggapan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td>
-                        <td class="{{ auth()->user()->role == 'masyarakat' ? 'd-none' : '' }}">
-                            <a href="/edit_tanggapan/{{ $tanggapan->id }}" class="btn btn-sm btn-info">E</a>
-                            <form action="/destroy_tanggapan{{ $tanggapan->id }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus tanggapan ini?')">H</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $tanggapan->pengaduan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td>
+                    <td>{{ $tanggapan->tanggal_tanggapan }}</td>
+                    <td>{{ $tanggapan->tanggapan }}</td>
+                    <td>{{ $tanggapan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td>
+                    <td>{{ $tanggapan->id }}</td> {{-- Menampilkan ID tanggapan --}}
+                    <td class="{{ auth()->user()->role == 'masyarakat' ? 'd-none' : '' }}">
+                        <a href="/edit_tanggapan/{{ $tanggapan->id }}" class="btn btn-sm btn-info">E</a>
+                        <form action="/destroy_tanggapan/{{ $tanggapan->id }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus tanggapan ini?')">H</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+
 
             </tbody>
         </table>

@@ -148,15 +148,23 @@ class MasyarakatController extends Controller
 
 public function data()
 {
-    // Ambil hanya pengaduan milik user masyarakat yang sedang login
-    $pengaduans = Pengaduan::where('masyarakat_id', Auth::id())->get();
+    $pengaduans = Pengaduan::where('masyarakat_id', Auth::id())
+        ->orderBy('tanggal_pengaduan', 'desc')
+        ->paginate(4); // Batasi 10 data per halaman
     return view('masyarakat.daftar_pengaduan', compact('pengaduans'));
 }
 
-    public function data_tanggapan($id){
+
+
+    public function data_tanggapan($id)
+    {
         $pengaduans = Pengaduan::findOrFail($id);
-        $tanggapans = Tanggapan::all();
-        return view('masyarakat.tanggapanadmin',compact('pengaduans','tanggapans'));
+
+        // Ambil tanggapan berdasarkan pengaduan_id yang sesuai
+        $tanggapans = Tanggapan::where('pengaduan_id', $id)->get();
+
+        return view('masyarakat.tanggapanadmin', compact('pengaduans', 'tanggapans'));
     }
+
 
 }

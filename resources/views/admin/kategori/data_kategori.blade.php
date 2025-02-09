@@ -38,7 +38,10 @@
     <!-- Form Tambah Kategori -->
     <div class="col-md-4">
         <div class="card p-4">
-            <h3 class="mb-4 text-center">Tambah Kategori</h3>
+        @unless(auth()->user()->role == 'petugas')
+
+        <h3 class="mb-4 text-center">Tambah Kategori</h3>
+        @endunless
             <form action="/store/kategori" method="POST">
                 @csrf
                 <div class="mb-3">
@@ -69,7 +72,10 @@
                             <th>No</th>
                             <th>Nama Kategori</th>
                             <th>Deskripsi</th>
+                            @unless(auth()->user()->role == 'petugas')
+
                             <th>Opsi</th>
+                            @endunless
                         </tr>
                     </thead>
                     <tbody>
@@ -79,6 +85,8 @@
                             <td>{{ $no++ }}</td>
                             <td>{{ $kategori->nama_kategori }}</td>
                             <td>{{ $kategori->deskripsi }}</td>
+                            @unless(auth()->user()->role == 'petugas')
+
                             <td>
                                 <a href="/edit_kategori/{{$kategori->id}}" class="btn btn-info btn-sm">Edit</a>
                                 <a href="javascript:void(0);" class="btn btn-danger"
@@ -87,7 +95,7 @@
                                     title="Hapus"
                                     onclick="confirmDeletion({{ $kategori->id }});">
                                     <i class="fa fa-close color-danger">Hapus</i>
-                                    </a>
+                                </a>
 
                                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                                     <script>
@@ -127,6 +135,7 @@
                                     </script>
 
                             </td>
+                            @endunless
                         </tr>
                         @endforeach
                     </tbody>
