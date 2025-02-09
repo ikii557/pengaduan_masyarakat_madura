@@ -11,7 +11,10 @@
         }, 3000); // Hide the success alert after 3 seconds
     </script>
 @endif
-
+<div>
+    <h3 class="fw-bold mb-3"><a href="" class="btn btn-label-info">kembali</a></h3>
+    <h3 class="fw-bold mb-3">data admin</h3>
+</div>
 <div class="col-md-12">
     <div class="card">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
