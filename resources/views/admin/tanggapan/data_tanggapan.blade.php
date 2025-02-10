@@ -34,25 +34,24 @@
             </thead>
             <tbody>
             @php $no = 1; @endphp
-                @foreach ($tanggapans as $index => $tanggapan)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $tanggapan->pengaduan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td> <!-- No pengaduan -->
-                        <td>{{ $tanggapan->tanggal_tanggapan }}</td>
-                        <td>{{ $tanggapan->tanggapan }}</td>
-                        <td>{{ $tanggapan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td> <!-- Nama petugas -->
-                        <td>
-
-
-                            <a href="/edit_tanggapan/{{ $tanggapan->id }}" class="btn btn-sm btn-info">E</a>
-                            <form action="/destroy_tanggapan{{ $tanggapan->id }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus tanggapan ini?')">H</button>
-                            </form>
-                        </td>
-                    </tr>
+            @foreach ($tanggapans as $index => $tanggapan)
+                <tr>
+                    <td>{{ $tanggapans->firstItem() + $index }}</td>
+                    <td>{{ $tanggapan->pengaduan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td> <!-- Nama pengaduan -->
+                    <td>{{ $tanggapan->tanggal_tanggapan }}</td>
+                    <td>{{ $tanggapan->tanggapan }}</td>
+                    <td>{{ $tanggapan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td> <!-- Nama petugas -->
+                    <td>
+                        <a href="/edit_tanggapan/{{ $tanggapan->id }}" class="btn btn-sm btn-info">E</a>
+                        <form action="/destroy_tanggapan/{{ $tanggapan->id }}" method="POST" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus tanggapan ini?')">H</button>
+                        </form>
+                    </td>
+                </tr>
                 @endforeach
+
             </tbody>
         </table>
 

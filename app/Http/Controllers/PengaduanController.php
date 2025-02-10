@@ -198,10 +198,13 @@ public function exportLaporan()
 
 //data tanggapan
 
-    public function tanggapan(){
-        $tanggapans = Tanggapan::paginate(2);
-        return view('admin.tanggapan.data_tanggapan',compact('tanggapans'));
-    }
+public function tanggapan()
+{
+    // Mengurutkan tanggapan berdasarkan tanggal terbaru
+    $tanggapans = Tanggapan::orderBy('tanggal_tanggapan', 'desc')->paginate(2);
+    return view('admin.tanggapan.data_tanggapan', compact('tanggapans'));
+}
+
 
 
 

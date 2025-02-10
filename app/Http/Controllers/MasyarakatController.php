@@ -17,23 +17,27 @@ class MasyarakatController extends Controller
     public function index()
     {
         // Mengambil semua data masyarakat dan menggunakan paginasi 10 data per halaman
+
         $masyarakats = Petugas::paginate(10);
         return view('admin.masyarakat.masyarakat', data: compact('masyarakats'));
     }
 
     // Tambahkan fungsi-fungsi lain untuk edit, delete, dll.
 
-    public function dashboard()
-{
-    // Check if the user is authenticated
-    if (!Auth::check()) {
-        return redirect('/login')->withErrors('Silakan login terlebih dahulu.');
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 
-    // Retrieve categories and return the view if authenticated
-    $kategoris = Kategori::all();
-    return view('masyarakat.masyarakat', compact('kategoris'));
-}
+    public function dashboard()
+    {
+        $pengaduans = Pengaduan::where('masyarakat_id', Auth::id())
+        ->orderBy('tanggal_pengaduan', 'desc')
+        ->paginate(4); // Batasi 10 data per halaman
+        $kategoris = Kategori::all();
+        return view('masyarakat.masyarakat', compact('pengaduans','kategoris'));
+    }
+
 
     // Menampilkan halaman tambah data masyarakat
     public function create()

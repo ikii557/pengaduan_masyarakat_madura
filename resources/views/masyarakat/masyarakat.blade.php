@@ -250,7 +250,7 @@
     <!-- Portfolio Section -->
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section">
+    <section id="dataperangkatdesa" class="testimonials section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -454,12 +454,214 @@
       </div>
 
     </section><!-- /Team Section -->
-    <section id="buat_pengaduan" class="create_pengaduan section">
+    <section id="buatpengaduan" class="create_pengaduan section">
 
       <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>buat Pengaduan</h2>
+        <div><span>Butuh Bantuan?</span> <span class="description-title">Contact Kami</span></div>
+      </div><!-- End Section Title -->
 
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6">
+
+            <div class="row gy-4">
+              <div class="col-md-6">
+                <div class="info-item" data-aos="fade" data-aos-delay="200">
+                  <i class="bi bi-geo-alt"></i>
+                  <h3>Lokasi</h3>
+                  <p>Samping Masjid agung desa madura</p>
+                  <p>madura 535022</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="col-md-6">
+                <div class="info-item" data-aos="fade" data-aos-delay="300">
+                  <i class="bi bi-telephone"></i>
+                  <h3>Perangkat Desa </h3>
+                  <p>+62 8787 3233 33</p>
+                  <p>+62 5656 5665 66</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="col-md-6">
+                <div class="info-item" data-aos="fade" data-aos-delay="400">
+                  <i class="bi bi-envelope"></i>
+                  <h3>Email Kami</h3>
+                  <p>madura@example.com</p>
+                  <p>madurawanareja@example.com</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="col-md-6">
+                <div class="info-item" data-aos="fade" data-aos-delay="500">
+                  <i class="bi bi-clock"></i>
+                  <h3>Buka Dari</h3>
+                  <p>Senin - Jumat</p>
+                  <p>9:00AM - 15:30AM</p>
+                </div>
+              </div><!-- End Info Item -->
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-6">
+          <form action="/store/pengaduan" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+
+                        <input type="hidden" value="{{ auth()->user()->id }}" name="masyarakat_id" id="masyarakat_id">
+
+
+                        </div>
+                        <div class="col-md-12">
+                            <label for="kategori_id" class="form-label fw-semibold">Masukan Kategori</label>
+                            <select name="kategori_id" class="form-control" required>
+                                <option value="{{old('kategori_id')}}">-- Pilih Kategori --</option>
+                                @foreach($kategoris as $kategori)
+                                    <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                                @endforeach
+                            </select>
+                            @error('kategori_id')
+                                <p class="text-danger small">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+
+                        <div class="col-md-12">
+                            <label for="tanggal_pengaduan" class="form-label fw-semibold">Tanggal Pengaduan</label>
+                            <input type="date" value="{{ old('tanggal_pengaduan') }}" name="tanggal_pengaduan" id="tanggal_pengaduan" class="form-control form-control-lg" placeholder="Masukkan tanggal_pengaduan" >
+                            @error('tanggal_pengaduan')
+                                <p class="text-danger small">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+
+                        <div class="col-12 mb-3">
+                            <label for="foto">Upload Foto (Opsional)</label>
+                            <input type="file" id="foto" name="foto" class="form-control" accept="image/png, image/jpeg, image/jpg">
+                            @error('foto')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+
+
+
+                    </div>
+
+
+                    <div class="row mb-4">
+                    <div class="col-12 mb-3">
+                            <label for="isi_pengaduan">Isi Pengaduan</label>
+                            <textarea name="isi_pengaduan" class="form-control" rows="6" placeholder="Deskripsi Pengaduan Anda" >{{ old('isi_pengaduan') }}</textarea>
+                            @error('isi_pengaduan')
+                                <p class="text-danger">{{$message}}</p>
+                            @enderror
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Simpan Data Laporan</button>
+                    </div>
+                </form>
+
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
 
     </section><!-- /Contact Section -->
+    <section id="create_pengaduan" class="create_pengaduan section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Daftar Pengaduan</h2>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Masyarakat</th>
+                            <th>Kategori Pengaduan</th>
+                            <th>Tanggal Pengaduan</th>
+                            <th>Isi Laporan</th>
+                            <th>Foto</th>
+                            <th>Status</th>
+                            <th class="{{ auth()->user()->role == 'masyarakat' ? 'd-none' : '' }}">Opsi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @php $no = 1; @endphp
+                    @foreach ($pengaduans as $index => $pengaduan)
+                        <tr>
+                            <td>{{ $pengaduans->firstItem() + $index }}</td>
+                            <td>{{ $pengaduan->masyarakat->nama_lengkap ?? 'Tidak Ada Data' }}</td>
+                            <td>{{ $pengaduan->kategori->nama_kategori ?? 'Tidak Ada Data' }}</td>
+                            <td>{{ $pengaduan->tanggal_pengaduan }}</td>
+                            <td>{{ $pengaduan->isi_pengaduan }}</td>
+                            <td>
+                                @if ($pengaduan->foto)
+                                    <img src="{{ Storage::url($pengaduan->foto) }}" alt="Foto Pengaduan" width="100">
+                                @else
+                                    Tidak ada foto
+                                @endif
+                            </td>
+                            <td>
+                                @if(in_array($pengaduan->status, ['diproses', 'selesai', 'ditolak']))
+                                    <a href="/tanggapandariadmin/{{$pengaduan->id}}">
+                                        <span class="badge
+                                            @if($pengaduan->status == 'diproses') bg-info
+                                            @elseif($pengaduan->status == 'selesai') bg-success
+                                            @elseif($pengaduan->status == 'ditolak') bg-danger
+                                            @endif">
+                                            {{ ucfirst($pengaduan->status) }}
+                                        </span>
+                                    </a>
+                                @else
+                                    <span class="badge bg-warning">
+                                        Belum Ada Respon
+                                    </span>
+                                @endif
+                            </td>
+
+                            @if(auth()->user()->role !== 'masyarakat')
+                                <td>
+                                    <a href="{{ route('admin.tanggapan.create', ['id' => $pengaduan->id]) }}" class="btn btn-warning btn-sm">c</a>
+                                    <a href="/edit_pengaduan/{{$pengaduan->id}}" class="btn btn-sm btn-info mt-1">E</a>
+                                    <form action="" method="POST" style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus pengaduan ini?')">H</button>
+                                    </form>
+                                </td>
+                            @endif
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            {{ $pengaduans->links() }}
+        </div>
+    </div>
+</section>
+
 
     <!-- Contact Section -->
 

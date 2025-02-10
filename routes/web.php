@@ -32,6 +32,8 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+
+
     Route::middleware(['role:admin,petugas'])->group(function () {
         // index untuk admin dan petugas
         Route::get('/index', [DashboardController::class, 'index']);
@@ -101,12 +103,13 @@ Route::middleware(['auth'])->group(function () {
 
     });
     Route::middleware(['role:masyarakat'])->group(function () {
+        Route::get('dashboard_masyarakat', [MasyarakatController::class, 'dashboard'])->name('dashboard');
         Route::get('/tambah_pengaduan', [PengaduanController::class, 'create']);
         Route::post('/store/pengaduan', [PengaduanController::class, 'store']);
         Route::get('daftar_pengaduan', [MasyarakatController::class, 'data']);
         Route::get('tanggapandariadmin/{id}', [MasyarakatController::class, 'data_tanggapan']);
         Route::get('/masyarakat', [MasyarakatController::class, 'index']);
-        Route::get('dashboard_masyarakat', [MasyarakatController::class, 'dashboard']);
+
 
     });
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

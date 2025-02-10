@@ -85,7 +85,7 @@ public function storeregister(Request $request)
                 case 'petugas':
                     return redirect('/index');
                 default:
-                    return redirect('/dashboard_masyarakat');
+                    return redirect('/dashboard_pengaduan');
             }
         }
 
@@ -108,7 +108,7 @@ public function storeregister(Request $request)
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('message', 'Logout berhasil!');
+        return redirect('/dashboard_masyarakat')->with('message', 'Logout berhasil!');
     }
 
 
