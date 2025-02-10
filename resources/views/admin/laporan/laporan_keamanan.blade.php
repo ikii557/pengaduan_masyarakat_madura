@@ -79,9 +79,12 @@
                                 </a>
                             @else
                                 {{-- Default status tanpa respons --}}
-                                <span class="badge bg-warning">
-                                    Belum Ada Respon
-                                </span>
+                                <a href="/tambah_tanggapan/{{$pengaduan->id}}">
+                                    <span class="badge bg-warning">
+                                        belum ada respon
+                                    </span>
+                                </a>
+
                             @endif
 
 

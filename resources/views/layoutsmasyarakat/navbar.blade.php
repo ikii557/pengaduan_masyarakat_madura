@@ -8,79 +8,33 @@
       </a>
 
       <nav id="navmenu" class="navmenu">
-  <ul>
-    <li><a href="#hero" class="active">Home</a></li>
-    <li><a href="#about">Info</a></li>
-    <li><a href="#services">services</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="tambah_pengaduan">create pengaduan</a></li>
-    <li>
-    <div id="auth-section">
-    <a href="#" id="auth-btn" class="btn btn-danger btn-sm rounded-pill shadow-sm px-3 py-2 text-white fw-bold">
-        Logout
-    </a>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    // Simulasi status login (true jika sudah login, false jika belum login)
-    let isLoggedIn = false;
-
-    function updateAuthButton() {
-        const authButton = document.getElementById('auth-btn');
-        if (isLoggedIn) {
-            authButton.textContent = 'Logout';
-            authButton.classList.remove('btn-danger');
-            authButton.classList.add('btn-danger');
-            authButton.onclick = confirmLogout;
-        } else {
-            authButton.textContent = 'Login';
-            authButton.classList.remove('btn-danger');
-            authButton.classList.add('btn-primary');
-            authButton.onclick = handleLogin;
-        }
-    }
-
-    function confirmLogout() {
-        Swal.fire({
-            title: 'Apakah Anda yakin ingin logout?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, Logout',
-            cancelButtonText: 'Batal',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                isLoggedIn = false;
-                updateAuthButton();
-                Swal.fire('Logout Berhasil!', 'Anda telah logout.', 'success');
-            }
-        });
-    }
-
-    function handleLogin() {
-        Swal.fire({
-            title: 'Selamat Datang!',
-            text: 'Login berhasil.',
-            icon: 'success',
-            confirmButtonText: 'OK',
-        }).then(() => {
-            isLoggedIn = true;
-            updateAuthButton();
-        });
-    }
-
-    // Inisialisasi tampilan tombol berdasarkan status login
-    updateAuthButton();
-</script>
-
-
-    </li>
-  </ul>
-  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-</nav>
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#dataperangkatdesa">Portfolio</a></li>
+          <li><a href="#team">Team</a></li>
+          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+          <li><a href="#buatpengaduan">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
 
 
     </div>
