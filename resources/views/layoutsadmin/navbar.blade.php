@@ -237,26 +237,16 @@
                     href="#"
                     aria-expanded="false"
                   >
-                    <div class="avatar-sm">
-                    @if (!empty($adminss->foto))
+                  <div class="profile-container">
                     <img id="preview"
-                             src="{{ $adminss->foto ? asset('storage/' . $adminss->foto) : 'https://via.placeholder.com/150' }}"
-                             class="rounded-circle"
-                             style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
-                             alt="Preview Foto">
-                    @else
-                        Tidak ada foto
-                    @endif
+                        src="{{ $adminPhoto ?? 'https://via.placeholder.com/150' }}"
+                        class="rounded-circle"
+                        style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
+                        alt="Profile Photo">
+                    <span>Hi, <strong>{{ auth()->user()->nama_lengkap }}</strong></span>
+                </div>
 
 
-
-
-
-                    </div>
-                    <span class="profile-username">
-                      <span class="op-4">Hi,</span>
-                      <span class="fw-bold">{{Auth::user()->nama_lengkap}}</span>
-                    </span >
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn p-2">
                     <div class="dropdown-user-scroll scrollbar-outer">
