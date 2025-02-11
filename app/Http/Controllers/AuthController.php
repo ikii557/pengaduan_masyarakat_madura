@@ -85,7 +85,7 @@ public function storeregister(Request $request)
                 case 'petugas':
                     return redirect('/index');
                 default:
-                    return redirect('/dashboard_pengaduan');
+                    return redirect('/dashboard_masyarakat');
             }
         }
 

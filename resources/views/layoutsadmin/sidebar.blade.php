@@ -65,9 +65,9 @@
 <!-- Admin Section -->
             @unless(auth()->user()->role == 'petugas')
 
-            <li class="nav-item {{ request()->is('admin/*') || request()->is('tambah_admin') || request()->is('edit_admin/*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('admin') || request()->is('tambah_admin') || request()->is('edit_admin/*') ? 'active' : '' }}">
 
-                <a href="{{ url('admin/*') }}">
+                <a href="{{ url('admin') }}">
                     <i class="fas fa-user-shield"></i>
                     <p>Admin</p>
                 </a>

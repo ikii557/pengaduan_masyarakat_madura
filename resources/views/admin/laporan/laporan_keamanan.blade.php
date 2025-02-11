@@ -3,29 +3,32 @@
 @section('content')
 
 @if(session('success'))
-    <div class="alert alert-success" id="success-alert">
-        {{ session('success') }}
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        setTimeout(function() {
-            document.getElementById('success-alert').style.display = 'none';
-        }, 3000); // Hide the success alert after 3 seconds
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            timer: 3000,
+            showConfirmButton: false,
+            toast: true,
+            position: 'top-end'
+        });
     </script>
 @endif
 
-<div class="container mt-4">
+
+<div class="p-2 mt-4 me-4">
     <div class="card">
     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h3 class="card-title mb-0">Daftar Pengaduan</h3>
-            @unless(auth()->user()->role == 'petugas')
-                <a href="tambah_pengaduan" class="btn btn-light btn-round">Tambah Pengaduan</a>
-            @endunless
+
 
 
         </div>
         <div class="card-body">
 
-            <table class="table table-bordered table-striped table-hover">
+            <table class="table table-bordered table-striped table-hover" id="example1">
                 <thead class="thead-dark">
                     <tr>
                         <th>No</th>
@@ -99,13 +102,47 @@
 
                                 <a href="/edit_pengaduan/{{$pengaduan->id}}"class="btn btn-sm btn-info mt-1">E</a>
                                 <!-- Link Penghapusan -->
-                                <form action="{{ route('destroy_pengaduan', $pengaduan->id) }}" method="POST" style="display:inline-block;">
+                                <form id="delete-form-{{ $pengaduan->id }}" action="{{ route('destroy_pengaduan', $pengaduan->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus pengaduan ini?')">
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion({{ $pengaduan->id }})">
                                         H
                                     </button>
                                 </form>
+
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                        <script>
+                            function confirmDeletion(pengaduanId) {
+                                Swal.fire({
+                                    title: 'Apakah Anda yakin?',
+                                    text: "Data pengaduan ini akan dihapus secara permanen!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#d33',
+                                    cancelButtonColor: '#3085d6',
+                                    confirmButtonText: 'Ya, hapus!',
+                                    cancelButtonText: 'Batal'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        document.getElementById('delete-form-' + pengaduanId).submit();
+                                    }
+                                });
+                            }
+
+                            @if(session('success'))
+                                // Show success notification at the center
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil!',
+                                    text: "{{ session('success') }}",
+                                    timer: 3000,
+                                    showConfirmButton: false,
+                                    position: 'center' // Alert positioned at the center
+                                });
+                            @endif
+                        </script>
+
+
 
 
 
