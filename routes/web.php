@@ -104,7 +104,6 @@ Route::middleware(['auth'])->group(function () {
 
     });
     Route::middleware(['role:masyarakat'])->group(function () {
-        Route::get('dashboard_masyarakat', [MasyarakatController::class, 'dashboard'])->name('dashboard');
         Route::get('/tambah_pengaduan', [PengaduanController::class, 'create']);
         Route::post('/store/pengaduan', [PengaduanController::class, 'store']);
         Route::get('daftar_pengaduan', [MasyarakatController::class, 'data']);
@@ -115,3 +114,4 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+Route::get('dashboard_masyarakat', [MasyarakatController::class, 'dashboard'])->name('dashboard');
