@@ -58,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::middleware(['role:admin'])->group(function () {
         // index untuk admin
-        Route::get('/admin/{id}', [AdminController::class, 'show'])->name('admin.show');
+        Route::get('/admin', [AdminController::class, 'index']);
         Route::get('/tambah_admin', [AdminController::class, 'create']);
         Route::post('/store/admin', [AdminController::class, 'store']);
         Route::get('/edit_admin/{id}', [AdminController::class, 'edit']);
@@ -86,8 +86,9 @@ Route::middleware(['auth'])->group(function () {
 
         // tanggapan untuk admin
         Route::get('/edit_tanggapan/{id}', [PengaduanController::class, 'editing']);
-        Route::delete('/destroy_tanggapan/{id}', [PengaduanController::class, 'destroy'])->name('tanggapan.destroy');
+        Route::delete('/destroy_tanggapan/{id}', [PengaduanController::class, 'hapus'])->name('tanggapan.destroy');
 
+        Route::get('/masyarakat', [MasyarakatController::class, 'index']);
         // Generate Reports
         Route::get('/generate_laporan', [PengaduanController::class, 'report'])->name('pengaduan.laporan');
         Route::get('/export-laporan-pengaduan', [PengaduanController::class, 'exportLaporan'])->name('pengaduan.export');
@@ -108,7 +109,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store/pengaduan', [PengaduanController::class, 'store']);
         Route::get('daftar_pengaduan', [MasyarakatController::class, 'data']);
         Route::get('tanggapandariadmin/{id}', [MasyarakatController::class, 'data_tanggapan']);
-        Route::get('/masyarakat', [MasyarakatController::class, 'index']);
 
 
     });

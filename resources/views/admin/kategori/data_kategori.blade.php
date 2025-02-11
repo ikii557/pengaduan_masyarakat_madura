@@ -40,7 +40,9 @@
         <div class="card p-4">
         @unless(auth()->user()->role == 'petugas')
 
-        <h3 class="mb-4 text-center">Tambah Kategori</h3>
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">Tambah Kategori</h3>
+            </div>
         @endunless
             <form action="/store/kategori" method="POST">
                 @csrf

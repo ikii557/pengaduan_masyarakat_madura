@@ -138,24 +138,43 @@ class PengaduanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        // Mencari pengaduan berdasarkan ID
-        $pengaduan = Pengaduan::findOrFail($id);
+        public function destroy($id)
+        {
+            // Mencari pengaduan berdasarkan ID
+            $pengaduan = Pengaduan::findOrFail($id);
 
-        // Hapus foto jika ada
-        if ($pengaduan->foto) {
-            // Menghapus file foto dari storage
-            Storage::delete($pengaduan->foto);
+            // Hapus foto jika ada
+            if ($pengaduan->foto) {
+                // Menghapus file foto dari storage
+                Storage::delete($pengaduan->foto);
+            }
+
+            // Hapus pengaduan
+            $pengaduan->delete();
+
+            // Redirect ke halaman daftar pengaduan dengan pesan sukses
+            return redirect('data_pengaduan')->with('success', 'Pengaduan berhasil dihapus');
         }
 
-        // Hapus pengaduan
-        $pengaduan->delete();
 
-        // Redirect ke halaman daftar pengaduan dengan pesan sukses
-        return redirect('data_pengaduan')->with('success', 'Pengaduan berhasil dihapus');
+
+
+    public function hapus($id)
+    {
+        // Cari tanggapan berdasarkan ID
+        $tanggapan = Tanggapan::findOrFail($id);
+
+        // Hapus foto jika ada (jika ada foto terkait)
+        if ($tanggapan->foto) {
+            Storage::delete($tanggapan->foto);
+        }
+
+        // Hapus tanggapan
+        $tanggapan->delete();
+
+        // Redirect ke halaman daftar tanggapan dengan pesan sukses
+        return redirect('data_tanggapan')->with('success', 'Tanggapan berhasil dihapus');
     }
-
 
     /**
      * Display the specified resource.
@@ -201,7 +220,7 @@ public function exportLaporan()
 public function tanggapan()
 {
     // Mengurutkan tanggapan berdasarkan tanggal terbaru
-    $tanggapans = Tanggapan::orderBy('tanggal_tanggapan', 'desc')->paginate(2);
+    $tanggapans = Tanggapan::orderBy('tanggal_tanggapan', 'desc')->paginate(4);
     return view('admin.tanggapan.data_tanggapan', compact('tanggapans'));
 }
 
