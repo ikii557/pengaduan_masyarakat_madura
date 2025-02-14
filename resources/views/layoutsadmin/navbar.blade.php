@@ -29,22 +29,17 @@
             class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
           >
             <div class="container-fluid">
-              <nav
-                class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-3 d-none d-lg-flex"
-              >
+            <form action="{{ route('search') }}" method="GET">
                 <div class="input-group">
-                  <div class="input-group-prepend">
-                    <button type="submit" class="btn btn-search pe-1">
-                      <i class="fa fa-search search-icon"></i>
-                    </button>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Search ..."
-                    class="form-control"
-                  />
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-search pe-1">
+                            <i class="fa fa-search search-icon"></i>
+                        </button>
+                    </div>
+                    <input type="text" name="q" placeholder="Search ..." class="form-control" required />
                 </div>
-              </nav>
+            </form>
+
 
               <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                 <li
@@ -73,7 +68,7 @@
                   </ul>
                 </li>
 
-                <li class="nav-item topbar-icon dropdown hidden-caret">
+                <!-- <li class="nav-item topbar-icon dropdown hidden-caret">
                   <a
                     class="nav-link dropdown-toggle"
                     href="#"
@@ -150,7 +145,7 @@
                       </a>
                     </li>
                   </ul>
-                </li>
+                </li> -->
                 <li class="nav-item topbar-icon dropdown hidden-caret">
                   <a
                     class="nav-link"
@@ -238,11 +233,14 @@
                     aria-expanded="false"
                   >
                   <div class="profile-container">
-                    <img id="preview"
-                        src="{{ $adminPhoto ?? 'https://via.placeholder.com/150' }}"
-                        class="rounded-circle"
-                        style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
-                        alt="Profile Photo">
+                  <img id="preview"
+     src="{{ auth()->user()->role == 'admin' ?? 'petugas'
+            ? (auth()->user()->foto ? asset('storage/' . auth()->user()->foto) : 'https://via.placeholder.com/150')
+            : (optional(auth()->user()->petugas)->foto ? asset('storage/' . optional(auth()->user()->petugas)->foto) : 'https://via.placeholder.com/150') }}"
+     class="rounded-circle"
+     style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
+     alt="Profile Photo">
+
                     <span>Hi, <strong>{{ auth()->user()->nama_lengkap }}</strong></span>
                 </div>
 
@@ -253,11 +251,13 @@
                         <li class="mb-3">
                         <div class="user-box d-flex align-items-center">
                             <div class="avatar-lg">
-                            @if (!empty($admins->foto))
-                                <img src="{{ Storage::url($admins->foto) }}" alt="Foto Admin" width="100">
-                            @else
-                                Tidak ada foto
-                            @endif
+                            <img id="preview"
+     src="{{ auth()->user()->role == 'admin' ?? 'petugas'
+            ? (auth()->user()->foto ? asset('storage/' . auth()->user()->foto) : 'https://via.placeholder.com/150')
+            : (optional(auth()->user()->petugas)->foto ? asset('storage/' . optional(auth()->user()->petugas)->foto) : 'https://via.placeholder.com/150') }}"
+     class="rounded-circle"
+     style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
+     alt="Profile Photo">
 
 
 

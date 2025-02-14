@@ -108,7 +108,7 @@ public function storeregister(Request $request)
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/dashboard_masyarakat')->with('message', 'Logout berhasil!');
+        return redirect('/masyarakat_daerah_desa_madura')->with('message', 'Logout berhasil!');
     }
 
 

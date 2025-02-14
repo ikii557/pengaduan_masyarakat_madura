@@ -27,9 +27,10 @@
          * Relasi ke model Pengaduan.
          */
         public function pengaduan()
-        {
-            return $this->belongsTo(Pengaduan::class);
-        }
+{
+    return $this->belongsTo(Pengaduan::class, 'pengaduan_id');
+}
+
 
 
         /**

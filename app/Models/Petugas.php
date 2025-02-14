@@ -36,7 +36,11 @@ class Petugas extends Model
     {
         return $this->hasMany(Tanggapan::class, );
     }
-    public function pengaduans(){
-        return $this->hasMany(Pengaduan::class,);
+    public function pengaduans()
+    {
+        return $this->hasMany(Pengaduan::class, 'masyarakat_id'); // Menghubungkan ke pengaduan berdasarkan masyarakat_id
     }
+
+
+
 }
