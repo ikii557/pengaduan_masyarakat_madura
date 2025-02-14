@@ -113,12 +113,9 @@
             </div>
 
             <div class="form-group">
-                <label><strong>Role</strong></label>
-                <select name="role" class="form-control">
-                    <option value="{{old('role')}}">-- Pilih Role --</option>
-                    <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                    <option value="petugas" {{ old('role') == 'petugas' ? 'selected' : '' }}>Petugas</option>
-                    <option value="masyarakat" {{ old('role') == 'masyarakat' ? 'selected' : '' }}>Masyarakat</option>
+                <label></label hidden>
+                <select name="role" class="form-control" hidden>
+                    <option value="masyarakat" {{ old('role') == 'masyarakat' ? 'selected' : '' }} hidden>Masyarakat</option>
                 </select>
                 @error('role')
                     <p class="text-danger">{{$message}}</p>

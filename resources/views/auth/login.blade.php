@@ -88,7 +88,7 @@
 
             <!-- Footer Message -->
             <div class="new-account mt-3 text-center">
-                <p>Silahkan masuk karena Anda sudah didaftarkan oleh SuperAdmin. Terima Kasih!</p>
+                <p>Silahkan masuk ? silahkan  <a href="/register">Register</a> jika belum punya akun !</p>
             </div>
         </div>
     </div>

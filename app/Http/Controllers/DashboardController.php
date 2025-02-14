@@ -36,5 +36,7 @@ class DashboardController extends Controller
     }
 
 
-
+    public function halamandepan(){
+        return view('masyarakat.masyarakat_daerah_desa_madura');
+    }
 }

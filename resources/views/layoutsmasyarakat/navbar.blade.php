@@ -32,6 +32,15 @@
             </ul>
           </li>
           <li><a href="#buatpengaduan">Contact</a></li>
+          <li>
+            @if (auth()->login ?? 'login')
+                        <a href="#" onclick="confirmLogout();" class="dropdown-item text-danger">
+                            Logout
+                        </a>
+            @else
+                <a class="nav-link scrollto" href="/login">Register / Login</a>
+            @endif
+          </li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -39,3 +48,25 @@
 
     </div>
   </header>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    <script>
+                    function confirmLogout() {
+                        Swal.fire({
+                        title: 'Apakah Anda yakin ingin logout? jika anda logout anda harus login kembali ',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, Logout',
+                        cancelButtonText: 'Batal',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('logout-form').submit();
+                        }
+                        });
+                    }
+                    </script>
+
+                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                    @csrf
+                    </form>
