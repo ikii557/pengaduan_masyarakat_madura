@@ -98,10 +98,10 @@ class MasyarakatController extends Controller
         $masyarakat = Petugas::findOrFail($id);
 
         $request->validate([
-            'nik' => 'required|max:16|unique:masyarakats,nik,' . $id,
+            'nik' => 'required|max:16|unique:users,nik,' . $id,
             'nama_lengkap' => 'required|string|max:255',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
-            'username' => 'required|max:255|unique:masyarakats,username,' . $id,
+            'username' => 'required|max:255|unique:users,username,' . $id,
             'password' => 'nullable|string|min:8',
             'no_telepon' => 'required|max:15',
             'alamat' => 'required|string',

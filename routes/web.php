@@ -25,6 +25,7 @@ use App\Http\Controllers\MasyarakatController;
 
 // Auth routes
 Route::middleware(['guest'])->group(function () {
+    Route::get('/masyarakat_daerah_desa_madura',[DashboardController::class,'halamandepan']);
     Route::get('/register', [AuthController::class, 'register']);
     Route::post('/store/register', [AuthController::class, 'storeregister']);
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -53,6 +54,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/update_tanggapan/{id}', [PengaduanController::class, 'updateTanggapan']);
         Route::post('/update/data_pengaduan/{id}', [PengaduanController::class, 'update']);
 
+        Route::get('/edit_petugas/{id}', [PetugasController::class, 'edit']);
+        Route::post('/update/petugas/{id}', [PetugasController::class, 'update']);
         // profile
         Route::get('/detail_profile/{id}', [AdminController::class, 'detailprofile']);
     });
@@ -68,8 +71,6 @@ Route::middleware(['auth'])->group(function () {
         //route petugas
         Route::get('/tambah_petugas', [PetugasController::class, 'create']);
         Route::post('/store/petugas', [PetugasController::class, 'store']);
-        Route::get('/edit_petugas/{id}', [PetugasController::class, 'edit']);
-        Route::post('/update/petugas/{id}', [PetugasController::class, 'update']);
         Route::delete('/destroy_petugas/{id}', [PetugasController::class, 'destroy'])->name('petugas.destroy');
 
         // kategori
@@ -109,9 +110,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('daftar_pengaduan', [MasyarakatController::class, 'data']);
         Route::get('tanggapandariadmin/{id}', [MasyarakatController::class, 'data_tanggapan']);
 
+        Route::get('dashboard_masyarakat', [MasyarakatController::class, 'dashboard'])->name('dashboard');
 
     });
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::get('dashboard_masyarakat', [MasyarakatController::class, 'dashboard'])->name('dashboard');
+
