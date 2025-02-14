@@ -9,6 +9,7 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TanggapanController;
 use App\Http\Controllers\MasyarakatController;
 
@@ -38,6 +39,10 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:admin,petugas'])->group(function () {
         // index untuk admin dan petugas
         Route::get('/index', [DashboardController::class, 'index']);
+
+
+        Route::get('/search', [SearchController::class, 'search'])->name('search');
+
 
         // Petugas Routes
         Route::get('/petugas', [PetugasController::class, 'index']);
