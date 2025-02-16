@@ -16,9 +16,6 @@ class AdminController extends Controller
         public function index()
     {
         $admins = Petugas::all();
-
-
-
         return view('admin.profile.admin', compact('admins'));
     }
 
