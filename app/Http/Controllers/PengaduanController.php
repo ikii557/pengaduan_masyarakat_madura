@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Petugas;
 use App\Models\Kategori;
+use Barryvdh\DomPDF\PDF;
 use App\Models\Pengaduan;
 use App\Models\Tanggapan;
 use App\Models\Masyarakat;
@@ -198,18 +199,25 @@ class PengaduanController extends Controller
     return view('admin.generate.generate_laporan', compact('pengaduans'));
 }
 
+
 public function exportLaporan()
 {
-    // Generate export logic (Excel or PDF)
+    $pengaduans = Pengaduan::with(['petugas', 'kategori'])->latest()->get();
+
+    $pdf = PDF::loadView('admin.generate.laporan_pdf', compact('pengaduans'))
+              ->setPaper('A4', 'portrait');
+
+    return $pdf->download('laporan_pengaduan.pdf');
 }
 
-    public function formulir($id)
-    {
-        $pengaduans = Pengaduan::where('id', $id)->with(['petugas', 'kategori'])->get();
-        $petugas = Petugas::all();
+public function formulir($id)
+{
+    $pengaduans = Pengaduan::where('id', $id)->with(['petugas', 'kategori'])->get();
+    $petugas = Petugas::all();
 
-        return view('admin.generate.formulir_laporan', compact('pengaduans', 'petugas'));
-    }
+    return view('admin.generate.formulir_laporan', compact('pengaduans', 'petugas'));
+}
+
 
 
 
