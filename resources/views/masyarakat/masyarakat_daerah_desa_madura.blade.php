@@ -110,24 +110,30 @@
         <div class="row gy-4">
 
           <div class="col-lg-3 col-md-6">
-          <div class="stats-item">
-    <i class="bi bi-emoji-smile"></i>
-    <span
-        data-purecounter-start="0"
-        data-purecounter-end="11840"
-        data-purecounter-duration="3"
-        data-purecounter-separator="true"
-        class="purecounter">
-    </span> jiwa
-    <p><strong>Seluruh Penduduk</strong> <span>Desa Madura</span></p>
-</div>
+            <div class="stats-item">
+                <i class="bi bi-emoji-smile"></i>
+                <span
+                    data-purecounter-start="0"
+                    data-purecounter-end="11840"
+                    data-purecounter-duration="3"
+                    data-purecounter-separator="true"
+                    class="purecounter">
+                </span> jiwa
+                <p><strong>Seluruh Penduduk</strong> <span>Desa Madura</span></p>
+            </div>
 
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+              <span
+                    data-purecounter-start="0"
+                    data-purecounter-end="11840"
+                    data-purecounter-duration="3"
+                    data-purecounter-separator="true"
+                    class="purecounter">
+                </span>
               <p><strong>Projects</strong> <span>adipisci atque cum quia aut</span></p>
             </div>
           </div><!-- End Stats Item -->
@@ -135,15 +141,27 @@
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hours Of Support</strong> <span>aut commodi quaerat</span></p>
+              <span
+                    data-purecounter-start="0"
+                    data-purecounter-end="5"
+                    data-purecounter-duration="5"
+                    data-purecounter-separator="true"
+                    class="purecounter">
+                </span>
+              <p><strong>Jumlah admin </strong> <span>Desa madura </span></p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
+              <span
+                    data-purecounter-start="0"
+                    data-purecounter-end="11840"
+                    data-purecounter-duration="3"
+                    data-purecounter-separator="true"
+                    class="purecounter">
+                </span>
               <p><strong>Hard Workers</strong> <span>rerum asperiores dolor</span></p>
             </div>
           </div><!-- End Stats Item -->
@@ -231,7 +249,7 @@
     <!-- Call To Action Section -->
     <section id="call-to-action" class="call-to-action section dark-background">
 
-      <img src="assetss/img/cta-bg.jpg" alt="">
+      <img src="{{ asset('assetss/img/cta-bg.jpg') }}" alt="">
 
       <div class="container">
         <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
@@ -379,10 +397,10 @@
 
           <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
-              <img src="assetss/img/team/team-1.jpg" class="img-fluid" alt="">
+            <img src="{{ Storage::url('foto_admin/3iQSVPKvGcLQ8Y3BA6kbbDqNagLfiBcffOh6FmyQ.jpg') }}" alt="Foto Pengaduan" width="250">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>Walter White</h4>
+                  <h4>rifki hadid anwar</h4>
                   <span>Chief Executive Officer</span>
                 </div>
                 <div class="social">
@@ -397,10 +415,10 @@
 
           <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="member">
-              <img src="assetss/img/team/team-2.jpg" class="img-fluid" alt="">
+            <img src="{{ Storage::url('foto_admin/0c0a3VHOJqoQoMsznTW03s6rGGtlCa7bbwKI9sQk.jpg') }}" alt="Foto Pengaduan" width="300">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>Sarah Jhonson</h4>
+                  <h4>shela meirani</h4>
                   <span>Product Manager</span>
                 </div>
                 <div class="social">
@@ -415,10 +433,10 @@
 
           <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <img src="assetss/img/team/team-3.jpg" class="img-fluid" alt="">
+            <img src="{{ Storage::url('foto_admin/3iQSVPKvGcLQ8Y3BA6kbbDqNagLfiBcffOh6FmyQ.jpg') }}" alt="Foto Pengaduan" width="250">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>William Anderson</h4>
+                  <h4>rifki hadid anwar</h4>
                   <span>CTO</span>
                 </div>
                 <div class="social">
@@ -433,10 +451,10 @@
 
           <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
             <div class="member">
-              <img src="assetss/img/team/team-4.jpg" class="img-fluid" alt="">
+            <img src="{{ Storage::url('foto_admin/0c0a3VHOJqoQoMsznTW03s6rGGtlCa7bbwKI9sQk.jpg') }}" alt="Foto Pengaduan" width="300">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>Amanda Jepson</h4>
+                  <h4>shela meirani</h4>
                   <span>Accountant</span>
                 </div>
                 <div class="social">
@@ -518,7 +536,7 @@
       </div>
 
     </section><!-- /Contact Section -->
-    
+
 
 
     <!-- Contact Section -->
