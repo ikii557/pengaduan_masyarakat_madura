@@ -32,12 +32,13 @@ class DashboardController extends Controller
         $totalPengaduan = array_sum($data);
 
 
-        
+
         return view('admin.dasboard', compact('admins','labels', 'data', 'pengaduans', 'tanggapanSelesai', 'totaladmin','totalPengaduan'));
     }
 
 
     public function halamandepan(){
-        return view('masyarakat.masyarakat_daerah_desa_madura');
+        $adminss = Petugas::all();
+        return view('masyarakat.masyarakat_daerah_desa_madura',compact('adminss'));
     }
 }
