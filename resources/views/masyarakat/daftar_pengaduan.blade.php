@@ -1,19 +1,6 @@
 @extends('layoutsmasyarakat.data')
 @section('main')
 
-@if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
-
-@if($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
 
   <main class="main">
@@ -28,7 +15,7 @@
       <div class="text-center">
         <h3>Laporan Pengaduan</h3>
         <p>Laporkan Pengaduan/Keluhan Anda dan harap adukan dengan masuk akal dan bisa di pahami dalam logika dan anda bisa mengisi data data dalam kolom pengisian agar kami lebih mudah memahami nya dan juga ajukan pendapat anda dengan bijak.</p>
-        <a class="cta-btn" href="pengaduan">Daftar Pengaduan</a>
+        <a class="cta-btn" href="/dashboard_masyarakat">tambah Pengaduan</a>
       </div>
     </div>
   </div>
@@ -45,6 +32,61 @@
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="card-body">
             <div class="table-responsive">
+
+                @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" id="success-alert">
+                    {{ session('success') }}
+                </div>
+                @endif
+
+                @if($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" id="error-alert">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
+                <script>
+                    // Sembunyikan notifikasi otomatis setelah 5 detik (5000 ms)
+                    setTimeout(function() {
+                        document.getElementById('success-alert')?.classList.add('d-none');
+                        document.getElementById('error-alert')?.classList.add('d-none');
+                    }, 5000);
+                </script>
+
+                <style>
+                    /* Container untuk memusatkan notifikasi di tengah */
+                    .alert {
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        z-index: 9999; /* Di atas konten lain */
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                        padding: 20px 40px; /* Tambahan padding agar terlihat lebih baik */
+                        border-radius: 12px; /* Membuat sudut melengkung */
+                        max-width: 80%; /* Batas lebar agar responsif */
+                        text-align: center; /* Teks rata tengah */
+                        animation: fadeIn 0.5s ease;
+                    }
+
+                    /* Animasi fade-in untuk efek muncul halus */
+                    @keyframes fadeIn {
+                        from {
+                            opacity: 0;
+                            transform: translate(-50%, -60%);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translate(-50%, -50%);
+                        }
+                    }
+                </style>
+
+
                 <table class="table table-bordered table-striped table-hover">
                     <thead class="thead-dark">
                         <tr>

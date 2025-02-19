@@ -8,50 +8,58 @@
         <span class="sitename">Desa Madura</span>
       </a>
       <div class="footer-contact pt-3">
-        <p>A108 Adam Street</p>
-        <p>New York, NY 535022</p>
-        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-        <p><strong>Email:</strong> <span>info@example.com</span></p>
+        <p>admin desa madura </p>
+        <p>Kode Pos 53265</p>
+        <p class="mt-3"><strong>Phone:</strong> <span>+62 831 3400 0194</span></p>
+        <p><strong>Email:</strong> <span>rifkihadidanwar@gmail.com</span></p>
       </div>
       <div class="social-links d-flex mt-4">
-        <a href=""><i class="bi bi-twitter-x"></i></a>
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
-      </div> 
+        <a href="https://www.youtube.com/watch?v=0xehYklW26c" class="glightbox "><i class="bi bi-youtube"></i></a>
+        <a href="" class="glightbox "><i class="bi bi-facebook"></i></a>
+        <a href="" class="glightbox "><i class="bi bi-instagram"></i></a>
+        <a href="" class="glightbox "><i class="bi bi-linkedin"></i></a>
+      </div>
     </div>
 
     <div class="col-lg-2 col-md-3 footer-links">
       <h4>Useful Links</h4>
       <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Terms of service</a></li>
-        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#">bantuan</a></li>
+        <li><a href="#">layanan</a></li>
+        <li><a href="#">Persyaratan layanan</a></li>
+        <li><a href="#">kebijakan Privasi</a></li>
       </ul>
     </div>
 
     <div class="col-lg-2 col-md-3 footer-links">
-      <h4>Our Services</h4>
+      <h4>layanan keluar</h4>
       <ul>
-        <li><a href="#">Web Design</a></li>
-        <li><a href="#">Web Development</a></li>
-        <li><a href="#">Product Management</a></li>
+        <li><a href="#">lingkungan  desa</a></li>
+        <li><a href="#">layanan dusun</a></li>
+        <li><a href="#">layanan  daerah</a></li>
         <li><a href="#">Marketing</a></li>
-        <li><a href="#">Graphic Design</a></li>
+        <li><a href="#">kemananan lingkungan</a></li>
       </ul>
     </div>
 
     <div class="col-lg-4 col-md-12 footer-newsletter">
-      <h4>Our Newsletter</h4>
-      <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-      <form action="forms/newsletter.php" method="post" class="php-email-form">
-        <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-        <div class="loading">Loading</div>
-        <div class="error-message"></div>
-        <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-      </form>
+      <h4>New news</h4>
+      <p>
+        Berlangganan buletin kami dan terima berita terbaru tentang produk dan layanan kami!!</p>
+        <form action="forms/like_service.php" method="post" class="php-email-form">
+            <div class="newsletter-form">
+                <label for="email">Sukai Layanan Kami:</label>
+                <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+                <input type="submit" value="Suka">
+            </div>
+
+            <!-- Notifikasi Status -->
+            <div class="loading" style="display:none;">Memproses...</div>
+            <div class="error-message" style="display:none;">Terjadi kesalahan. Coba lagi!</div>
+            <div class="sent-message" style="display:none;">Terima kasih! Anda menyukai layanan kami.</div>
+        </form>
+
     </div>
 
   </div>

@@ -35,6 +35,7 @@
                         <th>No Telepon</th>
                         <th>Alamat</th>
                         <th>Role</th>
+                        <th>foto</th>
                         @unless(auth()->user()->role == 'petugas')
                         <th>Opsi</th>
                         @endunless
@@ -51,6 +52,12 @@
                                 <td>{{ $admin->no_telepon }}</td>
                                 <td>{{ $admin->alamat}}</td>
                                 <td>{{ $admin->role }}</td>
+                                <td> <img id="preview"
+                                    src="{{ $adminPhoto ?? 'https://via.placeholder.com/150' }}"
+                                    class="rounded-circle"
+                                    style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
+                                    alt="Profile Photo">
+                                </td>
                                 @unless(auth()->user()->role == 'petugas')
 
                                 <td>

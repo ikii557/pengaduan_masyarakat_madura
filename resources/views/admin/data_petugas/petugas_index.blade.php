@@ -33,7 +33,6 @@
                         <th>Jenis Kelamin</th>
                         <th>Username</th>
                         <th>No Telepon</th>
-                        <th>Foto</th>
                         <th>Role</th>
                         @unless(auth()->user()->role == 'petugas')
 
@@ -52,12 +51,7 @@
                                 <td>{{ $petugas->jenis_kelamin }}</td>
                                 <td>{{ $petugas->username }}</td>
                                 <td>{{ $petugas->no_telepon }}</td>
-                                <td> <img id="preview"
-                                    src="{{ $adminPhoto ?? 'https://via.placeholder.com/150' }}"
-                                    class="rounded-circle"
-                                    style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
-                                    alt="Profile Photo">
-                                </td>
+
                                 <td>{{ $petugas->role }}</td>
                                 @unless(auth()->user()->role == 'petugas')
 

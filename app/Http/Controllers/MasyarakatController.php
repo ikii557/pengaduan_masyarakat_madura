@@ -160,7 +160,7 @@ public function data()
 
 
 
-    public function data_tanggapan($id)
+      public function data_tanggapan($id)
     {
         $pengaduans = Pengaduan::findOrFail($id);
 

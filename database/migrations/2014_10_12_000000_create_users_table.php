@@ -23,11 +23,6 @@ return new class extends Migration
             $table->enum('role', ['admin', 'petugas', 'masyarakat'])->default('masyarakat');
             $table->timestamps();
         });
-
-
-
-
-
     }
 
     /**

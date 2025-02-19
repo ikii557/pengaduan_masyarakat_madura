@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+// Pastikan Carbon diimpor
 use App\Models\Petugas;
 use App\Models\Pengaduan;
 use App\Models\Tanggapan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -21,7 +23,17 @@ class DashboardController extends Controller
             ->get();
 
         // Menghitung jumlah tanggapan yang sudah ditanggapi
-        $tanggapanSelesai = Tanggapan::whereNotNull('tanggapan')->count();
+
+        $tanggapanSelesai = Tanggapan::join('pengaduans', 'tanggapans.pengaduan_id', '=', 'pengaduans.id')
+            ->whereNotNull('tanggapans.tanggapan') // Pastikan ada tanggapan
+            ->where('pengaduans.status', 'selesai') // Cek status dari tabel pengaduans
+            ->whereMonth('tanggapans.created_at', Carbon::now()->month) // Bulan ini
+            ->whereYear('tanggapans.created_at', Carbon::now()->year)   // Tahun ini
+            ->count();
+
+
+        $pengaduanDiproses = Pengaduan::where('status', 'diproses')->count();
+
 
         // Menghitung jumlah petugas dengan peran admin
         $totaladmin = Petugas::where('role', 'admin')->count();
@@ -33,7 +45,7 @@ class DashboardController extends Controller
 
 
 
-        return view('admin.dasboard', compact('admins','labels', 'data', 'pengaduans', 'tanggapanSelesai', 'totaladmin','totalPengaduan'));
+        return view('admin.dasboard', compact('admins','labels', 'data', 'pengaduans', 'tanggapanSelesai','pengaduanDiproses', 'totaladmin','totalPengaduan'));
     }
 
 
