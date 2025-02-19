@@ -11,11 +11,11 @@
             <form method="GET" action="{{ route('pengaduan.laporan') }}">
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="start_date">Tanggal Awal</label>
+                        <label for="start_date">Pilih Bulan</label>
                         <input type="date" class="form-control" id="start_date" name="start_date" value="{{ request('start_date') }}">
                     </div>
                     <div class="col-md-3">
-                        <label for="end_date">Tanggal Akhir</label>
+                        <label for="end_date">pilih data status</label>
                         <input type="date" class="form-control" id="end_date" name="end_date" value="{{ request('end_date') }}">
                     </div>
                     <div class="col-md-3 d-flex align-items-end">

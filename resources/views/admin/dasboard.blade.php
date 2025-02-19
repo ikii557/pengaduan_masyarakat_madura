@@ -61,7 +61,7 @@
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
                           <p class="card-category">Jumlah diproses</p>
-                          <h4 class="card-title">.</h4>
+                          <h4 class="card-title">{{$pengaduanDiproses}}</h4>
                         </div>
                       </div>
                     </div>
@@ -109,34 +109,35 @@
                 <!-- Statistik Tanggapan -->
                 <div class="col-md-4">
                     <div class="card card-primary card-round">
-                    <div class="card-header">
-                        <div class="card-head-row">
-                        <div class="card-title">Jumlah Laporan</div>
-                        <div class="card-tools">
-                            <div class="dropdown">
-                            <button class="btn btn-sm btn-label-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Export
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="card-header">
+                            <div class="card-head-row">
+                                <div class="card-title">Jumlah Laporan per Bulan</div>
+                                <div class="card-tools">
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-label-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Export
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Excel</a>
+                                            <a class="dropdown-item" href="#">PDF</a>
+                                            <a class="dropdown-item" href="#">CSV</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="card-category">{{ now()->translatedFormat('F Y') }}</div>
+                        </div>
+                        <div class="card-body pb-0">
+                            <div class="mb-4 mt-2">
+                                <h1>{{ $tanggapanSelesai }}</h1>
+                            </div>
+                            <div class="pull-in">
+                                <canvas id="dailySalesChart"></canvas>
                             </div>
                         </div>
-                        </div>
-                        <div class="card-category">March 25 - April 02</div>
-                    </div>
-                    <div class="card-body pb-0">
-                        <div class="mb-4 mt-2">
-                        <h1>{{ $tanggapanSelesai }}</h1>
-                        </div>
-                        <div class="pull-in">
-                        <canvas id="dailySalesChart"></canvas>
-                        </div>
-                    </div>
                     </div>
                 </div>
+
             </div>
 
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

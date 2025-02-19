@@ -33,6 +33,16 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/store/login', [AuthController::class, 'storelogin']);
 });
 
+Route::post('/like-service', function (Request $request) {
+    $email = filter_var($request->email, FILTER_SANITIZE_EMAIL);
+
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        file_put_contents(storage_path('likes.txt'), $email . "\n", FILE_APPEND);
+        return response()->json(['message' => 'success']);
+    }
+
+    return response()->json(['message' => 'error'], 400);
+});
 Route::middleware(['auth'])->group(function () {
 
 

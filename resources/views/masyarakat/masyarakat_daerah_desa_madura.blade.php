@@ -15,7 +15,6 @@
           <div class="carousel-container">
             <h2>Welcome to Pengaduan Masyarakat Madura<br></h2>
             <p>Ajukan keluhan anda selama menjadi warga desa madura wanareja</p>
-            <a href="#about" class="btn-get-started">Read More</a>
           </div>
         </div><!-- End Carousel Item -->
 
@@ -24,7 +23,6 @@
           <div class="carousel-container">
             <h2>Desa Madura </h2>
             <p>Lakukan kinerja anda selama menjadi masyarakat madura</p>
-            <a href="#about" class="btn-get-started">Read More</a>
           </div>
         </div><!-- End Carousel Item -->
 
@@ -33,7 +31,6 @@
           <div class="carousel-container">
             <h2>Pengaduan Masyarakat Madura </h2>
             <p>Pengaduan ini hanyalah di bagian tempat anda jika belum mendapatkan bantuan atau belum menerima perbaikan dari kami </p>
-            <a href="#about" class="btn-get-started">Read More</a>
           </div>
         </div><!-- End Carousel Item -->
 
@@ -255,8 +252,8 @@
         <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-xl-10">
             <div class="text-center">
-              <h3>Call To Action</h3>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <h3>Pengaduan Masyarakat</h3>
+              <p>buatlah pengaduan anda jika ada ketidaknyamanan anda selasma menjadi masyarakat madura, anda bisa melaporkan nya </p>
               <a class="cta-btn" href="daftar_pengaduan">Laporakan Pengaduan</a>
             </div>
           </div>
@@ -383,7 +380,7 @@
     </section><!-- /Testimonials Section -->
 
     <!-- Team Section -->
-    <section id="team" class="team section">
+    {{-- <section id="team" class="team section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -471,7 +468,7 @@
 
       </div>
 
-    </section><!-- /Team Section -->
+    </section><!-- /Team Section --> --}}
     <section id="buatpengaduan" class="create_pengaduan section">
 
       <!-- Section Title -->

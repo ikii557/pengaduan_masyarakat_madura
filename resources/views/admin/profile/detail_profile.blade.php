@@ -133,14 +133,14 @@
                                 alt="Preview Foto">
                         </div>
 
-<script>
-    // Tambahkan background dan bayangan dengan JS
-    const profileContainer = document.getElementById('profile-container');
+    <script>
+        // Tambahkan background dan bayangan dengan JS
+        const profileContainer = document.getElementById('profile-container');
 
-    profileContainer.style.background = 'linear-gradient(135deg, #f5f7fa 0%,rgb(0, 197, 247) 100%)';
-    profileContainer.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.1)';
-    profileContainer.style.display = 'inline-block';
-</script>
+        profileContainer.style.background = 'linear-gradient(135deg, #f5f7fa 0%,rgb(0, 197, 247) 100%)';
+        profileContainer.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.1)';
+        profileContainer.style.display = 'inline-block';
+    </script>
 
 
                             <hr>
