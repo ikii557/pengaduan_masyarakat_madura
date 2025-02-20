@@ -12,7 +12,7 @@
         <div class="card-body">
             @forelse($pengaduans as $pengaduan)
             <div class="mb-4">
-                <p>Kepada Yth: <strong>{{ $pengaduan->petugas->nama_lengkap ?? 'Tidak Ada Data Petugas' }}</strong></p>
+                <p>Kepada Yth: <strong>{{ $pengaduan->masyarakat->nama_lengkap ?? 'Tidak Ada Data Petugas' }}</strong></p>
                 <p>Instansi: <strong>{{ $pengaduan->kategori->nama_kategori ?? 'Tidak Ada Data Kategori' }}</strong></p>
                 <p>Di Tempat</p>
             </div>
