@@ -12,14 +12,46 @@
                 <div class="row">
                     <div class="col-md-3">
                         <label for="start_date">Pilih Bulan</label>
-                        <input type="date" class="form-control" id="start_date" name="start_date" value="{{ request('start_date') }}">
+                        <select class="form-control" id="start_date" name="start_date">
+                            @php
+                                $months = [
+                                    '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April',
+                                    '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus',
+                                    '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
+                                ];
+                                $selectedMonth = request('start_date') ?? date('m');
+                            @endphp
+                            @foreach($months as $key => $month)
+                                <option value="{{ $key }}" {{ $key == $selectedMonth ? 'selected' : '' }}>
+                                    {{ $month }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
+
                     <div class="col-md-3">
-                        <label for="end_date">pilih data status</label>
-                        <input type="date" class="form-control" id="end_date" name="end_date" value="{{ request('end_date') }}">
+                        <label for="end_date">Pilih Data Status</label>
+                        <select class="form-control" id="end_date" name="end_date">
+                            @php
+                                $statuses = ['diproses' => 'Diproses', 'ditolak' => 'Ditolak', 'selesai' => 'Selesai'];
+                                $selectedStatus = request('end_date');
+                            @endphp
+                            @foreach($statuses as $key => $status)
+                                <option value="{{ $key }}" {{ $key == $selectedStatus ? 'selected' : '' }}>
+                                    {{ $status }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
+
                     <div class="col-md-3 d-flex align-items-end">
                         <button type="submit" class="btn btn-primary">Filter</button>
+                        <a href="formulir_laporan" target="_blank" class="btn btn-light">
+                            <i class="fas fa-print"></i>
+                        </a>
+                        <a href="{{route('pengaduan.export')}}" target="_blank" class="btn btn-light">
+                            <i class="fas fa-print"></i>
+                        </a>
                     </div>
                 </div>
             </form>
@@ -60,9 +92,7 @@
                                 <td>
 
                                     <!-- Print Button -->
-                                    <a href="formulir_laporan/{{ $pengaduan->id}}" target="_blank" class="btn btn-light">
-                                        <i class="fas fa-print"></i>
-                                    </a>
+
                                 </td>
                             </tr>
                         @empty

@@ -107,8 +107,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/masyarakat', [MasyarakatController::class, 'index']);
         // Generate Reports
         Route::get('/generate_laporan', [PengaduanController::class, 'report'])->name('pengaduan.laporan');
-        Route::get('/export-laporan-pengaduan', [PengaduanController::class, 'exportLaporan'])->name('pengaduan.export');
-        Route::get('/formulir_laporan/{id}', [PengaduanController::class, 'formulir']);
+        Route::get('/formulir_laporan', [PengaduanController::class, 'formulir'])->name('pengaduan.formulir');
+        Route::get('/export-laporan', [PengaduanController::class, 'exportLaporan'])->name('pengaduan.export');
+
 
         Route::get('/profile', function () {
             return view('admin.profile.masyarakat');

@@ -23,6 +23,10 @@ class Pengaduan extends Model
         'foto',
         'status',
     ];
+    protected $casts = [
+        'tanggal_pengaduan' => 'date',
+    ];
+
 
     // Relasi ke model Masyarakat
             // Relasi ke model Masyarakat
@@ -47,10 +51,12 @@ class Pengaduan extends Model
     }
 
     // Relasi ke model Tanggapan
+// Relasi ke model Tanggapan
     public function tanggapan()
     {
         return $this->hasMany(Tanggapan::class);
     }
+
 
 
 

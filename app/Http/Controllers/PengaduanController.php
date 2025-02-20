@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Petugas;
 use App\Models\Kategori;
-use Barryvdh\DomPDF\PDF;
 use App\Models\Pengaduan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Tanggapan;
 use App\Models\Masyarakat;
 use Illuminate\Http\Request;
@@ -186,37 +186,85 @@ class PengaduanController extends Controller
         return view('pengaduan.show', compact('pengaduan'));
     }
 
-    public function report(Request $request)
-{
-    $query = Pengaduan::query();
 
-    if ($request->start_date && $request->end_date) {
-        $query->whereBetween('tanggal_pengaduan', [$request->start_date, $request->end_date]);
-    }
+        // Method for displaying filtered 'formulir_laporan'
+        public function formulir(Request $request)
+        {
+            $query = Pengaduan::with(['petugas', 'kategori']);
 
-    $pengaduans = $query->get();
+            // Filter by month (start_date is the month value)
+            if ($request->filled('start_date')) {
+                $query->whereMonth('tanggal_pengaduan', $request->start_date);
+            }
 
-    return view('admin.generate.generate_laporan', compact('pengaduans'));
-}
+            // Filter by status (end_date is the status value)
+            if ($request->filled('end_date')) {
+                $query->where('status', $request->end_date);
+            }
+
+            $pengaduans = $query->latest()->get();
+            $petugas = Petugas::all();
+
+            return view('admin.generate.formulir_laporan', compact('pengaduans', 'petugas'));
+        }
+
+        // Method for generating the report with filters
+        public function report(Request $request)
+        {
+            $query = Pengaduan::with(['petugas', 'kategori']);
+
+            // Filter by month (start_date is the month value)
+            if ($request->filled('start_date')) {
+                $query->whereMonth('tanggal_pengaduan', $request->start_date);
+            }
+
+            // Filter by status (end_date is the status value)
+            if ($request->filled('end_date')) {
+                $query->where('status', $request->end_date);
+            }
+
+            $pengaduans = $query->latest()->get();
+
+            return view('admin.generate.generate_laporan', compact('pengaduans'));
+        }
 
 
-public function exportLaporan()
-{
-    $pengaduans = Pengaduan::with(['petugas', 'kategori'])->latest()->get();
 
-    $pdf = PDF::loadView('admin.generate.laporan_pdf', compact('pengaduans'))
-              ->setPaper('A4', 'portrait');
 
-    return $pdf->download('laporan_pengaduan.pdf');
-}
 
-public function formulir($id)
-{
-    $pengaduans = Pengaduan::where('id', $id)->with(['petugas', 'kategori'])->get();
-    $petugas = Petugas::all();
+        public function exportLaporan(Request $request)
+        {
+            $query = Pengaduan::with(['petugas', 'kategori', 'tanggapan.petugas']);
 
-    return view('admin.generate.formulir_laporan', compact('pengaduans', 'petugas'));
-}
+            // Filter berdasarkan rentang tanggal
+            if ($request->filled('start_date')) {
+                $query->whereDate('tanggal_pengaduan', '>=', $request->start_date);
+            }
+
+            if ($request->filled('end_date')) {
+                $query->whereDate('tanggal_pengaduan', '<=', $request->end_date);
+            }
+
+            // Filter berdasarkan status
+            if ($request->filled('status')) {
+                $query->where('status', $request->status);
+            }
+
+            // Urutkan berdasarkan tanggal terbaru
+            $pengaduans = $query->latest()->get();
+
+            // Load PDF view
+            $pdf = Pdf::loadView('admin.generate.laporan_pdf', compact('pengaduans'))
+                      ->setPaper('A4', 'portrait');
+
+            return $pdf->download('laporan_pengaduan.pdf');
+        }
+
+
+
+
+
+
 
 
 
