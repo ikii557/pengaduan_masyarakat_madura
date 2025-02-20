@@ -110,7 +110,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/formulir_laporan', [PengaduanController::class, 'formulir'])->name('pengaduan.formulir');
         Route::get('/export-laporan', [PengaduanController::class, 'exportLaporan'])->name('pengaduan.export');
 
-
         Route::get('/profile', function () {
             return view('admin.profile.masyarakat');
         });

@@ -97,56 +97,55 @@
                             </td>
                             @unless(auth()->user()->role == 'petugas')
 
-                            <td >
+                            <td id="action-column-{{ $pengaduan->id }}">
+                               
 
+                                @if(!in_array($pengaduan->status, ['selesai', 'ditolak']))
+                                    <!-- Link Penghapusan -->
+                                    <form id="delete-form-{{ $pengaduan->id }}" action="{{ route('destroy_pengaduan', $pengaduan->id) }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion({{ $pengaduan->id }})">
+                                            H
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
 
-                                <a href="/edit_pengaduan/{{$pengaduan->id}}"class="btn btn-sm btn-info mt-1">E</a>
-                                <!-- Link Penghapusan -->
-                                <form id="delete-form-{{ $pengaduan->id }}" action="{{ route('destroy_pengaduan', $pengaduan->id) }}" method="POST" style="display:inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion({{ $pengaduan->id }})">
-                                        H
-                                    </button>
-                                </form>
+                            <script>
+                                // Fungsi Konfirmasi Penghapusan
+                                function confirmDeletion(pengaduanId) {
+                                    Swal.fire({
+                                        title: 'Apakah Anda yakin?',
+                                        text: "Data pengaduan ini akan dihapus secara permanen!",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#d33',
+                                        cancelButtonColor: '#3085d6',
+                                        confirmButtonText: 'Ya, hapus!',
+                                        cancelButtonText: 'Batal'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            document.getElementById('delete-form-' + pengaduanId).submit();
+                                        }
+                                    });
+                                }
 
-                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                        <script>
-                            function confirmDeletion(pengaduanId) {
-                                Swal.fire({
-                                    title: 'Apakah Anda yakin?',
-                                    text: "Data pengaduan ini akan dihapus secara permanen!",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#d33',
-                                    cancelButtonColor: '#3085d6',
-                                    confirmButtonText: 'Ya, hapus!',
-                                    cancelButtonText: 'Batal'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        document.getElementById('delete-form-' + pengaduanId).submit();
+                                // Validasi tambahan dengan JavaScript untuk menyembunyikan tombol hapus
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const status = "{{ $pengaduan->status }}";
+                                    const actionColumn = document.getElementById('action-column-{{ $pengaduan->id }}');
+
+                                    // Jika status selesai atau ditolak, sembunyikan tombol hapus secara dinamis
+                                    if (status === 'selesai' || status === 'ditolak') {
+                                        const deleteForm = actionColumn.querySelector('form');
+                                        if (deleteForm) {
+                                            deleteForm.style.display = 'none';
+                                        }
                                     }
                                 });
-                            }
+                            </script>
 
-                            @if(session('success'))
-                                // Show success notification at the center
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Berhasil!',
-                                    text: "{{ session('success') }}",
-                                    timer: 3000,
-                                    showConfirmButton: false,
-                                    position: 'center' // Alert positioned at the center
-                                });
-                            @endif
-                        </script>
-
-
-
-
-
-                            </td>
                             @endunless
                         </tr>
                     @endforeach

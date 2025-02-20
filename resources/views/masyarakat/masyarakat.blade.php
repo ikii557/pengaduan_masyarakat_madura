@@ -537,11 +537,27 @@
 
                         <div class="col-md-12">
                             <label for="tanggal_pengaduan" class="form-label fw-semibold">Tanggal Pengaduan</label>
-                            <input type="date" value="{{ old('tanggal_pengaduan') }}" name="tanggal_pengaduan" id="tanggal_pengaduan" class="form-control form-control-lg" placeholder="Masukkan tanggal_pengaduan" >
+                            <input type="datetime-local" name="tanggal_pengaduan" id="tanggal_pengaduan" class="form-control form-control-lg" required>
                             @error('tanggal_pengaduan')
                                 <p class="text-danger small">{{ $message }}</p>
                             @enderror
                         </div>
+
+                        <script>
+                            // Set tanggal dan waktu saat ini di input
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const now = new Date();
+                                const year = now.getFullYear();
+                                const month = String(now.getMonth() + 1).padStart(2, '0'); // Bulan dimulai dari 0
+                                const day = String(now.getDate()).padStart(2, '0');
+                                const hours = String(now.getHours()).padStart(2, '0');
+                                const minutes = String(now.getMinutes()).padStart(2, '0');
+
+                                const currentDatetime = `${year}-${month}-${day}T${hours}:${minutes}`;
+                                document.getElementById('tanggal_pengaduan').value = currentDatetime;
+                            });
+                        </script>
+
 
 
                         <div class="col-12 mb-3">
