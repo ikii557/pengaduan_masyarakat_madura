@@ -165,10 +165,12 @@
                         <div class="row m-0">
                           <a class="col-6 col-md-4 p-0" href="#">
                             <div class="quick-actions-item">
-                              <div class="avatar-item bg-danger rounded-circle">
+                                <div class="avatar-item bg-danger rounded-circle">
+                                  <a href="kalender">
                                 <i class="far fa-calendar-alt"></i>
-                              </div>
-                              <span class="text">Calendar</span>
+                            </a>
+                        </div>
+                            <span class="text">Calendar</span>
                             </div>
                           </a>
                           <a class="col-6 col-md-4 p-0" href="#">
@@ -176,9 +178,12 @@
                               <div
                                 class="avatar-item bg-warning rounded-circle"
                               >
-                                <i class="fas fa-map"></i>
-                              </div>
-                              <span class="text">Maps</span>
+                              <a href="maps">
+
+                                  <i class="fas fa-map"></i>
+                                </div>
+                            </a>
+                                <span class="text">Maps</span>
                             </div>
                           </a>
                           <a class="col-6 col-md-4 p-0" href="#">
@@ -234,12 +239,12 @@
                   >
                   <div class="profile-container">
                   <img id="preview"
-     src="{{ auth()->user()->role == 'admin' ?? 'petugas'
-            ? (auth()->user()->foto ? asset('storage/' . auth()->user()->foto) : 'https://via.placeholder.com/150')
-            : (optional(auth()->user()->petugas)->foto ? asset('storage/' . optional(auth()->user()->petugas)->foto) : 'https://via.placeholder.com/150') }}"
-     class="rounded-circle"
-     style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
-     alt="Profile Photo">
+                        src="{{ auth()->user()->role == 'admin' ?? 'petugas'
+                                ? (auth()->user()->foto ? asset('storage/' . auth()->user()->foto) : 'https://via.placeholder.com/150')
+                                : (optional(auth()->user()->petugas)->foto ? asset('storage/' . optional(auth()->user()->petugas)->foto) : 'https://via.placeholder.com/150') }}"
+                        class="rounded-circle"
+                        style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #ddd; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);"
+                        alt="Profile Photo">
 
                     <span>Hi, <strong>{{ auth()->user()->nama_lengkap }}</strong></span>
                 </div>

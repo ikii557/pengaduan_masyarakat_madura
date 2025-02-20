@@ -140,55 +140,62 @@
 
             </div>
 
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    const ctx = document.getElementById('statisticsChart').getContext('2d');
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const ctx = document.getElementById('statisticsChart').getContext('2d');
 
-                    // Data dari Controller Laravel
-                    const labels = @json($labels);
-                    const data = @json($data);
+                // Data dari Controller Laravel
+                const labels = @json($labels); // Pastikan data format: ['2023-02-01', '2023-02-02']
+                const data = @json($data);
 
-                    new Chart(ctx, {
+                new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: labels,
                         datasets: [{
-                        label: 'Jumlah Pengaduan per Tanggal',
-                        data: data,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderWidth: 2,
-                        fill: true,
-                        tension: 0.4
+                            label: 'Jumlah Pengaduan per Tanggal',
+                            data: data,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
                         }]
                     },
                     options: {
                         responsive: true,
                         plugins: {
-                        legend: {
-                            display: true
-                        }
-                        },
-                        scales: {
-                        x: {
-                            title: {
-                            display: true,
-                            text: 'Tanggal Pengaduan'
+                            legend: {
+                                display: true
                             }
                         },
-                        y: {
-                            title: {
-                            display: true,
-                            text: 'Jumlah Pengaduan'
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Tanggal Pengaduan'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        // Format tanggal menjadi YYYY-MM-DD
+                                        return value.split('T')[0];
+                                    }
+                                }
                             },
-                            beginAtZero: true
-                        }
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Jumlah Pengaduan'
+                                },
+                                beginAtZero: true
+                            }
                         }
                     }
-                    });
                 });
-                </script>
+            });
+            </script>
+
 
 
 

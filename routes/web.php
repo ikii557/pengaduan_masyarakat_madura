@@ -5,13 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PengaduanController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TanggapanController;
 use App\Http\Controllers\MasyarakatController;
+use App\Http\Controllers\PengaturanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,14 @@ Route::post('/like-service', function (Request $request) {
 });
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('/pengaturan', [PengaturanController::class, 'index'])->name('pengaturan.index');
+    Route::post('/pengaturan/theme', [PengaturanController::class, 'switchTheme'])->name('pengaturan.theme');
+    Route::get('kalender',function(){
+        return view('fitur.kalender');
+    });
+    Route::get('maps',function(){
+        return view('fitur.maps');
+    });
 
     Route::middleware(['role:admin,petugas'])->group(function () {
         // index untuk admin dan petugas
