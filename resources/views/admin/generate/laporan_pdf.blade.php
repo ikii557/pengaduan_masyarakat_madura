@@ -132,8 +132,12 @@
 <body>
     <div class="container" id="report-section">
         <div class="header">
-            <h3>Laporan Pengaduan Masyarakat Madura</h3>
-            <p>Aplikasi: <strong>PeMasMA</strong></p>
+            <div class="card-header text-center">
+                {{-- <img src="{{ asset('storage/cilacaplogo.png') }}" alt="Cilacap Logo" style="height: 50px;"> --}}
+                <h3 class="mt-2">Laporan Pengaduan Masyarakat Madura</h3>
+            </div>
+            <p>Aplikasi: <strong>PAWAMA</strong></p>
+            <p style="font-size: 14px;"> jl.Raya Banjar-Majenang, Desa Madura, Kecamatan Wanareja, Kabupaten Cilacap, Jawa Tengah,</p>
             <div class="letterhead-line"></div>
         </div>
 

@@ -118,18 +118,20 @@
                                             Export
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Excel</a>
-                                            <a class="dropdown-item" href="#">PDF</a>
-                                            <a class="dropdown-item" href="#">CSV</a>
+                                            <a class="dropdown-item" href="{{ route('export.excel') }}">Excel</a>
+                                            <a class="dropdown-item" href="{{ route('export.pdf') }}">PDF</a>
+                                            <a class="dropdown-item" href="{{ route('export.csv') }}">CSV</a>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-category">{{ now()->translatedFormat('F Y') }}</div>
                         </div>
+
                         <div class="card-body pb-0">
                             <div class="mb-4 mt-2">
-                                <h1>{{ $tanggapanSelesai }}</h1>
+                                <h1>{{ $semuapengaduan ?? 0 }}</h1>
                             </div>
                             <div class="pull-in">
                                 <canvas id="dailySalesChart"></canvas>
@@ -137,6 +139,37 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Ensure Chart.js is loaded -->
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const ctx = document.getElementById('dailySalesChart').getContext('2d');
+                        const dailySalesChart = new Chart(ctx, {
+                            type: 'bar', // Change chart type if needed
+                            data: {
+                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                                datasets: [{
+                                    label: 'Laporan',
+                                    data: [10, 20, 30, 40, 50, 60], // Replace with dynamic data
+                                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    });
+                </script>
+
 
             </div>
 

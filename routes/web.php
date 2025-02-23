@@ -57,7 +57,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:admin,petugas'])->group(function () {
         // index untuk admin dan petugas
-        Route::get('/index', [DashboardController::class, 'index']);
+
+        Route::get('/index', [DashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/halamandepan', [DashboardController::class, 'halamandepan'])->name('dashboard.halamandepan');
+
+        // Export Routes
+        Route::get('/export/excel', [DashboardController::class, 'exportExcel'])->name('export.excel');
+        Route::get('/export/pdf', [DashboardController::class, 'exportPDF'])->name('export.pdf');
+        Route::get('/export/csv', [DashboardController::class, 'exportCSV'])->name('export.csv');
+
 
 
         Route::get('/search', [SearchController::class, 'search'])->name('search');
@@ -114,6 +122,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/destroy_tanggapan/{id}', [PengaduanController::class, 'hapus'])->name('tanggapan.destroy');
 
         Route::get('/masyarakat', [MasyarakatController::class, 'index']);
+        Route::get('tambah_masyarakat',[MasyarakatController::class,'create']);
+        Route::post('/store/masyarakat',[MasyarakatController::class,'store']);
         // Generate Reports
         Route::get('/generate_laporan', [PengaduanController::class, 'report'])->name('pengaduan.laporan');
         Route::get('/formulir_laporan', [PengaduanController::class, 'formulir'])->name('pengaduan.formulir');

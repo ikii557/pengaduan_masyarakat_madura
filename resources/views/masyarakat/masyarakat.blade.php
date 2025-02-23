@@ -103,7 +103,7 @@
     </section><!-- /About Section -->
 
     <!-- Stats Section -->
-    <section id="stats" class="stats section light-background">
+    {{-- <section id="stats" class="stats section light-background">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -152,10 +152,10 @@
 
       </div>
 
-    </section>
+    </section> --}}
 
     <!-- Services Section -->
-    <section id="services" class="services section">
+    {{-- <section id="services" class="services section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -226,7 +226,7 @@
 
       </div>
 
-    </section><!-- /Services Section -->
+    </section><!-- /Services Section --> --}}
 
     <!-- Call To Action Section -->
     <section id="call-to-action" class="call-to-action section dark-background">
@@ -255,7 +255,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>data perangkat desa</h2>
-        <div><span>daftar </span> <span class="description-title">Testimonials</span></div>
+        <div><span>daftar </span> <span class="description-title">perangkat desa</span></div>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -278,7 +278,7 @@
             </div>
           </div><!-- End testimonial item -->
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+          {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="testimonial-item">
               <img src="assetss/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
               <h3>Sara Wilsson</h3>
@@ -292,9 +292,9 @@
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
-          </div><!-- End testimonial item -->
+          </div><!-- End testimonial item --> --}}
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+          {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
             <div class="testimonial-item">
               <img src="assetss/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
               <h3>Jena Karlis</h3>
@@ -308,9 +308,9 @@
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
-          </div><!-- End testimonial item -->
+          </div><!-- End testimonial item --> --}}
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+          {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
             <div class="testimonial-item">
               <img src="assetss/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
               <h3>Matt Brandon</h3>
@@ -324,9 +324,9 @@
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
-          </div><!-- End testimonial item -->
+          </div><!-- End testimonial item --> --}}
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+          {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
             <div class="testimonial-item">
               <img src="assetss/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
               <h3>John Larson</h3>
@@ -340,9 +340,9 @@
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
-          </div><!-- End testimonial item -->
+          </div><!-- End testimonial item --> --}}
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
+          {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
             <div class="testimonial-item">
               <img src="assetss/img/testimonials/testimonials-6.jpg" class="testimonial-img" alt="">
               <h3>Emily Harison</h3>
@@ -356,7 +356,7 @@
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
-          </div><!-- End testimonial item -->
+          </div><!-- End testimonial item --> --}}
 
         </div>
 
@@ -365,7 +365,7 @@
     </section><!-- /Testimonials Section -->
 
     <!-- Team Section -->
-    <section id="team" class="team section">
+    {{-- <section id="team" class="team section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -453,7 +453,7 @@
 
       </div>
 
-    </section><!-- /Team Section -->
+    </section><!-- /Team Section --> --}}
     <section id="buatpengaduan" class="create_pengaduan section">
 
       <!-- Section Title -->
