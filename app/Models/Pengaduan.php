@@ -52,10 +52,15 @@ class Pengaduan extends Model
 
     // Relasi ke model Tanggapan
 // Relasi ke model Tanggapan
-    public function tanggapan()
-    {
-        return $this->hasMany(Tanggapan::class);
-    }
+    // Model Pengaduan.php
+    // App\Models\Pengaduan.php
+
+public function tanggapans()  // Perhatikan nama method pakai plural (bentuk jamak)
+{
+    return $this->hasMany(Tanggapan::class, 'pengaduan_id');
+}
+
+
 
 
 

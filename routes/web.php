@@ -5,13 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PengaduanController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TanggapanController;
 use App\Http\Controllers\MasyarakatController;
+use App\Http\Controllers\PengaturanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,10 +46,26 @@ Route::post('/like-service', function (Request $request) {
 });
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('/pengaturan', [PengaturanController::class, 'index'])->name('pengaturan.index');
+    Route::post('/pengaturan/theme', [PengaturanController::class, 'switchTheme'])->name('pengaturan.theme');
+    Route::get('kalender',function(){
+        return view('fitur.kalender');
+    });
+    Route::get('maps',function(){
+        return view('fitur.maps');
+    });
 
     Route::middleware(['role:admin,petugas'])->group(function () {
         // index untuk admin dan petugas
-        Route::get('/index', [DashboardController::class, 'index']);
+
+        Route::get('/index', [DashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/halamandepan', [DashboardController::class, 'halamandepan'])->name('dashboard.halamandepan');
+
+        // Export Routes
+        Route::get('/export/excel', [DashboardController::class, 'exportExcel'])->name('export.excel');
+        Route::get('/export/pdf', [DashboardController::class, 'exportPDF'])->name('export.pdf');
+        Route::get('/export/csv', [DashboardController::class, 'exportCSV'])->name('export.csv');
+
 
 
         Route::get('/search', [SearchController::class, 'search'])->name('search');
@@ -105,11 +122,12 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/destroy_tanggapan/{id}', [PengaduanController::class, 'hapus'])->name('tanggapan.destroy');
 
         Route::get('/masyarakat', [MasyarakatController::class, 'index']);
+        Route::get('tambah_masyarakat',[MasyarakatController::class,'create']);
+        Route::post('/store/masyarakat',[MasyarakatController::class,'store']);
         // Generate Reports
         Route::get('/generate_laporan', [PengaduanController::class, 'report'])->name('pengaduan.laporan');
         Route::get('/formulir_laporan', [PengaduanController::class, 'formulir'])->name('pengaduan.formulir');
         Route::get('/export-laporan', [PengaduanController::class, 'exportLaporan'])->name('pengaduan.export');
-
 
         Route::get('/profile', function () {
             return view('admin.profile.masyarakat');

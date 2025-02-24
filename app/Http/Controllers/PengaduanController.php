@@ -18,11 +18,12 @@ class PengaduanController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $petugas = Petugas::paginate(3); // Pagination for petugas
-    $pengaduans = Pengaduan::with('masyarakat', 'kategori')->latest()->paginate(3); // Pagination for pengaduans
-    return view('admin.laporan.laporan_keamanan', compact('petugas', 'pengaduans'));
-}
+    {
+        $petugas = Petugas::paginate(3); // Pagination for petugas
+        $pengaduans = Pengaduan::with('masyarakat', 'kategori')->latest()->paginate(3); // Pagination for pengaduans
+        return view('admin.laporan.laporan_keamanan', compact('petugas', 'pengaduans'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -43,55 +44,49 @@ class PengaduanController extends Controller
      */
 
 
-    public function store(Request $request)
-    {
-        // Validasi input
-        $request->validate([
-            'masyarakat_id' => 'nullable|exists:users,id',
-            'kategori_id' => 'required|exists:kategoris,id',
-            'tanggal_pengaduan' => 'required|date',
-            'isi_pengaduan' => 'required|string',
-            'foto' => 'nullable|mimes:jpeg,png,jpg|max:2048', // Tidak wajib, hanya jika ada input file
-            'status' => 'nullable|in:ditolak,0,proses,selesai',
-        ], [
-            'masyarakat_id.exists' => 'Nama masyarakat harus ada di tabel user.',
-            'kategori_id.required' => 'Kategori harus diisi.',
-            'kategori_id.exists' => 'Kategori yang dipilih tidak valid.',
-            'tanggal_pengaduan.required' => 'Tanggal pengaduan harus diisi.',
-            'tanggal_pengaduan.date' => 'Tanggal pengaduan harus berupa format tanggal yang valid.',
-            'isi_pengaduan.required' => 'Isi pengaduan harus diisi.',
-            'foto.image' => 'File yang diunggah harus berupa gambar.',
-            'foto.mimes' => 'Foto harus dalam format jpeg, png, atau jpg.',
-            'foto.max' => 'Ukuran foto maksimal 2MB.',
-            'status.in' => 'Status harus salah satu dari ditolak, 0, proses, atau selesai.',
-        ]);
+     public function store(Request $request)
+     {
+         // Validasi input
+         $request->validate([
+             'masyarakat_id' => 'nullable|exists:users,id',
+             'kategori_id' => 'required|exists:kategoris,id',
+             'tanggal_pengaduan' => 'nullable|date',
+             'isi_pengaduan' => 'required|string',
+             'foto' => 'nullable|mimes:jpeg,png,jpg|max:2048',
+             'status' => 'nullable|in:ditolak,0,proses,selesai',
+         ], [
+             'kategori_id.required' => 'Kategori harus diisi.',
+             'kategori_id.exists' => 'Kategori yang dipilih tidak valid.',
+             'isi_pengaduan.required' => 'Isi pengaduan harus diisi.',
+             'foto.mimes' => 'Foto harus dalam format jpeg, png, atau jpg.',
+             'foto.max' => 'Ukuran foto maksimal 2MB.',
+         ]);
 
+         $data = $request->except('foto');
 
-        $data = $request->except('foto');
+         // Jika ada file foto, upload dan simpan path-nya
+         if ($request->hasFile('foto')) {
+             $foto = $request->file('foto');
+             $path = $foto->storeAs(
+                 'public/foto_pengaduan',
+                 now()->format('Y-m-d_H-i-s') . '.' . $foto->getClientOriginalExtension()
+             );
+             $data['foto'] = $path;
+         }
 
-        // Jika ada file foto, upload dan simpan path-nya
-        if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-            $path = $foto->storeAs(
-                'public/foto_pengaduan', // Folder dalam public
-                now()->format('Y-m-d_H-i-s') . '.' . $foto->getClientOriginalExtension() // Nama file
-            );
-            $data['foto'] = $path;
-        }
+         // Simpan data pengaduan
+         $pengaduan = new Pengaduan();
+         $pengaduan->masyarakat_id = auth()->user()->id; // Ambil ID user yang login
+         $pengaduan->kategori_id = $request->kategori_id;
+         $pengaduan->tanggal_pengaduan = $request->tanggal_pengaduan ?? now(); // Set waktu sekarang jika kosong
+         $pengaduan->isi_pengaduan = $request->isi_pengaduan;
+         $pengaduan->foto = $data['foto'] ?? null;
+         $pengaduan->status = '0';
+         $pengaduan->save();
 
-        // Simpan data pengaduan
-        $pengaduan = new Pengaduan();
-        $pengaduan->masyarakat_id = auth()->user()->id; // Ambil ID user yang login
-        $pengaduan->kategori_id = $request->kategori_id;
-        $pengaduan->tanggal_pengaduan = $request->tanggal_pengaduan;
-        $pengaduan->isi_pengaduan = $request->isi_pengaduan;
-        $pengaduan->foto = $data['foto'] ?? null; // Pastikan foto tersimpan dengan benar
-        $pengaduan->status = '0'; // Status default
-        $pengaduan->save();
+         return redirect('daftar_pengaduan')->with('success', 'Data Berhasil Dibuat');
+     }
 
-        return redirect('daftar_pengaduan')->with('success', 'Data Berhasil Dibuat');
-
-    }
 
 
 
@@ -234,18 +229,15 @@ class PengaduanController extends Controller
 
         public function exportLaporan(Request $request)
         {
-            $query = Pengaduan::with(['petugas', 'kategori', 'tanggapan.petugas']);
+            $query = Pengaduan::with(['petugas', 'kategori', 'tanggapans.petugas']);
 
-            // Filter berdasarkan rentang tanggal
+            // Filter berdasarkan bulan (jika ada)
             if ($request->filled('start_date')) {
-                $query->whereDate('tanggal_pengaduan', '>=', $request->start_date);
+                $month = $request->start_date;
+                $query->whereMonth('tanggal_pengaduan', $month);
             }
 
-            if ($request->filled('end_date')) {
-                $query->whereDate('tanggal_pengaduan', '<=', $request->end_date);
-            }
-
-            // Filter berdasarkan status
+            // Filter berdasarkan status (jika ada)
             if ($request->filled('status')) {
                 $query->where('status', $request->status);
             }
@@ -257,8 +249,10 @@ class PengaduanController extends Controller
             $pdf = Pdf::loadView('admin.generate.laporan_pdf', compact('pengaduans'))
                       ->setPaper('A4', 'portrait');
 
-            return $pdf->download('laporan_pengaduan.pdf');
+            return $pdf->stream('laporan_pengaduan.pdf');
         }
+
+
 
 
 

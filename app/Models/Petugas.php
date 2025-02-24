@@ -18,6 +18,7 @@ class Petugas extends Model
         'nik',
         'nama_lengkap',
         'jenis_kelamin',
+        'email',
         'username',
         'password',
         'no_telepon',

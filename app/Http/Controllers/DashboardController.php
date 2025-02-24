@@ -44,6 +44,8 @@ class DashboardController extends Controller
         $totalPengaduan = array_sum($data);
 
 
+        
+
 
         return view('admin.dasboard', compact('admins','labels', 'data', 'pengaduans', 'tanggapanSelesai','pengaduanDiproses', 'totaladmin','totalPengaduan'));
     }

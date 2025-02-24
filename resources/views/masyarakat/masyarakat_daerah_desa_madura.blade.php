@@ -15,6 +15,7 @@
           <div class="carousel-container">
             <h2>Welcome to Pengaduan Masyarakat Madura<br></h2>
             <p>Ajukan keluhan anda selama menjadi warga desa madura wanareja</p>
+            <a href="#about" class="btn-get-started">Read More</a>
           </div>
         </div><!-- End Carousel Item -->
 
@@ -23,6 +24,7 @@
           <div class="carousel-container">
             <h2>Desa Madura </h2>
             <p>Lakukan kinerja anda selama menjadi masyarakat madura</p>
+            <a href="#about" class="btn-get-started">Read More</a>
           </div>
         </div><!-- End Carousel Item -->
 
@@ -31,6 +33,7 @@
           <div class="carousel-container">
             <h2>Pengaduan Masyarakat Madura </h2>
             <p>Pengaduan ini hanyalah di bagian tempat anda jika belum mendapatkan bantuan atau belum menerima perbaikan dari kami </p>
+            <a href="#about" class="btn-get-started">Read More</a>
           </div>
         </div><!-- End Carousel Item -->
 
@@ -100,37 +103,31 @@
     </section><!-- /About Section -->
 
     <!-- Stats Section -->
-    <section id="stats" class="stats section light-background">
+    {{-- <section id="stats" class="stats section light-background">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-4">
 
           <div class="col-lg-3 col-md-6">
-            <div class="stats-item">
-                <i class="bi bi-emoji-smile"></i>
-                <span
-                    data-purecounter-start="0"
-                    data-purecounter-end="11840"
-                    data-purecounter-duration="3"
-                    data-purecounter-separator="true"
-                    class="purecounter">
-                </span> jiwa
-                <p><strong>Seluruh Penduduk</strong> <span>Desa Madura</span></p>
-            </div>
+          <div class="stats-item">
+    <i class="bi bi-emoji-smile"></i>
+    <span
+        data-purecounter-start="0"
+        data-purecounter-end="11840"
+        data-purecounter-duration="3"
+        data-purecounter-separator="true"
+        class="purecounter">
+    </span> jiwa
+    <p><strong>Seluruh Penduduk</strong> <span>Desa Madura</span></p>
+</div>
 
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-journal-richtext"></i>
-              <span
-                    data-purecounter-start="0"
-                    data-purecounter-end="11840"
-                    data-purecounter-duration="3"
-                    data-purecounter-separator="true"
-                    class="purecounter">
-                </span>
+              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
               <p><strong>Projects</strong> <span>adipisci atque cum quia aut</span></p>
             </div>
           </div><!-- End Stats Item -->
@@ -138,27 +135,15 @@
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-headset"></i>
-              <span
-                    data-purecounter-start="0"
-                    data-purecounter-end="5"
-                    data-purecounter-duration="5"
-                    data-purecounter-separator="true"
-                    class="purecounter">
-                </span>
-              <p><strong>Jumlah admin </strong> <span>Desa madura </span></p>
+              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Hours Of Support</strong> <span>aut commodi quaerat</span></p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <i class="bi bi-people"></i>
-              <span
-                    data-purecounter-start="0"
-                    data-purecounter-end="11840"
-                    data-purecounter-duration="3"
-                    data-purecounter-separator="true"
-                    class="purecounter">
-                </span>
+              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
               <p><strong>Hard Workers</strong> <span>rerum asperiores dolor</span></p>
             </div>
           </div><!-- End Stats Item -->
@@ -167,10 +152,10 @@
 
       </div>
 
-    </section>
+    </section> --}}
 
     <!-- Services Section -->
-    <section id="services" class="services section">
+    {{-- <section id="services" class="services section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -241,19 +226,19 @@
 
       </div>
 
-    </section><!-- /Services Section -->
+    </section><!-- /Services Section --> --}}
 
     <!-- Call To Action Section -->
     <section id="call-to-action" class="call-to-action section dark-background">
 
-      <img src="{{ asset('assetss/img/cta-bg.jpg') }}" alt="">
+      <img src="assetss/img/cta-bg.jpg" alt="">
 
       <div class="container">
         <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-xl-10">
             <div class="text-center">
-              <h3>Pengaduan Masyarakat</h3>
-              <p>buatlah pengaduan anda jika ada ketidaknyamanan anda selasma menjadi masyarakat madura, anda bisa melaporkan nya </p>
+              <h3>Call To Action</h3>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               <a class="cta-btn" href="daftar_pengaduan">Laporakan Pengaduan</a>
             </div>
           </div>
@@ -270,7 +255,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>data perangkat desa</h2>
-        <div><span>daftar </span> <span class="description-title">Testimonials</span></div>
+        <div><span>daftar </span> <span class="description-title">perangkat desa</span></div>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -293,7 +278,7 @@
             </div>
           </div><!-- End testimonial item -->
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+          {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="testimonial-item">
               <img src="assetss/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
               <h3>Sara Wilsson</h3>
@@ -307,9 +292,9 @@
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
-          </div><!-- End testimonial item -->
+          </div><!-- End testimonial item --> --}}
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+          {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
             <div class="testimonial-item">
               <img src="assetss/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
               <h3>Jena Karlis</h3>
@@ -323,9 +308,9 @@
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
-          </div><!-- End testimonial item -->
+          </div><!-- End testimonial item --> --}}
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+          {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
             <div class="testimonial-item">
               <img src="assetss/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
               <h3>Matt Brandon</h3>
@@ -339,9 +324,9 @@
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
-          </div><!-- End testimonial item -->
+          </div><!-- End testimonial item --> --}}
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+          {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
             <div class="testimonial-item">
               <img src="assetss/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
               <h3>John Larson</h3>
@@ -355,9 +340,9 @@
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
-          </div><!-- End testimonial item -->
+          </div><!-- End testimonial item --> --}}
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
+          {{-- <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
             <div class="testimonial-item">
               <img src="assetss/img/testimonials/testimonials-6.jpg" class="testimonial-img" alt="">
               <h3>Emily Harison</h3>
@@ -371,7 +356,7 @@
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
-          </div><!-- End testimonial item -->
+          </div><!-- End testimonial item --> --}}
 
         </div>
 
@@ -390,86 +375,86 @@
 
       <div class="container">
 
-        <div class="row gy-4">
+      <div class="row gy-4">
 
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-            <img src="{{ Storage::url('foto_admin/3iQSVPKvGcLQ8Y3BA6kbbDqNagLfiBcffOh6FmyQ.jpg') }}" alt="Foto Pengaduan" width="250">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>rifki hadid anwar</h4>
-                  <span>Chief Executive Officer</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
+        <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="member">
+        <img src="{{ Storage::url('foto_admin/3iQSVPKvGcLQ8Y3BA6kbbDqNagLfiBcffOh6FmyQ.jpg') }}" alt="Foto Pengaduan" width="250">
+            <div class="member-info">
+            <div class="member-info-content">
+                <h4>rifki hadid anwar</h4>
+                <span>Chief Executive Officer</span>
             </div>
-          </div><!-- End Team Member -->
+            <div class="social">
+                <a href=""><i class="bi bi-twitter-x"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+            </div>
+        </div>
+        </div><!-- End Team Member -->
 
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-            <img src="{{ Storage::url('foto_admin/0c0a3VHOJqoQoMsznTW03s6rGGtlCa7bbwKI9sQk.jpg') }}" alt="Foto Pengaduan" width="300">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>shela meirani</h4>
-                  <span>Product Manager</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
+        <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="member">
+        <img src="{{ Storage::url('foto_admin/0c0a3VHOJqoQoMsznTW03s6rGGtlCa7bbwKI9sQk.jpg') }}" alt="Foto Pengaduan" width="300">
+            <div class="member-info">
+            <div class="member-info-content">
+                <h4>shela meirani</h4>
+                <span>Product Manager</span>
             </div>
-          </div><!-- End Team Member -->
+            <div class="social">
+                <a href=""><i class="bi bi-twitter-x"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+            </div>
+        </div>
+        </div><!-- End Team Member -->
 
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-            <img src="{{ Storage::url('foto_admin/3iQSVPKvGcLQ8Y3BA6kbbDqNagLfiBcffOh6FmyQ.jpg') }}" alt="Foto Pengaduan" width="250">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>rifki hadid anwar</h4>
-                  <span>CTO</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
+        <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="member">
+        <img src="{{ Storage::url('foto_admin/3iQSVPKvGcLQ8Y3BA6kbbDqNagLfiBcffOh6FmyQ.jpg') }}" alt="Foto Pengaduan" width="250">
+            <div class="member-info">
+            <div class="member-info-content">
+                <h4>rifki hadid anwar</h4>
+                <span>CTO</span>
             </div>
-          </div><!-- End Team Member -->
+            <div class="social">
+                <a href=""><i class="bi bi-twitter-x"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+            </div>
+        </div>
+        </div><!-- End Team Member -->
 
-          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="member">
-            <img src="{{ Storage::url('foto_admin/0c0a3VHOJqoQoMsznTW03s6rGGtlCa7bbwKI9sQk.jpg') }}" alt="Foto Pengaduan" width="300">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>shela meirani</h4>
-                  <span>Accountant</span>
-                </div>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
+        <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+        <div class="member">
+        <img src="{{ Storage::url('foto_admin/0c0a3VHOJqoQoMsznTW03s6rGGtlCa7bbwKI9sQk.jpg') }}" alt="Foto Pengaduan" width="300">
+            <div class="member-info">
+            <div class="member-info-content">
+                <h4>shela meirani</h4>
+                <span>Accountant</span>
             </div>
-          </div><!-- End Team Member -->
+            <div class="social">
+                <a href=""><i class="bi bi-twitter-x"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+            </div>
+        </div>
+        </div><!-- End Team Member -->
 
         </div>
 
       </div>
 
     </section><!-- /Team Section --> --}}
-    <section id="buatpengaduan" class="create_pengaduan section">
+    {{-- <section id="buatpengaduan" class="create_pengaduan section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -525,6 +510,87 @@
           </div>
 
           <div class="col-lg-6">
+          <form action="/store/pengaduan" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+
+                        <input type="hidden" value="{{ auth()->user()->id }}" name="masyarakat_id" id="masyarakat_id">
+
+
+                        </div>
+                        <div class="col-md-12">
+                            <label for="kategori_id" class="form-label fw-semibold">Masukan Kategori</label>
+                            <select name="kategori_id" class="form-control" required>
+                                <option value="{{old('kategori_id')}}">-- Pilih Kategori --</option>
+                                @foreach($kategoris as $kategori)
+                                    <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                                @endforeach
+                            </select>
+                            @error('kategori_id')
+                                <p class="text-danger small">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+
+                        <div class="col-md-12">
+                            <label for="tanggal_pengaduan" class="form-label fw-semibold">Tanggal Pengaduan</label>
+                            <input type="datetime-local" name="tanggal_pengaduan" id="tanggal_pengaduan" class="form-control form-control-lg" required>
+                            @error('tanggal_pengaduan')
+                                <p class="text-danger small">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <script>
+                            // Set tanggal dan waktu saat ini di input
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const now = new Date();
+                                const year = now.getFullYear();
+                                const month = String(now.getMonth() + 1).padStart(2, '0'); // Bulan dimulai dari 0
+                                const day = String(now.getDate()).padStart(2, '0');
+                                const hours = String(now.getHours()).padStart(2, '0');
+                                const minutes = String(now.getMinutes()).padStart(2, '0');
+
+                                const currentDatetime = `${year}-${month}-${day}T${hours}:${minutes}`;
+                                document.getElementById('tanggal_pengaduan').value = currentDatetime;
+                            });
+                        </script>
+
+
+
+                        <div class="col-12 mb-3">
+                            <label for="foto">Upload Foto (Opsional)</label>
+                            <input type="file" id="foto" name="foto" class="form-control" accept="image/png, image/jpeg, image/jpg">
+                            @error('foto')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+
+
+
+                    </div>
+
+
+                    <div class="row mb-4">
+                    <div class="col-12 mb-3">
+                            <label for="isi_pengaduan">Isi Pengaduan</label>
+                            <textarea name="isi_pengaduan" class="form-control" rows="6" placeholder="Deskripsi Pengaduan Anda" >{{ old('isi_pengaduan') }}</textarea>
+                            @error('isi_pengaduan')
+                                <p class="text-danger">{{$message}}</p>
+                            @enderror
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Simpan Data Laporan</button>
+                    </div>
+                </form>
 
           </div><!-- End Contact Form -->
 
@@ -532,8 +598,85 @@
 
       </div>
 
-    </section><!-- /Contact Section -->
+    </section><!-- /Contact Section --> --}}
+    {{-- <section id="create_pengaduan" class="create_pengaduan section"> --}}
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Daftar Pengaduan</h2>
+    </div><!-- End Section Title -->
 
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-body">
+            <div class="table-responsive">
+                {{-- <table class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Masyarakat</th>
+                            <th>Kategori Pengaduan</th>
+                            <th>Tanggal Pengaduan</th>
+                            <th>Isi Laporan</th>
+                            <th>Foto</th>
+                            <th>Status</th>
+                            <th class="{{ auth()->user()->role == 'masyarakat' ? 'd-none' : '' }}">Opsi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @php $no = 1; @endphp
+                    @foreach ($pengaduans as $index => $pengaduan)
+                        <tr>
+                            <td>{{ $pengaduans->firstItem() + $index }}</td>
+                            <td>{{ $pengaduan->masyarakat->nama_lengkap ?? 'Tidak Ada Data' }}</td>
+                            <td>{{ $pengaduan->kategori->nama_kategori ?? 'Tidak Ada Data' }}</td>
+                            <td>{{ $pengaduan->tanggal_pengaduan }}</td>
+                            <td>{{ $pengaduan->isi_pengaduan }}</td>
+                            <td>
+                                @if ($pengaduan->foto)
+                                    <img src="{{ Storage::url($pengaduan->foto) }}" alt="Foto Pengaduan" width="100">
+                                @else
+                                    Tidak ada foto
+                                @endif
+                            </td>
+                            <td>
+                                @if(in_array($pengaduan->status, ['diproses', 'selesai', 'ditolak']))
+                                    <a href="/tanggapandariadmin/{{$pengaduan->id}}">
+                                        <span class="badge
+                                            @if($pengaduan->status == 'diproses') bg-info
+                                            @elseif($pengaduan->status == 'selesai') bg-success
+                                            @elseif($pengaduan->status == 'ditolak') bg-danger
+                                            @endif">
+                                            {{ ucfirst($pengaduan->status) }}
+                                        </span>
+                                    </a>
+                                @else
+                                    <span class="badge bg-warning">
+                                        Belum Ada Respon
+                                    </span>
+                                @endif
+                            </td>
+
+                            @if(auth()->user()->role !== 'masyarakat')
+                                <td>
+                                    <a href="{{ route('admin.tanggapan.create', ['id' => $pengaduan->id]) }}" class="btn btn-warning btn-sm">c</a>
+                                    <a href="/edit_pengaduan/{{$pengaduan->id}}" class="btn btn-sm btn-info mt-1">E</a>
+                                    <form action="" method="POST" style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus pengaduan ini?')">H</button>
+                                    </form>
+                                </td>
+                            @endif
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table> --}}
+            </div>
+        </div>
+        {{-- <div class="d-flex justify-content-center">
+            {{ $pengaduans->links() }}
+        </div> --}}
+    </div>
+</section>
 
 
     <!-- Contact Section -->

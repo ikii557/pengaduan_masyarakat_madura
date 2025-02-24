@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nik')->unique();
             $table->string('nama_lengkap');
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
+            $table->string('email')->unique();
             $table->string('username')->unique();
             $table->string('password');
             $table->string('no_telepon', 15);
