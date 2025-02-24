@@ -2,37 +2,6 @@
 
 @section('content')
 
-@if(session('success'))
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: '{{ session('success') }}',
-            showConfirmButton: false,
-            timer: 3000,
-            toast: false,
-            position: 'center'
-        });
-    });
-</script>
-@endif
-
-@if(session('error'))
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        Swal.fire({
-            icon: 'error',
-            title: 'Gagal!',
-            text: '{{ session('error') }}',
-            showConfirmButton: false,
-            timer: 3000,
-            toast: false,
-            position: 'center'
-        });
-    });
-</script>
-@endif
 
 <div class="row">
     <!-- Form Tambah Kategori -->

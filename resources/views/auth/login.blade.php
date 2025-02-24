@@ -49,6 +49,13 @@
             <!-- Login Form -->
             <form action="/store/login" method="post" class="mt-4">
                 @csrf
+                <div class="form-group">
+                    <label>Email</label>
+                    <input name="email" type="email" class="form-control" placeholder="Masukkan email" required>
+                    @error('email')
+                        <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
                 <!-- Username Input -->
                 <div class="form-group mb-3">
                     <label for="username"><strong>Username</strong></label>

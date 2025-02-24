@@ -79,7 +79,13 @@
                     <p class="text-danger">{{$message}}</p>
                 @enderror
             </div>
-
+            <div class="form-group">
+                <label>Email</label>
+                <input name="email"  value="{{old('email')}}" type="email" class="form-control" placeholder="Masukkan email" required>
+                @error('email')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
+            </div>
             <div class="form-group">
                 <label><strong>Username</strong></label>
                 <input name="username" value="{{old('username')}}" type="text" class="form-control" placeholder="masukan username">

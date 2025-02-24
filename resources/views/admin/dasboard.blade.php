@@ -149,10 +149,10 @@
                         const dailySalesChart = new Chart(ctx, {
                             type: 'bar', // Change chart type if needed
                             data: {
-                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'des'],
                                 datasets: [{
                                     label: 'Laporan',
-                                    data: [10, 20, 30, 40, 50, 60], // Replace with dynamic data
+                                    data: data, // Replace with dynamic data
                                     backgroundColor: 'rgba(54, 162, 235, 0.5)',
                                     borderColor: 'rgba(54, 162, 235, 1)',
                                     borderWidth: 1

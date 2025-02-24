@@ -28,7 +28,7 @@
             @foreach ($tanggapans as $index => $tanggapan)
                 <tr>
                     <td>{{ $tanggapans->firstItem() + $index }}</td>
-                    <td>{{ $tanggapan->pengaduan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td> <!-- Nama pengaduan -->
+                    <td>{{ $tanggapan->pengaduan->masyarakat->nama_lengkap ?? 'Tidak Ada Data' }}</td> <!-- Nama pengaduan -->
                     <td>{{ $tanggapan->tanggal_tanggapan }}</td>
                     <td>{{ $tanggapan->tanggapan }}</td>
                     <td>{{ $tanggapan->petugas->nama_lengkap ?? 'Tidak Ada Data' }}</td> <!-- Nama petugas -->
