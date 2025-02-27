@@ -21,9 +21,6 @@ return new class extends Migration
             $table->enum('status', ['ditolak','0', 'diproses', 'selesai'])->default('0'); // Perbaikan default value
             $table->timestamps();
         });
-
-
-
     }
 
     /**
