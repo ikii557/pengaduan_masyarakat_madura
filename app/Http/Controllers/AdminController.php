@@ -42,6 +42,7 @@ class AdminController extends Controller
             'nik'           => 'required|string|unique:users,nik', // Menambahkan regex untuk validasi NIK (hanya angka, 16 karakter)
             'nama_lengkap'  => 'required|string|max:255',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+            'email' => 'required|string|email|unique:users,email',
             'username'      => 'required|string|unique:users,username',
             'password'      => 'required|string|min:8',
             'no_telepon'    => 'required|string|max:15|regex:/^\+?[\d\s\-]+$/', // Regex untuk validasi nomor telepon (opsional format negara)
@@ -69,6 +70,7 @@ class AdminController extends Controller
             'nama_petugas'  => $request->nama_petugas,
             'nama_lengkap'  => $request->nama_lengkap,
             'jenis_kelamin' => $request->jenis_kelamin,
+            'email'         => $request->email,
             'username'      => $request->username,
             'password'      => bcrypt($request->password),
             'no_telepon'    => $request->no_telepon,

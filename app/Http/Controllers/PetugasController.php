@@ -27,6 +27,7 @@ class PetugasController extends Controller {
             'nik' => 'required|string|max:16|unique:users,nik',
             'nama_lengkap' => 'required|string|max:255',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+            'email' => 'required|string|email|unique:users,email',
             'username' => 'required|string|max:255|unique:users,username',
             'password' => 'required|string|min:8',
             'no_telepon' => 'required|string|max:15|regex:/^[0-9]+$/',
@@ -39,6 +40,7 @@ class PetugasController extends Controller {
             'nik' => $request->nik,
             'nama_lengkap' => $request->nama_lengkap,
             'jenis_kelamin' => $request->jenis_kelamin,
+            'email' => $request->email,
             'username' => $request->username,
             'password' => bcrypt($request->password), // Hash password
             'no_telepon' => $request->no_telepon,
