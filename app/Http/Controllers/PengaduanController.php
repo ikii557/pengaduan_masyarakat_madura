@@ -20,7 +20,8 @@ class PengaduanController extends Controller
     public function index()
     {
         $petugas = Petugas::paginate(3); // Pagination for petugas
-        $pengaduans = Pengaduan::with('masyarakat', 'kategori')->latest()->paginate(3); // Pagination for pengaduans
+        $pengaduans = Pengaduan::with('masyarakat', 'kategori')->latest()->paginate(10); // Pagination for pengaduans
+
         return view('admin.laporan.laporan_keamanan', compact('petugas', 'pengaduans'));
     }
 
@@ -134,23 +135,18 @@ class PengaduanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-        public function destroy($id)
-        {
-            // Mencari pengaduan berdasarkan ID
-            $pengaduan = Pengaduan::findOrFail($id);
+    public function destroy($id)
+    {
+        $pengaduan = Pengaduan::findOrFail($id);
 
-            // Hapus foto jika ada
-            if ($pengaduan->foto) {
-                // Menghapus file foto dari storage
-                Storage::delete($pengaduan->foto);
-            }
-
-            // Hapus pengaduan
+        // Hanya bisa menghapus jika status bukan selesai atau ditolak
+        if (!in_array($pengaduan->status, ['selesai', 'ditolak'])) {
             $pengaduan->delete();
-
-            // Redirect ke halaman daftar pengaduan dengan pesan sukses
-            return redirect('data_pengaduan')->with('success', 'Pengaduan berhasil dihapus');
+            return redirect()->route('data_pengaduan')->with('success', 'Pengaduan berhasil dihapus.');
+        } else {
+            return redirect()->route('data_pengaduan')->with('error', 'Pengaduan tidak bisa dihapus.');
         }
+    }
 
 
 

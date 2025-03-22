@@ -402,7 +402,7 @@ h6 {
 
   .navmenu a,
   .navmenu a:focus {
-    color: var(--nav-dropdown-color);
+    color: black; /* Warna teks hitam */
     padding: 10px 20px;
     font-family: var(--nav-font);
     font-size: 17px;
@@ -438,7 +438,7 @@ h6 {
   .navmenu a:hover,
   .navmenu .active,
   .navmenu .active:focus {
-    color: var(--nav-dropdown-hover-color);
+    color: #ffcc00; /* Warna kuning saat hover */
   }
 
   .navmenu .active i,
@@ -464,7 +464,7 @@ h6 {
     background-color: rgba(33, 37, 41, 0.1);
   }
 
-  .navmenu .dropdown>.dropdown-active {
+  .navmenu .dropdown > .dropdown-active {
     display: block;
     background-color: rgba(33, 37, 41, 0.03);
   }
@@ -491,10 +491,69 @@ h6 {
     transition: 0.3s;
   }
 
-  .mobile-nav-active .navmenu>ul {
+  .mobile-nav-active .navmenu > ul {
     display: block;
   }
+
+  .navmenu ul li a {
+    color: black !important; /* Warna teks hitam */
+  }
+
+  .navmenu ul li a:hover {
+    color: #ffcc00; /* Warna kuning saat hover */
+  }
 }
+
+@media (max-width: 768px) {
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        display: block;
+    }
+
+    .table thead {
+        display: none; /* Sembunyikan header di tampilan mobile */
+    }
+
+    .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .table td {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: capitalize;
+        flex: 1;
+        padding-right: 10px;
+    }
+
+    /* Untuk gambar agar tetap rapi */
+    .table td img {
+        max-width: 80px;
+        height: auto;
+    }
+}
+
 
 /*--------------------------------------------------------------
 # Global Footer

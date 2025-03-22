@@ -13,9 +13,9 @@
         <div class="carousel-item active">
           <img src="{{asset('assetss/img/hero-carousel/masjid.jpeg')}}" alt="">
           <div class="carousel-container">
-            <h2>Welcome to Pengaduan Masyarakat Madura<br></h2>
+            <h2>Pengaduan Masyarakat Madura<br></h2>
             <p>Ajukan keluhan anda selama menjadi warga desa madura wanareja</p>
-            <a href="#about" class="btn-get-started">Read More</a>
+            <a href="daftar_pengaduan" class="btn-get-started">Buat Laporan</a>
           </div>
         </div><!-- End Carousel Item -->
 
@@ -24,7 +24,7 @@
           <div class="carousel-container">
             <h2>Desa Madura </h2>
             <p>Lakukan kinerja anda selama menjadi masyarakat madura</p>
-            <a href="#about" class="btn-get-started">Read More</a>
+            <a href="daftar_pengaduan" class="btn-get-started">Buat Laporan</a>
           </div>
         </div><!-- End Carousel Item -->
 
@@ -33,7 +33,7 @@
           <div class="carousel-container">
             <h2>Pengaduan Masyarakat Madura </h2>
             <p>Pengaduan ini hanyalah di bagian tempat anda jika belum mendapatkan bantuan atau belum menerima perbaikan dari kami </p>
-            <a href="#about" class="btn-get-started">Read More</a>
+            <a href="daftar_pengaduan" class="btn-get-started">Buat Laporan</a>
           </div>
         </div><!-- End Carousel Item -->
 
@@ -52,7 +52,7 @@
     </section><!-- /Hero Section -->
 
     <!-- About Section -->
-    <section id="about" class="about section">
+    {{-- <section id="about" class="about section">
 
       <div class="container">
 
@@ -100,7 +100,7 @@
 
       </div>
 
-    </section><!-- /About Section -->
+    </section><!-- /About Section --> --}}
 
     <!-- Stats Section -->
     {{-- <section id="stats" class="stats section light-background">
@@ -229,7 +229,7 @@
     </section><!-- /Services Section --> --}}
 
     <!-- Call To Action Section -->
-    <section id="call-to-action" class="call-to-action section dark-background">
+    {{-- <section id="call-to-action" class="call-to-action section dark-background">
 
       <img src="assetss/img/cta-bg.jpg" alt="">
 
@@ -245,7 +245,7 @@
         </div>
       </div>
 
-    </section><!-- /Call To Action Section -->
+    </section><!-- /Call To Action Section --> --}}
 
     <!-- Portfolio Section -->
 
@@ -253,10 +253,10 @@
     <section id="dataperangkatdesa" class="testimonials section">
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
+      {{-- <div class="container section-title" data-aos="fade-up">
         <h2>data perangkat desa</h2>
         <div><span>daftar </span> <span class="description-title">perangkat desa</span></div>
-      </div><!-- End Section Title -->
+      </div><!-- End Section Title --> --}}
 
       <div class="container">
 
@@ -601,9 +601,9 @@
     </section><!-- /Contact Section --> --}}
     {{-- <section id="create_pengaduan" class="create_pengaduan section"> --}}
     <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
+    {{-- <div class="container section-title" data-aos="fade-up">
         <h2>Daftar Pengaduan</h2>
-    </div><!-- End Section Title -->
+    </div><!-- End Section Title --> --}}
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="card-body">

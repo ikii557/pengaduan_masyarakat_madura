@@ -148,6 +148,7 @@ public function storeregister(Request $request)
     // Validasi input
     $request->validate([
         'email'    => 'required|email',  // Email harus berupa format email yang valid
+        'username' => 'required',
         'password' => 'required|string|min:8',
     ], [
         'email.required' => 'Email harus diisi.',
@@ -160,6 +161,7 @@ public function storeregister(Request $request)
     // Proses autentikasi menggunakan email
     if (Auth::attempt([
         'email' => $request->email,  // Gunakan email untuk login
+        'username' => $request->username,
         'password' => $request->password
     ])) {
         $request->session()->regenerate();
