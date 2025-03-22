@@ -2,6 +2,8 @@
 
 use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\SidebarController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NavbarController;
@@ -56,7 +58,11 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['role:admin,petugas'])->group(function () {
-        // index untuk admin dan petugas
+
+
+        Route::get('/sidebar-menu', [SidebarController::class, 'fetchMenu'])->name('sidebar.fetch');
+
+// index untuk admin dan petugas
 
         Route::get('/index', [DashboardController::class, 'index'])->name('dashboard.index');
         Route::get('/halamandepan', [DashboardController::class, 'halamandepan'])->name('dashboard.halamandepan');
@@ -78,7 +84,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('kategori', [KategoriController::class, 'index']);
 
         // pengaduan untuk petugas
-        Route::get('data_pengaduan', [PengaduanController::class, 'index']);
+        Route::get('data_pengaduan', [PengaduanController::class, 'index'])->name('data_pengaduan');
 
         // tanggapan
         Route::get('data_tanggapan', [PengaduanController::class, 'tanggapan'])->name('tanggapan.index');

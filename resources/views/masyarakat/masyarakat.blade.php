@@ -13,7 +13,7 @@
         <div class="carousel-item active">
           <img src="{{asset('assetss/img/hero-carousel/masjid.jpeg')}}" alt="">
           <div class="carousel-container">
-            <h2>Welcome to Pengaduan Masyarakat Madura<br></h2>
+            <h2>Pengaduan Masyarakat Madura<br></h2>
             <p>Ajukan keluhan anda selama menjadi warga desa madura wanareja</p>
             <a href="#about" class="btn-get-started">Read More</a>
           </div>
@@ -622,53 +622,51 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @php $no = 1; @endphp
-                    @foreach ($pengaduans as $index => $pengaduan)
-                        <tr>
-                            <td>{{ $pengaduans->firstItem() + $index }}</td>
-                            <td>{{ $pengaduan->masyarakat->nama_lengkap ?? 'Tidak Ada Data' }}</td>
-                            <td>{{ $pengaduan->kategori->nama_kategori ?? 'Tidak Ada Data' }}</td>
-                            <td>{{ $pengaduan->tanggal_pengaduan }}</td>
-                            <td>{{ $pengaduan->isi_pengaduan }}</td>
-                            <td>
-                                @if ($pengaduan->foto)
-                                    <img src="{{ Storage::url($pengaduan->foto) }}" alt="Foto Pengaduan" width="100">
-                                @else
-                                    Tidak ada foto
-                                @endif
-                            </td>
-                            <td>
-                                @if(in_array($pengaduan->status, ['diproses', 'selesai', 'ditolak']))
-                                    <a href="/tanggapandariadmin/{{$pengaduan->id}}">
-                                        <span class="badge
-                                            @if($pengaduan->status == 'diproses') bg-info
-                                            @elseif($pengaduan->status == 'selesai') bg-success
-                                            @elseif($pengaduan->status == 'ditolak') bg-danger
-                                            @endif">
-                                            {{ ucfirst($pengaduan->status) }}
-                                        </span>
-                                    </a>
-                                @else
-                                    <span class="badge bg-warning">
-                                        Belum Ada Respon
-                                    </span>
-                                @endif
-                            </td>
+@foreach ($pengaduans as $index => $pengaduan)
+    <tr>
+        <td data-label="No">{{ $pengaduans->firstItem() + $index }}</td>
+        <td data-label="Nama Masyarakat">{{ $pengaduan->masyarakat->nama_lengkap ?? 'Tidak Ada Data' }}</td>
+        <td data-label="Kategori Pengaduan">{{ $pengaduan->kategori->nama_kategori ?? 'Tidak Ada Data' }}</td>
+        <td data-label="Tanggal Pengaduan">{{ $pengaduan->tanggal_pengaduan }}</td>
+        <td data-label="Isi Laporan">{{ $pengaduan->isi_pengaduan }}</td>
+        <td data-label="Foto">
+            @if ($pengaduan->foto)
+                <img src="{{ Storage::url($pengaduan->foto) }}" alt="Foto Pengaduan" width="100">
+            @else
+                Tidak ada foto
+            @endif
+        </td>
+        <td data-label="Status">
+            @if(in_array($pengaduan->status, ['diproses', 'selesai', 'ditolak']))
+                <a href="/tanggapandariadmin/{{$pengaduan->id}}">
+                    <span class="badge
+                        @if($pengaduan->status == 'diproses') bg-info
+                        @elseif($pengaduan->status == 'selesai') bg-success
+                        @elseif($pengaduan->status == 'ditolak') bg-danger
+                        @endif">
+                        {{ ucfirst($pengaduan->status) }}
+                    </span>
+                </a>
+            @else
+                <span class="badge bg-warning">Belum Ada Respon</span>
+            @endif
+        </td>
 
-                            @if(auth()->user()->role !== 'masyarakat')
-                                <td>
-                                    <a href="{{ route('admin.tanggapan.create', ['id' => $pengaduan->id]) }}" class="btn btn-warning btn-sm">c</a>
-                                    <a href="/edit_pengaduan/{{$pengaduan->id}}" class="btn btn-sm btn-info mt-1">E</a>
-                                    <form action="" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus pengaduan ini?')">H</button>
-                                    </form>
-                                </td>
-                            @endif
-                        </tr>
-                    @endforeach
-                    </tbody>
+        @if(auth()->user()->role !== 'masyarakat')
+            <td data-label="Opsi">
+                <a href="{{ route('admin.tanggapan.create', ['id' => $pengaduan->id]) }}" class="btn btn-warning btn-sm">c</a>
+                <a href="/edit_pengaduan/{{$pengaduan->id}}" class="btn btn-sm btn-info mt-1">E</a>
+                <form action="" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus pengaduan ini?')">H</button>
+                </form>
+            </td>
+        @endif
+    </tr>
+@endforeach
+</tbody>
+
                 </table>
             </div>
         </div>

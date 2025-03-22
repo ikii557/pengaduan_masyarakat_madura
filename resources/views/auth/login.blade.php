@@ -74,18 +74,43 @@
 
                 <!-- Password Input -->
                 <div class="form-group mb-3">
-                    <label for="password"><strong>Password</strong></label>
-                    <input
-                        name="password"
-                        type="password"
-                        class="form-control @error('password') is-invalid @enderror"
-                        id="password"
-                        placeholder="Masukkan Password Anda"
-                    >
-                    @error('password')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
+    <label for="password"><strong>Password</strong></label>
+    <div class="input-group">
+        <input
+            name="password"
+            type="password"
+            class="form-control @error('password') is-invalid @enderror"
+            id="password"
+            placeholder="Masukkan Password Anda"
+        >
+        <span class="input-group-text">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </span>
+    </div>
+    @error('password')
+        <p class="text-danger">{{ $message }}</p>
+    @enderror
+</div>
+
+<!-- Tambahkan FontAwesome untuk ikon mata -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<script>
+    document.getElementById("togglePassword").addEventListener("click", function () {
+        let passwordInput = document.getElementById("password");
+        let icon = this;
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    });
+</script>
+
 
                 <!-- Submit Button -->
                 <div class="text-center">
